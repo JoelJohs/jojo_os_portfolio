@@ -1,0 +1,59 @@
+# Node modules and pnpm cache
+node_modules/
+.pnpm/
+.pnpm-store/
+pnpm-debug.log*
+
+# Build / output
+dist/
+build/
+out/
+public/build/
+.vite/
+.next/
+.nuxt/
+.svelte-kit/
+.storybook/
+storybook-static/
+
+# Caches
+.cache/
+.parcel-cache/
+.cache-loader/
+
+# Environment files (keep examples)
+.env
+.env.local
+.env.*.local
+
+# Logs
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+
+# OS
+.DS_Store
+Thumbs.db
+
+# IDEs / editors
+.vscode/
+.idea/
+*.suo
+*.user
+*.userosscache
+*.sln
+*.sln.docstates
+*.swp
+
+# Testing / coverage
+coverage/
+
+# Misc
+*.log
+*.tmp
+*.bak
+
+# Lockfiles not used with pnpm
+package-lock.json
+yarn.lock

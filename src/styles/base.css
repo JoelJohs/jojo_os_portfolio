@@ -1,0 +1,44 @@
+/* Efecto de Scanlines (Líneas de monitor viejo) */
+.scanlines {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: linear-gradient(
+        to bottom,
+        rgba(255,255,255,0),
+        rgba(255,255,255,0) 50%,
+        rgba(0,0,0,0.2) 50%,
+        rgba(0,0,0,0.2)
+    );
+    background-size: 100% 4px;
+    pointer-events: none; 
+    z-index: 9999;
+    opacity: 0.6;
+}
+
+.boot-screen {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    text-align: center;
+}
+
+h1 {
+    color: var(--primary-neon);
+    text-shadow: var(--glow-violet);
+    font-size: 2.5rem;
+    margin-bottom: 1rem;
+}
+
+.status {
+    color: var(--danger-scarlet);
+    text-shadow: var(--glow-red);
+    font-size: 1rem;
+    border: var(--border-thin);
+    padding: 0.5rem 1rem;
+    background: rgba(138, 0, 0, 0.1);
+}

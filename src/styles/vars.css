@@ -1,0 +1,44 @@
+:root {    
+    /** --- PALETA DE COLORES (The "Look") --- **/
+    /* Fondos: Oscuros con tintes azules (Base para el tema) */
+    --bg-deep-space: #02020a;  /* Casi negro, tinte azul */
+    --bg-navy: #0a0a16;        /* Un poco más claro, para paneles */
+    --bg-panel: #111125;       /* Para ventanas o tarjetas */
+    --bg-scanline: rgba(18, 16, 16, 0.5); /* Overlay para efecto CRT */
+
+    /* Primarios: Violets & Purples (colores principales) */
+    --primary-violet: #9d00ff;
+    --primary-neon: #bc13fe;   
+    --primary-dim: #4b007d;    
+
+    /* Acentos: Azules eléctricos (Para texto de lectura o info) */
+    --accent-blue: #2e59ff;    
+    --accent-cyan: #00f3ff;   
+    
+    /* Estado / Peligro: Scarlet & Blood (Errores, alertas, botones críticos) */
+    --danger-scarlet: #ff1f1f; 
+    --danger-blood: #8a0000;   
+
+    /* Texto */
+    --text-main: #e0e0e0;      
+    --text-muted: #6e6e8e;     
+    
+    /* --- TIPOGRAFÍA --- */
+    --font-mono: 'Fira Code', 'Courier New', monospace;
+    --font-display: 'Orbitron', sans-serif; /* Opcional: para títulos grandes */
+
+
+    /** --- EFECTOS (The "Juice") --- **/
+    /* Sombras de neón (Glows) */
+    --glow-violet: 0 0 10px var(--primary-violet), 0 0 20px var(--primary-dim);
+    --glow-red: 0 0 10px var(--danger-scarlet), 0 0 20px var(--danger-blood);
+    --glow-text: 0 0 5px rgba(188, 19, 254, 0.7);
+    
+    /* Bordes */
+    --border-thin: 1px solid var(--primary-dim);
+    --border-neon: 1px solid var(--primary-neon);
+    
+    /* UI */
+    --radius-sm: 2px; 
+    --spacing-md: 1rem;
+}
