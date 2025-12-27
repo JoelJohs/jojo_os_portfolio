@@ -1,8 +1,9 @@
 export default {
   system: {
+    title: "JOJO-OS v1.0",
     boot: "INICIANDO SISTEMA...",
-    ready: "JOJO-OS LISTO. ESCRIBA 'help' PARA INICIAR.",
-    error: "COMANDO DESCONOCIDO",
+    status: "ESTADO: EN LÍNEA",
+    lang_label: "IDIOMA",
   },
   ui: {
     projects: "Proyectos",

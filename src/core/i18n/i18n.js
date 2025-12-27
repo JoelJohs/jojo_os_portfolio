@@ -93,4 +93,9 @@ Permite que los componentes se suscriban a cambios de idioma
 
 export function onLanguageChange(callback) {
   listeners.push(callback);
+  // Devolver una función de unsubscribe para que los consumidores puedan quitar el listener
+  return () => {
+    const idx = listeners.indexOf(callback);
+    if (idx !== -1) listeners.splice(idx, 1);
+  };
 }
