@@ -8,7 +8,8 @@ portfolio_vanilla/
 │   ├── core/               # Documentación de módulos core
 │   │   ├── I18N.md         # Sistema de internacionalización
 │   │   ├── EVENTS.md       # Sistema de eventos
-│   │   └── SHELL.md         # Sistema de terminal/comandos
+│   │   ├── SHELL.md         # Sistema de terminal/comandos
+│   │   └── VIEWPORT.md     # Sistema de navegación y viewport
 │   ├── README.md           # Esta guía
 │   ├── COMPONENT_ARCHITECTURE.md  # Arquitectura de componentes UI
 │   ├── STYLES.md           # Sistema de estilos CSS
@@ -18,7 +19,7 @@ portfolio_vanilla/
 │   ├── core/               # Módulos principales
 │   │   ├── i18n/           # Sistema i18n
 │   │   ├── events/         # Sistema de eventos
-│   │   ├── system/         # Sistema de terminal
+│   │   ├── system/         # Sistema de terminal y navegación
 │   │   └── utils/          # Utilidades DOM
 │   ├── ui/                 # Componentes de interfaz
 │   │   ├── atoms/          # Componentes básicos
@@ -28,7 +29,10 @@ portfolio_vanilla/
 │   │   ├── reset.css       # Reset y configuraciones base
 │   │   ├── vars.css        # Variables CSS (tema, colores, efectos)
 │   │   ├── base.css        # Estilos base y componentes principales
-│   │   └── layout.css      # Layout y estructura de la página
+│   │   ├── layout.css      # Layout y estructura de la página
+│   │   └── components/     # Estilos de componentes específicos
+│   │       ├── header.css  # Header y navegación
+│   │       └── terminal.css # Componente terminal
 │   └── main.js             # Lógica JavaScript
 ├── index.html              # Página principal
 ├── package.json            # Dependencias y scripts
@@ -46,11 +50,22 @@ La documentación sigue la misma estructura modular que el código fuente:
 
 Uso la metodología **Atoms-Molecules-Organisms** para organizar los componentes de interfaz:
 
-- **🧱 Atoms**: Componentes básicos e indivisibles (botones, inputs, iconos)
-- **🔬 Molecules**: Combinaciones simples de 2-4 átomos (formularios, campos de búsqueda)
-- **🧬 Organisms**: Secciones completas y autónomas (terminal, perfiles de usuario)
+- **🧱 Atoms**: Componentes básicos e indivisibles (LanguageSwitcher, botones, iconos)
+- **🔬 Molecules**: Combinaciones simples de 2-4 átomos (ProfileCard, formularios, campos de búsqueda)
+- **🧬 Organisms**: Secciones completas y autónomas (Terminal, Header, Viewport)
 
 > **Ver guía completa**: [COMPONENT_ARCHITECTURE.md](./COMPONENT_ARCHITECTURE.md)
+
+## Sistema de Terminal y Navegación
+
+El proyecto implementa un sistema de terminal cyberpunk con navegación integrada:
+
+- **Terminal Dock**: 25vh del espacio para interfaz CLI funcional
+- **Viewport**: 75vh para contenido GUI dinámico
+- **Navegación por Comandos**: `home`, `about`, `projects`, `contact`
+- **Comunicación Desacoplada**: Sistema de eventos pub/sub
+
+> **Ver documentación completa**: [TERMINAL_SYSTEM.md](./TERMINAL_SYSTEM.md)
 
 ## Filosofía de Arquitectura
 

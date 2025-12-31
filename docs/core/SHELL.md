@@ -65,17 +65,29 @@ Coordina la ejecución de comandos y maneja errores.
 
 ```javascript
 const REGISTRY = {
-  help: (args) => {
-    return "comandos disponibles: help, echo, clear";
+  home: () => {
+    emit(EVENTS.NAV_NAVIGATE, "home");
+    return "Jumping to sector: HOME";
   },
-  echo: (args) => {
-    return args.join(" ");
+  about: () => {
+    emit(EVENTS.NAV_NAVIGATE, "about");
+    return "Retrieving personnel file...";
   },
-  clear: (args) => {
+  projects: () => {
+    emit(EVENTS.NAV_NAVIGATE, "projects");
+    return "Accessing project repository...";
+  },
+  contact: () => {
+    emit(EVENTS.NAV_NAVIGATE, "contact");
+    return "Opening secure channel...";
+  },
+  clear: () => {
     emit(EVENTS.CLI_CLEAR);
     return null;
   },
-  // Más comandos se agregarán aquí
+  help: () =>
+    "Available sectors: home, about, projects, contact. System cmds: clear, echo.",
+  echo: (args) => args.join(" "),
 };
 ```
 
@@ -167,6 +179,9 @@ emit(EVENTS.CLI_OUTPUT, response);
 // Limpieza de terminal
 emit(EVENTS.CLI_CLEAR);
 
+// Navegación a nueva sección
+emit(EVENTS.NAV_NAVIGATE, route);
+
 // Comando no encontrado
 emit(EVENTS.CMD_NOT_FOUND, command);
 ```
@@ -181,8 +196,8 @@ emit(EVENTS.CMD_NOT_FOUND, command);
 Input: "help"
 → parseInput: { command: "help", args: [] }
 → REGISTRY["help"]: función help
-→ help([]): "comandos disponibles: help, echo, clear"
-→ emit(CLI_OUTPUT, "comandos disponibles: help, echo, clear")
+→ help([]): "Available sectors: home, about, projects, contact. System cmds: clear, echo."
+→ emit(CLI_OUTPUT, "Available sectors: home, about, projects, contact. System cmds: clear, echo.")
 ```
 
 ### Comando echo
@@ -205,6 +220,48 @@ Input: "clear"
 → Terminal limpia pantalla, sin mostrar texto
 ```
 
+### Comandos de Navegación
+
+#### Comando home
+
+```
+Input: "home"
+→ parseInput: { command: "home", args: [] }
+→ REGISTRY["home"]: función home
+→ home([]): emit(NAV_NAVIGATE, "home") + return "Jumping to sector: HOME"
+→ Viewport muestra contenido HOME
+```
+
+#### Comando about
+
+```
+Input: "about"
+→ parseInput: { command: "about", args: [] }
+→ REGISTRY["about"]: función about
+→ about([]): emit(NAV_NAVIGATE, "about") + return "Retrieving personnel file..."
+→ Viewport muestra ProfileCard
+```
+
+#### Comando projects
+
+```
+Input: "projects"
+→ parseInput: { command: "projects", args: [] }
+→ REGISTRY["projects"]: función projects
+→ projects([]): emit(NAV_NAVIGATE, "projects") + return "Accessing project repository..."
+→ Viewport muestra contenido de proyectos
+```
+
+#### Comando contact
+
+```
+Input: "contact"
+→ parseInput: { command: "contact", args: [] }
+→ REGISTRY["contact"]: función contact
+→ contact([]): emit(NAV_NAVIGATE, "contact") + return "Opening secure channel..."
+→ Viewport muestra formulario de contacto
+```
+
 ---
 
 ## Extensión de Comandos
@@ -219,13 +276,20 @@ const REGISTRY = {
     return new Date().toLocaleString();
   },
   
-  sum: (args) => {
-    const numbers = args.map(arg => parseFloat(arg));
-    if (numbers.some(isNaN)) {
-      throw new SyntaxError("All arguments must be numbers");
+  calc: (args) => {
+    const expression = args.join(' ');
+    try {
+      return eval(expression).toString();
+    } catch {
+      throw new SyntaxError("Invalid expression");
     }
-    return numbers.reduce((sum, num) => sum + num, 0).toString();
   },
+  
+  // Comando de navegación personalizado
+  custom: () => {
+    emit(EVENTS.NAV_NAVIGATE, "custom");
+    return "Loading custom sector...";
+  }
 };
 ```
 

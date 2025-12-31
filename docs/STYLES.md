@@ -117,20 +117,138 @@ h1, .status
 
 ## layout.css
 
-(Actualmente vacío) Destinado a estructuras de layout principales.
+Define la estructura principal del layout con sistema viewport/terminal-dock.
 
-### Uso previsto
+### Estructura Principal
 
-- Grid systems
-- Estructuras de página
-- Componentes de navegación
-- Layouts responsivos
+#### Layout 75/25 Split
 
-### Por qué está separado
+```css
+#app {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  width: 100vw;
+  overflow: hidden;
+  background: var(--bg-deep-space);
+}
 
-- Mantiene base.css enfocado en componentes y efectos
-- Permitirá evolucionar el layout sin afectar estilos base
-- Sigue la separación de responsabilidades de ITCSS
+#viewport {
+  flex: 1; /* 75vh del espacio */
+  position: relative;
+  overflow-y: auto;
+  background: linear-gradient(
+    135deg,
+    var(--bg-deep-space) 0%,
+    var(--bg-navy) 50%,
+    var(--bg-panel) 100%
+  );
+  border-bottom: 2px solid var(--primary-dim);
+  box-shadow: 0 2px 10px rgba(188, 19, 254, 0.2);
+}
+
+#terminal-dock {
+  height: 25vh; /* 25vh del espacio */
+  min-height: 200px;
+  background: linear-gradient(
+    to bottom,
+    rgba(2, 2, 10, 0.9),
+    rgba(10, 10, 22, 0.95)
+  );
+  border-top: 1px solid rgba(188, 19, 254, 0.3);
+  box-shadow: 0 -5px 20px rgba(188, 19, 254, 0.1);
+  position: relative;
+}
+```
+
+#### Terminal Integration
+
+```css
+x-terminal {
+  height: 100%;
+  width: 100%;
+  margin: 0;
+  border: none;
+  border-radius: 0;
+  background: transparent;
+  position: relative;
+}
+```
+
+### Características del Layout
+
+- **Responsive**: Adaptable a cualquier tamaño de pantalla
+- **Cyberpunk Aesthetics**: Gradientes y efectos de neón
+- **Performance**: Optimizado con CSS puro
+- **Accessibility**: Estructura semántica HTML5
+
+### Por qué esta estructura
+
+- **Separación clara**: Viewport para GUI, dock para CLI
+- **Proporciones fijas**: 75/25 para balance visual
+- **Efectos visuales**: Gradientes y sombras cyberpunk
+- **Flexibilidad**: Contenido dinámico en viewport
+
+---
+
+## Componentes Específicos
+
+### components/terminal.css
+
+Estilos especializados para el componente terminal:
+
+```css
+x-terminal {
+  display: block;
+  width: 100%;
+  height: 100%;
+  position: relative;
+}
+
+/* Efectos CRT integrados */
+x-terminal::before {
+  /* Scanlines effect */
+  background: repeating-linear-gradient(
+    0deg,
+    rgba(0, 0, 0, 0.15),
+    rgba(0, 0, 0, 0.15) 1px,
+    transparent 1px,
+    transparent 2px
+  );
+}
+
+x-terminal::after {
+  /* Viñeteado */
+  background: radial-gradient(
+    ellipse at center,
+    transparent 0%,
+    rgba(0, 0, 0, 0.2) 100%
+  );
+}
+```
+
+### components/header.css
+
+Estilos para sistema de navegación y headers:
+
+```css
+.system-header {
+  background: rgba(17, 17, 37, 0.8);
+  border-bottom: 1px solid rgba(188, 19, 254, 0.3);
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  backdrop-filter: blur(10px);
+}
+
+.nav-tabs {
+  display: flex;
+  align-items: center;
+  padding: 0 2rem;
+  height: 3rem;
+  gap: 0.5rem;
+}
+```
 
 ---
 
@@ -140,7 +258,8 @@ h1, .status
 2. **Resetear base** en `reset.css` 
 3. **Crear componentes** en `base.css`
 4. **Estructurar layout** en `layout.css`
-5. **Importar en orden** en el HTML principal
+5. **Estilos específicos** en `components/`
+6. **Importar en orden** en el HTML principal
 
 Este enfoque asegura:
 
@@ -148,3 +267,4 @@ Este enfoque asegura:
 - **Mantenibilidad** con separación de responsabilidades
 - **Escalabilidad** para futuros componentes
 - **Performance** con CSS optimizado y vanilla
+- **Modularidad** con componentes específicos

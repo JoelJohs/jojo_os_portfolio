@@ -28,9 +28,18 @@ export class LanguageSwitcher extends HTMLElement {
 }
 ```
 
+**Ejemplos en el proyecto:**
+
+```javascript
+// src/ui/atoms/LanguageSwitcher.js
+export class LanguageSwitcher extends HTMLElement {
+  // Componente autónomo, no se puede dividir más
+}
+```
+
 **Estructura:**
 
-```texts
+```text
 src/ui/atoms/
 ├── LanguageSwitcher.js
 ├── Button.js
@@ -52,17 +61,22 @@ Combinaciones de 2-4 átomos que trabajan juntos para formar una unidad con func
 **Ejemplos:**
 
 ```javascript
-// Campo de búsqueda (input + botón)
-<SearchField>
-  <Input /> // Atom
-  <Button /> // Atom
-</SearchField>
+// Tarjeta de perfil (título + datos + estadísticas)
+<ProfileCard>
+  <h2>Joel Johs</h2> // Texto básico
+  <p>SysAdmin</p>    // Texto básico
+  <div class="stats"> // Contenedor de estadísticas
+    <span>STR: MAX</span>
+    <span>INT: MAX</span>
+  </div>
+</ProfileCard>
 ```
 
 **Estructura:**
 
 ```text
 src/ui/molecules/
+├── ProfileCard.js
 ├── SearchField.js
 ├── LoginForm.js
 └── NavigationItem.js
@@ -131,20 +145,19 @@ src/ui/
 ├── atoms/           # Componentes básicos
 │   └── LanguageSwitcher.js
 ├── molecules/       # Combinaciones simples
+│   └── ProfileCard.js
 └── organisms/       # Secciones complejas
+    └── terminal.js
 ```
 
 ### Importaciones
 
 ```javascript
-// Importar átomo
-import { LanguageSwitcher } from "../ui/atoms/LanguageSwitcher.js";
-
 // Importar molécula
-import { SearchField } from "../ui/molecules/SearchField.js";
+import { ProfileCard } from "../ui/molecules/ProfileCard.js";
 
 // Importar organismo
-import { Terminal } from "../ui/organisms/Terminal.js";
+import { Terminal } from "../ui/organisms/terminal.js";
 ```
 
 ---
@@ -174,7 +187,9 @@ import { Terminal } from "../ui/organisms/Terminal.js";
 
 ---
 
-## Ejemplo Real: LanguageSwitcher
+## Ejemplos Reales
+
+### LanguageSwitcher (🧱 Atom)
 
 ```javascript
 // src/ui/atoms/LanguageSwitcher.js
@@ -184,6 +199,38 @@ export class LanguageSwitcher extends HTMLElement {
   // - No se puede dividir más
   // - Reutilizable en cualquier lugar
 }
+```
+
+### ProfileCard (🔬 Molecule)
+
+```javascript
+// src/ui/molecules/ProfileCard.js
+class ProfileCard extends HTMLElement {
+  set data(value) {
+    this.render(value);
+  }
+
+  render(data) {
+    const name = data?.name || "Unknown";
+    const role = data?.role || "";
+    const stats = data?.stats || {};
+    this.innerHTML = `
+      <div class="profile-card">
+        <h2>${name}</h2>
+        <p>${role}</p>
+        <div class="stats">
+          <span>STR: ${stats.str ?? "-"}</span>
+          <span>INT: ${stats.int ?? "-"}</span>
+        </div>
+      </div>
+    `;
+  }
+}
+
+// Clasificación: 🔬 MOLECULE
+// - Combina múltiples elementos HTML
+// - Lógica simple de renderizado
+// - Reutilizable en diferentes contextos
 ```
 
 ---
