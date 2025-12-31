@@ -14,8 +14,9 @@
       rel="stylesheet"
     />
 
-<link rel="stylesheet" href="src/styles/vars.css" />
+    <link rel="stylesheet" href="src/styles/vars.css" />
     <link rel="stylesheet" href="src/styles/reset.css" />
+    <link rel="stylesheet" href="src/styles/layout.css" />
     <link rel="stylesheet" href="src/styles/base.css" />
     <link rel="stylesheet" href="src/styles/components/terminal.css" />
   </head>
@@ -23,9 +24,15 @@
     <div class="scanlines"></div>
 
     <main id="app">
-      <div class="boot-screen" style="display: none"><h1>JOJO-OS v1.0</h1></div>
+      <section id="viewport">
+        <div id="content-stage">
+          <h1 class="glitch-text">JOJO SYSTEM ONLINE</h1>
+        </div>
+      </section>
 
-      <x-terminal></x-terminal>
+      <section id="terminal-dock">
+        <x-terminal></x-terminal>
+      </section>
     </main>
 
     <script type="module" src="./src/main.js"></script>

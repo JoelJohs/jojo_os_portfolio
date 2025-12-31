@@ -1,62 +1,45 @@
-// -- Imports --
 import { on, emit } from "../events/bus.js";
 import { EVENTS } from "../events/types.js";
 import { parseInput } from "./commandParser.js";
 
-// -- Registro de los comandos --
 const REGISTRY = {
-  help: (args) => {
-    return "comandos disponibles: help, echo, clear";
+  home: () => {
+    emit(EVENTS.NAV_NAVIGATE, "home");
+    return "Jumping to sector: HOME";
   },
-  echo: (args) => {
-    return args.join(" ");
+  about: () => {
+    emit(EVENTS.NAV_NAVIGATE, "about");
+    return "Retrieving personnel file...";
   },
-  clear: (args) => {
+  projects: () => {
+    emit(EVENTS.NAV_NAVIGATE, "projects");
+    return "Accessing project repository...";
+  },
+  contact: () => {
+    emit(EVENTS.NAV_NAVIGATE, "contact");
+    return "Opening secure channel...";
+  },
+  clear: () => {
     emit(EVENTS.CLI_CLEAR);
     return null;
   },
-  // Agregare los demas comandos segun vaya haciendo cada seccion del portfolio
+  help: () =>
+    "Available sectors: home, about, projects, contact. System cmds: clear, echo.",
 };
 
-// -- Iniciar el shell --
 export function initShell() {
-  on(EVENTS.CLI_INPUT, (inputString) => {
-    // 1. Procesamiento de los inputs
-    const { command, args } = parseInput(inputString);
-
+  on(EVENTS.CLI_INPUT, (rawInput) => {
+    const { command, args } = parseInput(rawInput);
     if (!command) return;
 
-    // 2. Buscamos los comandos en el registro
     const action = REGISTRY[command];
-
-    // 3. control de errores
     if (action) {
-      try {
-        const response = action(args);
-        if (response) {
-          emit(EVENTS.CLI_OUTPUT, response);
-        }
-      } catch (error) {
-        if (error.name === "SyntaxError") {
-          emit(EVENTS.CLI_OUTPUT, `[ERROR] Invalid input: ${error.message}`);
-        } else if (error.name === "RangeError") {
-          emit(
-            EVENTS.CLI_OUTPUT,
-            `[ERROR] Argument out of range: ${error.message}`
-          );
-        } else {
-          emit(
-            EVENTS.CLI_OUTPUT,
-            `[ERROR] Critical failure in ${command}: ${error.message}`
-          );
-        }
-        console.error(`[Shell] ${command} failed:`, error);
+      const response = action(args);
+      if (response) {
+        emit(EVENTS.CLI_OUTPUT, response);
       }
     } else {
-      emit(EVENTS.CMD_NOT_FOUND, command);
-      emit(EVENTS.CLI_OUTPUT, `Command not found: "${command}". Type "help".`);
+      emit(EVENTS.CLI_OUTPUT, `Access denied: "${command}" unknown.`);
     }
   });
-
-  console.log("[Shell] System initialized and listening...");
 }

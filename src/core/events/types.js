@@ -11,6 +11,9 @@ export const EVENTS = {
   // UI
   UI_THEME_CHANGED: "ui:theme_changed",
 
+  // NAVEGACIÓN (Nuevo)
+  NAV_NAVIGATE: "nav:navigate",
+
   // Terminal (CLI)
   CLI_INPUT: "cli:input", // El usuario presionó Enter
   CLI_OUTPUT: "cli:output", // El sistema responde texto

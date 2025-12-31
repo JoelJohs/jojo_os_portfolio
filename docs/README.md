@@ -12,7 +12,8 @@ portfolio_vanilla/
 │   ├── README.md           # Esta guía
 │   ├── COMPONENT_ARCHITECTURE.md  # Arquitectura de componentes UI
 │   ├── STYLES.md           # Sistema de estilos CSS
-│   └── TERMINAL.md         # Componente de terminal UI
+│   ├── TERMINAL.md         # Componente de terminal UI
+│   └── TERMINAL_SYSTEM.md  # Sistema completo de terminal
 ├── src/                     # Código fuente
 │   ├── core/               # Módulos principales
 │   │   ├── i18n/           # Sistema i18n

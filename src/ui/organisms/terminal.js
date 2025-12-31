@@ -13,17 +13,19 @@ export class Terminal extends HTMLElement {
     this.setupSystemListeners();
   }
 
-  render() {
+render() {
     this.innerHTML = `
-            <div class="terminal-output" id="output"></div>
-            <div class="command-line">
-                <span class="prompt">visitor@jojo-os:~$</span>
-                <input type="text" class="cmd-input" autocomplete="off" spellcheck="false" autofocus>
+            <div class="terminal-content">
+                <div class="terminal-output" id="output"></div>
+                <div class="command-line">
+                    <span class="prompt">visitor@jojo-os:~$</span>
+                    <input type="text" class="cmd-input" placeholder="Type 'help' to see all commands" autocomplete="off" spellcheck="false" autofocus>
+                </div>
             </div>
         `;
   }
 
-  setupEventListeners() {
+setupEventListeners() {
     const input = this.querySelector(".cmd-input");
     const output = this.querySelector("#output");
 
@@ -47,6 +49,11 @@ export class Terminal extends HTMLElement {
     this.addEventListener("click", () => {
       input.focus();
     });
+
+    // 3. Enfocar input automáticamente cuando la terminal se renderiza
+    setTimeout(() => {
+      input.focus();
+    }, 100);
   }
 
   setupSystemListeners() {
@@ -66,15 +73,15 @@ export class Terminal extends HTMLElement {
    * @param {string} text Texto a agregar
    * @param {string} type Tipo de línea (clase CSS adicional)
    */
-  printLine(text, type = "") {
+printLine(text, type = "") {
     const output = this.querySelector("#output");
     const line = document.createElement("div");
     line.className = `terminal-line ${type}`;
     line.textContent = text; // textContent para poder evitar inyeccion de html no deseada
     output.appendChild(line);
 
-    // Auto-scroll al final del terminal
-    this.scrollTop = this.scrollHeight;
+    // Auto-scroll al final del terminal output
+    output.scrollTop = output.scrollHeight;
   }
 }
 

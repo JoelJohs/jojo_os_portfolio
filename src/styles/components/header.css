@@ -1,0 +1,125 @@
+/* System Header con Navigation Tabs */
+.system-header {
+    background: rgba(17, 17, 37, 0.8);
+    border-bottom: 1px solid rgba(188, 19, 254, 0.3);
+    padding: 0;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    backdrop-filter: blur(10px);
+}
+
+.nav-tabs {
+    display: flex;
+    align-items: center;
+    padding: 0 2rem;
+    height: 3rem;
+    gap: 0.5rem;
+}
+
+.tab {
+    background: transparent;
+    border: 1px solid rgba(188, 19, 254, 0.2);
+    color: var(--text-muted);
+    padding: 0.5rem 1rem;
+    font-family: var(--font-mono);
+    font-size: 0.875rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    border-radius: var(--radius-sm);
+    position: relative;
+    overflow: hidden;
+}
+
+.tab::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(
+        90deg,
+        transparent,
+        rgba(188, 19, 254, 0.2),
+        transparent
+    );
+    transition: left 0.5s ease;
+}
+
+.tab:hover {
+    color: var(--primary-neon);
+    border-color: rgba(188, 19, 254, 0.5);
+    text-shadow: var(--glow-text);
+}
+
+.tab:hover::before {
+    left: 100%;
+}
+
+.tab.active {
+    background: rgba(188, 19, 254, 0.1);
+    border-color: var(--primary-neon);
+    color: var(--primary-neon);
+    text-shadow: var(--glow-text);
+    box-shadow: 0 0 10px rgba(188, 19, 254, 0.3);
+}
+
+.tab.active::after {
+    content: '';
+    position: absolute;
+    bottom: -1px;
+    left: 0;
+    width: 100%;
+    height: 2px;
+    background: linear-gradient(
+        90deg,
+        var(--primary-dim),
+        var(--primary-neon),
+        var(--primary-dim)
+    );
+}
+
+/* Content Stage */
+#content-stage {
+    padding: 2rem;
+    min-height: calc(100vh - 25vh);
+    position: relative;
+}
+
+.glitch-text {
+    color: var(--primary-neon);
+    text-shadow: var(--glow-violet);
+    font-size: 2.5rem;
+    margin-bottom: 1rem;
+    font-family: var(--font-mono);
+    text-align: center;
+    animation: glitch 2s infinite;
+}
+
+@keyframes glitch {
+    0%, 100% {
+        text-shadow: 
+            var(--glow-violet),
+            2px 2px 0 var(--danger-scarlet),
+            -2px -2px 0 var(--accent-cyan);
+    }
+    25% {
+        text-shadow: 
+            var(--glow-violet),
+            -2px 2px 0 var(--danger-scarlet),
+            2px -2px 0 var(--accent-cyan);
+    }
+    50% {
+        text-shadow: 
+            var(--glow-violet),
+            2px -2px 0 var(--danger-scarlet),
+            -2px 2px 0 var(--accent-cyan);
+    }
+    75% {
+        text-shadow: 
+            var(--glow-violet),
+            -2px -2px 0 var(--danger-scarlet),
+            2px 2px 0 var(--accent-cyan);
+    }
+}
