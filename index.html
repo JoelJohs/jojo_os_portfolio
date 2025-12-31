@@ -1,32 +1,33 @@
 <!DOCTYPE html>
 <html lang="es">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Joel // DevSystem</title>
 
-    <link rel="icon" href="assets/favicon.ico">
-    
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@300;400;600&display=swap" rel="stylesheet">
+    <link rel="icon" href="assets/favicon.ico" />
 
-    <link rel="stylesheet" href="src/styles/vars.css">
-    <link rel="stylesheet" href="src/styles/reset.css">
-    <link rel="stylesheet" href="src/styles/base.css">
-</head>
-<body>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@300;400;600&display=swap"
+      rel="stylesheet"
+    />
 
+<link rel="stylesheet" href="src/styles/vars.css" />
+    <link rel="stylesheet" href="src/styles/reset.css" />
+    <link rel="stylesheet" href="src/styles/base.css" />
+    <link rel="stylesheet" href="src/styles/components/terminal.css" />
+  </head>
+  <body>
     <div class="scanlines"></div>
 
     <main id="app">
-        <div class="boot-screen">
-            <h1>JOJO-OS v1.0</h1>
-            <p class="status" data-i18n="system.boot"></p> 
-            <small style="color: var(--accent-cyan); margin-top: 10px;" data-i18n="system.welcome"></small>
-        </div>
+      <div class="boot-screen" style="display: none"><h1>JOJO-OS v1.0</h1></div>
+
+      <x-terminal></x-terminal>
     </main>
 
     <script type="module" src="./src/main.js"></script>
-</body>
+  </body>
 </html>

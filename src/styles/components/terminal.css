@@ -1,0 +1,60 @@
+x-terminal {
+    display: block;
+    width: 100%;
+    max-width: 900px;
+    margin: 2rem auto;
+    padding: 1rem;
+    font-family: var(--font-mono);
+    color: var(--text-main);
+
+    /* Efecto de ventana (opcional por ahora) */
+
+    background: rgba(2, 2, 10, 0.6); 
+    border: 1px solid rgba(188, 19, 254, 0.3);
+    border-radius: var(--radius-sm);
+    box-shadow: 0 0 20px rgba(0,0,0,0.5);
+    height: 60vh; 
+    overflow-y: auto; 
+}
+
+/* historial de comandos */
+.terminal-output {
+    margin-bottom: 0.5rem;
+    white-space: pre-wrap; 
+}
+
+.terminal-line {
+    margin-bottom: 0.25rem;
+    line-height: 1.6;
+}
+
+.terminal-line.error { color: var(--danger-scarlet); }
+.terminal-line.success { color: var(--primary-neon); }
+
+/* linea de comandos */
+.command-line {
+    display: flex;
+    align-items: center;
+}
+
+.prompt {
+    color: var(--primary-neon);
+    margin-right: 0.5rem;
+    font-weight: bold;
+    text-shadow: var(--glow-text);
+}
+
+/* input real */
+.cmd-input {
+    flex: 1;
+    background: transparent;
+    border: none;
+    color: var(--text-main);
+    font-family: var(--font-mono);
+    font-size: 1rem;
+    caret-color: var(--primary-neon); 
+}
+
+.cmd-input:focus {
+    outline: none;
+}

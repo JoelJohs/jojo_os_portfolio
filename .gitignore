@@ -57,3 +57,6 @@ coverage/
 # Lockfiles not used with pnpm
 package-lock.json
 yarn.lock
+
+# Temporary files
+temp-docs/

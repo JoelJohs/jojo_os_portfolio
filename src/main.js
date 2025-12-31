@@ -1,47 +1,41 @@
-// -- Imports --
+// -- UI Components (Web Components Registration) --
 import "./ui/atoms/LanguageSwitcher.js";
+import "./ui/organisms/terminal.js";
+
+// -- Core Systems --
 import { updateLocalizedText } from "./core/utils/dom.js";
 import { emit, on } from "./core/events/bus.js";
 import { EVENTS } from "./core/events/types.js";
 import { initShell } from "./core/system/shell.js";
 
-// -- Subscriptions --
+// -- System Lifecycle --
+
+/**
+ * Escucha el evento de arranque para realizar tareas post-carga.
+ * En el futuro, aquí ocultaremos el preloader.
+ */
 on(EVENTS.SYS_BOOT, () => {
   console.log(
-    "%c [SYS_BOOT] Kernel Loaded ",
-    "background: #bc13fe; color: #fff; padding: 2px;"
+    "%c [SYS] KERNEL ONLINE ",
+    "background: #bc13fe; color: #fff; padding: 2px; border-radius: 2px;"
   );
 });
 
-// -- CLI Logger --
-on(EVENTS.CLI_OUTPUT, (text) => {
-  console.log(
-    "%c[SYSTEM RESPONSE] %c" + text,
-    "color: #00f3ff; font-weight:bold;",
-    "color: #e0e0e0;"
-  );
-});
+// -- Boot Sequence --
 
-// -- Bootloader --
 document.addEventListener("DOMContentLoaded", () => {
-  // Aplica las traducciones iniciales
-  updateLocalizedText();
+  try {
+    // 1. I18N: inicializa las traducciones iniciales
+    updateLocalizedText();
 
-  // 1. Inicializar el Shell (ponerlo a escuchar)
-  initShell();
+    // 2. KERNEL: inicializa el shell
+    initShell();
 
-  // 2. Simulación de boot y comandos de prueba
-  setTimeout(() => {
-    emit(EVENTS.SYS_BOOT);
-
-    // 3. PRUEBA AUTOMÁTICA: Simular que el usuario escribe 'help'
-    console.log('[USER SIMULATION] Typing "help"...');
-    emit(EVENTS.CLI_INPUT, "help");
-
-    // Prueba 2: Simular un comando con argumentos
+    // 3. BOOT: inicia el sistema con un pequeño delay para que el dom esté listo
     setTimeout(() => {
-      console.log('[USER SIMULATION] Typing "echo Hello Cyberpunk"...');
-      emit(EVENTS.CLI_INPUT, "echo Hello Cyberpunk");
-    }, 500);
-  }, 1000);
+      emit(EVENTS.SYS_BOOT);
+    }, 100);
+  } catch (error) {
+    console.error("CRITICAL SYSTEM FAILURE:", error);
+  }
 });
