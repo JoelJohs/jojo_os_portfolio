@@ -1,5 +1,6 @@
 import "./ui/atoms/LanguageSwitcher.js";
 import "./ui/molecules/ProfileCard.js";
+import "./ui/organisms/ProjectGrid.js";
 import "./ui/organisms/terminal.js";
 
 import { updateLocalizedText } from "./core/utils/dom.js";

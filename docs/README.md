@@ -1,76 +1,144 @@
-# Portfolio Vanilla - Documentación
+# Portfolio Vanilla - Documentation Index
 
-## Arquitectura del Proyecto
+> **🚀 Quick Access** → [Architecture Guide](./ARCHITECTURE.md) | [Core Systems](./CORE_SYSTEMS.md) | [UI Components](./UI_COMPONENTS.md) | [Styling Guide](./STYLING.md)
+
+---
+
+## 📚 Documentation Structure
+
+### 📖 Main Guides
+
+| Guide | Description | Quick Links |
+|-------|-------------|-------------|
+| **[ARCHITECTURE.md](./ARCHITECTURE.md)** | Complete system architecture and project structure | [Project Structure](./ARCHITECTURE.md#project-structure) • [Core Concepts](./ARCHITECTURE.md#core-concepts) |
+| **[CORE_SYSTEMS.md](./CORE_SYSTEMS.md)** | Terminal, viewport, i18n, and event systems | [Terminal System](./CORE_SYSTEMS.md#terminal-system) • [Events](./CORE_SYSTEMS.md#event-system) • [I18n](./CORE_SYSTEMS.md#i18n-system) |
+| **[UI_COMPONENTS.md](./UI_COMPONENTS.md)** | Component architecture and examples | [Atoms](./UI_COMPONENTS.md#atoms) • [Molecules](./UI_COMPONENTS.md#molecules) • [Organisms](./UI_COMPONENTS.md#organisms) |
+| **[STYLING.md](./STYLING.md)** | CSS architecture, variables, and design system | [CSS Variables](./STYLING.md#css-variables) • [Layout](./STYLING.md#layout-system) • [Components](./STYLING.md#component-styles) |
+
+---
+
+## 🎯 Quick Start
+
+### New to the Project?
+1. **[Architecture Overview](./ARCHITECTURE.md)** - Understand the big picture
+2. **[Core Systems](./CORE_SYSTEMS.md)** - Learn terminal and navigation
+3. **[UI Components](./UI_COMPONENTS.md)** - Build interfaces
+4. **[Styling](./STYLING.md)** - Apply cyberpunk theme
+
+### Need Specific Information?
+- **Terminal Commands?** → [Core Systems → Terminal](./CORE_SYSTEMS.md#terminal-system)
+- **Add Component?** → [UI Components → Architecture](./UI_COMPONENTS.md#component-architecture)
+- **Change Theme?** → [Styling → Variables](./STYLING.md#css-variables)
+- **Internationalization?** → [Core Systems → i18n](./CORE_SYSTEMS.md#i18n-system)
+
+---
+
+## 🏗️ Project Overview
 
 ```
 portfolio_vanilla/
-├── docs/                    # Documentación del proyecto
-│   ├── core/               # Documentación de módulos core
-│   │   ├── I18N.md         # Sistema de internacionalización
-│   │   ├── EVENTS.md       # Sistema de eventos
-│   │   ├── SHELL.md         # Sistema de terminal/comandos
-│   │   └── VIEWPORT.md     # Sistema de navegación y viewport
-│   ├── README.md           # Esta guía
-│   ├── COMPONENT_ARCHITECTURE.md  # Arquitectura de componentes UI
-│   ├── STYLES.md           # Sistema de estilos CSS
-│   ├── TERMINAL.md         # Componente de terminal UI
-│   └── TERMINAL_SYSTEM.md  # Sistema completo de terminal
-├── src/                     # Código fuente
-│   ├── core/               # Módulos principales
-│   │   ├── i18n/           # Sistema i18n
-│   │   ├── events/         # Sistema de eventos
-│   │   ├── system/         # Sistema de terminal y navegación
-│   │   └── utils/          # Utilidades DOM
-│   ├── ui/                 # Componentes de interfaz
-│   │   ├── atoms/          # Componentes básicos
-│   │   ├── molecules/      # Combinaciones simples
-│   │   └── organisms/      # Secciones complejas
-│   ├── styles/             # Hojas de estilos CSS
-│   │   ├── reset.css       # Reset y configuraciones base
-│   │   ├── vars.css        # Variables CSS (tema, colores, efectos)
-│   │   ├── base.css        # Estilos base y componentes principales
-│   │   ├── layout.css      # Layout y estructura de la página
-│   │   └── components/     # Estilos de componentes específicos
-│   │       ├── header.css  # Header y navegación
-│   │       └── terminal.css # Componente terminal
-│   └── main.js             # Lógica JavaScript
-├── index.html              # Página principal
-├── package.json            # Dependencias y scripts
-└── pnpm-lock.yaml          # Lock file de dependencias
+├── docs/                     # 📚 Documentation (this directory)
+│   ├── README.md             # This index
+│   ├── ARCHITECTURE.md       # Complete architecture guide
+│   ├── CORE_SYSTEMS.md       # Terminal, events, i18n, viewport
+│   ├── UI_COMPONENTS.md      # Component architecture and examples
+│   └── STYLING.md           # CSS architecture and design system
+├── src/                      # 💻 Source code
+│   ├── core/                # Core business logic
+│   ├── ui/                  # User interface components
+│   ├── styles/              # CSS and styling
+│   └── main.js              # Application entry point
+└── index.html               # 🌐 Main HTML file
 ```
 
-## Estructura de Documentación
+---
 
-La documentación sigue la misma estructura modular que el código fuente:
+## 🔧 Technology Stack
 
-- **docs/core/**: Documentación de módulos core del sistema
-- **docs/**: Documentación general y de arquitectura
+- **🎨 HTML5** - Semantic markup and structure
+- **⚡ Vanilla CSS3** - ITCSS methodology with cyberpunk theme
+- **🟨 JavaScript ES6+** - Modern features without frameworks
+- **🧩 Web Components** - Reusable component architecture
+- **🌍 i18n** - Internationalization system
+- **🎯 Event System** - Pub/sub communication pattern
 
-## Arquitectura de Componentes UI
+---
 
-Uso la metodología **Atoms-Molecules-Organisms** para organizar los componentes de interfaz:
+## 🎨 Design Philosophy
 
-- **🧱 Atoms**: Componentes básicos e indivisibles (LanguageSwitcher, botones, iconos)
-- **🔬 Molecules**: Combinaciones simples de 2-4 átomos (ProfileCard, formularios, campos de búsqueda)
-- **🧬 Organisms**: Secciones completas y autónomas (Terminal, Header, Viewport)
+### Cyberpunk/Neon Theme
+- Deep space backgrounds with neon accents
+- CRT effects (scanlines, glitch)
+- Terminal-inspired UI elements
+- High contrast readability
 
-> **Ver guía completa**: [COMPONENT_ARCHITECTURE.md](./COMPONENT_ARCHITECTURE.md)
+### Core Principles
+- **Vanilla First** - No external frameworks
+- **Component-Based** - Atomic design methodology
+- **Performance Optimized** - Minimal dependencies
+- **Modular Architecture** - Clear separation of concerns
 
-## Sistema de Terminal y Navegación
+---
 
-El proyecto implementa un sistema de terminal cyberpunk con navegación integrada:
+## 🚀 Getting Started
 
-- **Terminal Dock**: 25vh del espacio para interfaz CLI funcional
-- **Viewport**: 75vh para contenido GUI dinámico
-- **Navegación por Comandos**: `home`, `about`, `projects`, `contact`
-- **Comunicación Desacoplada**: Sistema de eventos pub/sub
+### Prerequisites
+- Modern web browser with ES6+ support
+- Basic knowledge of HTML/CSS/JavaScript
+- Understanding of Git workflow
 
-> **Ver documentación completa**: [TERMINAL_SYSTEM.md](./TERMINAL_SYSTEM.md)
+### Development Setup
+```bash
+# Clone repository
+git clone <repository-url>
+cd portfolio_vanilla
 
-## Filosofía de Arquitectura
+# Install dependencies
+pnpm install
 
-- **Vanilla First**: Sin frameworks, solo HTML5, CSS3 y JavaScript puro
-- **Modular**: Cada archivo tiene una responsabilidad específica
-- **Component-First**: Arquitectura UI basada en átomos, moléculas y organismos
-- **Tema Cyberpunk/Neon**: Estética inspirada en interfaces retro-futuristas
-- **Performance Optimized**: Mínimo de dependencias, carga rápida
+# Start development server
+pnpm dev
+```
+
+### Project Structure Deep Dive
+For detailed explanation of each directory and file, see [Complete Architecture Guide](./ARCHITECTURE.md).
+
+---
+
+## 📖 Documentation Guide
+
+### How to Use This Documentation
+
+1. **[README.md](./README.md)** - This index and overview
+2. **[ARCHITECTURE.md](./ARCHITECTURE.md)** - System architecture and patterns
+3. **[CORE_SYSTEMS.md](./CORE_SYSTEMS.md)** - Terminal, events, and business logic
+4. **[UI_COMPONENTS.md](./UI_COMPONENTS.md)** - Component development guide
+5. **[STYLING.md](./STYLING.md)** - CSS architecture and theming
+
+### Navigation Tips
+- Use the **Quick Links** in each guide table
+- Follow the **Need Specific Information?** section above
+- Check **File Structure** sections for exact file locations
+- Look for **Code Examples** throughout the documentation
+
+---
+
+## 🔄 Version Information
+
+- **Documentation Version**: v2.0 (Consolidated Structure)
+- **Project Status**: Active Development
+- **Last Updated**: Latest commit integration
+
+---
+
+## 🤝 Contributing to Documentation
+
+When adding new features:
+1. Update relevant documentation sections
+2. Add examples to [UI_COMPONENTS.md](./UI_COMPONENTS.md) if adding components
+3. Update [CORE_SYSTEMS.md](./CORE_SYSTEMS.md) for new systems
+4. Maintain this index with new references
+
+---
+
+**💡 Tip**: Bookmark this page as your main entry point to project documentation. Use the quick links at the top for rapid navigation between sections.

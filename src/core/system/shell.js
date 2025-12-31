@@ -1,6 +1,7 @@
 import { on, emit } from "../events/bus.js";
 import { EVENTS } from "../events/types.js";
 import { parseInput } from "./commandParser.js";
+import { fetchProjects } from "../repositories/projectRepository.js";
 
 const REGISTRY = {
   home: () => {
@@ -11,9 +12,17 @@ const REGISTRY = {
     emit(EVENTS.NAV_NAVIGATE, "about");
     return "Retrieving personnel file...";
   },
-  projects: () => {
-    emit(EVENTS.NAV_NAVIGATE, "projects");
-    return "Accessing project repository...";
+  projects: async () => {
+    emit(EVENTS.NAV_NAVIGATE, "loading");
+    emit(EVENTS.CLI_OUTPUT, "Connecting to secure database...");
+
+    try {
+      const projects = await fetchProjects();
+      emit(EVENTS.NAV_NAVIGATE, { view: "projects", data: projects });
+      return `Access granted. ${projects.length} modules loaded.`;
+    } catch (error) {
+      return `[ERROR] Connection failed: ${error.message}`;
+    }
   },
   contact: () => {
     emit(EVENTS.NAV_NAVIGATE, "contact");
@@ -28,15 +37,20 @@ const REGISTRY = {
 };
 
 export function initShell() {
-  on(EVENTS.CLI_INPUT, (rawInput) => {
+  on(EVENTS.CLI_INPUT, async (rawInput) => {
     const { command, args } = parseInput(rawInput);
     if (!command) return;
 
     const action = REGISTRY[command];
     if (action) {
-      const response = action(args);
-      if (response) {
-        emit(EVENTS.CLI_OUTPUT, response);
+      try {
+        const response = await action(args);
+        if (response) {
+          emit(EVENTS.CLI_OUTPUT, response);
+        }
+      } catch (error) {
+        emit(EVENTS.CLI_OUTPUT, `[ERROR] Critical failure in ${command}.`);
+        console.error(`[Shell] ${command} failed:`, error);
       }
     } else {
       emit(EVENTS.CLI_OUTPUT, `Access denied: "${command}" unknown.`);

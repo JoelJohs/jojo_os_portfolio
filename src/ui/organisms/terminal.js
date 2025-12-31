@@ -13,7 +13,7 @@ export class Terminal extends HTMLElement {
     this.setupSystemListeners();
   }
 
-render() {
+  render() {
     this.innerHTML = `
             <div class="terminal-content">
                 <div class="terminal-output" id="output"></div>
@@ -25,7 +25,7 @@ render() {
         `;
   }
 
-setupEventListeners() {
+  setupEventListeners() {
     const input = this.querySelector(".cmd-input");
     const output = this.querySelector("#output");
 
@@ -58,7 +58,8 @@ setupEventListeners() {
 
   setupSystemListeners() {
     // Recibe la respuest que el sistema da
-    on(EVENTS.CLI_OUTPUT, (text) => {
+    on(EVENTS.CLI_OUTPUT, (payload) => {
+      const text = typeof payload === "string" ? payload : payload?.value ?? "";
       this.printLine(text);
     });
 
@@ -73,7 +74,7 @@ setupEventListeners() {
    * @param {string} text Texto a agregar
    * @param {string} type Tipo de línea (clase CSS adicional)
    */
-printLine(text, type = "") {
+  printLine(text, type = "") {
     const output = this.querySelector("#output");
     const line = document.createElement("div");
     line.className = `terminal-line ${type}`;
