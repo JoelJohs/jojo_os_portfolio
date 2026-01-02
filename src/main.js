@@ -8,6 +8,7 @@ import { emit, on } from "./core/events/bus.js";
 import { EVENTS } from "./core/events/types.js";
 import { initShell } from "./core/system/shell.js";
 import { initViewport } from "./core/system/viewport.js";
+import { initAudio } from "./core/system/audio.js";
 
 on(EVENTS.SYS_BOOT, () => {
   console.log(
@@ -19,6 +20,7 @@ on(EVENTS.SYS_BOOT, () => {
 document.addEventListener("DOMContentLoaded", () => {
   updateLocalizedText();
   initShell();
+  initAudio();
   initViewport();
 
   setTimeout(() => {

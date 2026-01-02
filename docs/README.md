@@ -1,144 +1,150 @@
-# Portfolio Vanilla - Documentation Index
+# Portfolio Vanilla - Índice de Documentación
 
-> **🚀 Quick Access** → [Architecture Guide](./ARCHITECTURE.md) | [Core Systems](./CORE_SYSTEMS.md) | [UI Components](./UI_COMPONENTS.md) | [Styling Guide](./STYLING.md)
+> **🚀 Acceso Rápido** → [Guía de Arquitectura](./ARCHITECTURE.md) | [Sistemas Centrales](./CORE_SYSTEMS.md) | [Nuevas Características](./NEW_FEATURES.md) | [Componentes de UI](./UI_COMPONENTS.md) | [Guía de Estilos](./STYLING.md)
 
 ---
 
-## 📚 Documentation Structure
+## 📚 Estructura de la Documentación
 
-### 📖 Main Guides
+### 📖 Guías Principales
 
-| Guide | Description | Quick Links |
+| Guía | Descripción | Enlaces Rápidos |
 |-------|-------------|-------------|
-| **[ARCHITECTURE.md](./ARCHITECTURE.md)** | Complete system architecture and project structure | [Project Structure](./ARCHITECTURE.md#project-structure) • [Core Concepts](./ARCHITECTURE.md#core-concepts) |
-| **[CORE_SYSTEMS.md](./CORE_SYSTEMS.md)** | Terminal, viewport, i18n, and event systems | [Terminal System](./CORE_SYSTEMS.md#terminal-system) • [Events](./CORE_SYSTEMS.md#event-system) • [I18n](./CORE_SYSTEMS.md#i18n-system) |
-| **[UI_COMPONENTS.md](./UI_COMPONENTS.md)** | Component architecture and examples | [Atoms](./UI_COMPONENTS.md#atoms) • [Molecules](./UI_COMPONENTS.md#molecules) • [Organisms](./UI_COMPONENTS.md#organisms) |
-| **[STYLING.md](./STYLING.md)** | CSS architecture, variables, and design system | [CSS Variables](./STYLING.md#css-variables) • [Layout](./STYLING.md#layout-system) • [Components](./STYLING.md#component-styles) |
+| **[ARCHITECTURE.md](./ARCHITECTURE.md)** | Arquitectura completa del sistema y estructura del proyecto | [Estructura del Proyecto](./ARCHITECTURE.md#project-structure) • [Conceptos Centrales](./ARCHITECTURE.md#core-concepts) |
+| **[CORE_SYSTEMS.md](./CORE_SYSTEMS.md)** | Sistemas de terminal, viewport, i18n y eventos | [Sistema de Terminal](./CORE_SYSTEMS.md#terminal-system) • [Eventos](./CORE_SYSTEMS.md#event-system) • [I18n](./CORE_SYSTEMS.md#i18n-system) |
+| **[UI_COMPONENTS.md](./UI_COMPONENTS.md)** | Arquitectura de componentes y ejemplos | [Átomos](./UI_COMPONENTS.md#atoms) • [Moléculas](./UI_COMPONENTS.md#molecules) • [Organismos](./UI_COMPONENTS.md#organisms) |
+| **[STYLING.md](./STYLING.md)** | Arquitectura CSS, variables y sistema de diseño | [Variables CSS](./STYLING.md#css-variables) • [Layout](./STYLING.md#layout-system) • [Componentes](./STYLING.md#component-styles) |
+| | **[NEW_FEATURES.md](./NEW_FEATURES.md)** | Documentación completa de todas las características recién implementadas | [Sistema de Terminal](./NEW_FEATURES.md#terminal-system-enhancements) • [Sistema i18n](./NEW_FEATURES.md#internationalization-system) • [Rejilla de Proyectos](./NEW_FEATURES.md#project-management-system) |
 
 ---
 
-## 🎯 Quick Start
+## 🎯 Inicio Rápido
 
-### New to the Project?
-1. **[Architecture Overview](./ARCHITECTURE.md)** - Understand the big picture
-2. **[Core Systems](./CORE_SYSTEMS.md)** - Learn terminal and navigation
-3. **[UI Components](./UI_COMPONENTS.md)** - Build interfaces
-4. **[Styling](./STYLING.md)** - Apply cyberpunk theme
+### ¿Nuevo en el Proyecto?
+1. **[Visión General de la Arquitectura](./ARCHITECTURE.md)** - Entiende el panorama general
+2. **[Sistemas Centrales](./CORE_SYSTEMS.md)** - Aprende sobre la terminal y la navegación
+3. **[Nuevas Características](./NEW_FEATURES.md)** - Explora todas las características implementadas
+4. **[Componentes de UI](./UI_COMPONENTS.md)** - Construye interfaces
+5. **[Estilos](./STYLING.md)** - Aplica el tema cyberpunk
 
-### Need Specific Information?
-- **Terminal Commands?** → [Core Systems → Terminal](./CORE_SYSTEMS.md#terminal-system)
-- **Add Component?** → [UI Components → Architecture](./UI_COMPONENTS.md#component-architecture)
-- **Change Theme?** → [Styling → Variables](./STYLING.md#css-variables)
-- **Internationalization?** → [Core Systems → i18n](./CORE_SYSTEMS.md#i18n-system)
+### ¿Necesitas Información Específica?
+- **¿Nuevas Características?** → [Nuevas Características → Lista Completa](./NEW_FEATURES.md#-quick-access)
+- **¿Comandos de la Terminal?** → [Sistemas Centrales → Terminal](./CORE_SYSTEMS.md#terminal-system)
+- **¿Añadir un Componente?** → [Componentes de UI → Arquitectura](./UI_COMPONENTS.md#component-architecture)
+- **¿Cambiar el Tema?** → [Estilos → Variables](./STYLING.md#css-variables)
+- **¿Internacionalización?** → [Sistemas Centrales → i18n](./CORE_SYSTEMS.md#i18n-system)
 
 ---
 
-## 🏗️ Project Overview
+## 🏗️ Visión General del Proyecto
 
 ```
 portfolio_vanilla/
-├── docs/                     # 📚 Documentation (this directory)
-│   ├── README.md             # This index
-│   ├── ARCHITECTURE.md       # Complete architecture guide
-│   ├── CORE_SYSTEMS.md       # Terminal, events, i18n, viewport
-│   ├── UI_COMPONENTS.md      # Component architecture and examples
-│   └── STYLING.md           # CSS architecture and design system
-├── src/                      # 💻 Source code
-│   ├── core/                # Core business logic
-│   ├── ui/                  # User interface components
-│   ├── styles/              # CSS and styling
-│   └── main.js              # Application entry point
-└── index.html               # 🌐 Main HTML file
+├── docs/                     # 📚 Documentación (este directorio)
+│   ├── README.md             # Este índice
+│   ├── ARCHITECTURE.md       # Guía completa de arquitectura
+│   ├── CORE_SYSTEMS.md       # Terminal, eventos, i18n, viewport
+│   ├── UI_COMPONENTS.md      # Arquitectura de componentes y ejemplos
+│   ├── STYLING.md           # Arquitectura CSS y sistema de diseño
+│   └── NEW_FEATURES.md      # Documentación completa de nuevas implementaciones
+├── src/                      # 💻 Código fuente
+│   ├── core/                # Lógica de negocio central
+│   ├── ui/                  # Componentes de la interfaz de usuario
+│   ├── styles/              # CSS y estilos
+│   └── main.js              # Punto de entrada de la aplicación
+└── index.html               # 🌐 Archivo HTML principal
 ```
 
 ---
 
-## 🔧 Technology Stack
+## 🔧 Pila Tecnológica
 
-- **🎨 HTML5** - Semantic markup and structure
-- **⚡ Vanilla CSS3** - ITCSS methodology with cyberpunk theme
-- **🟨 JavaScript ES6+** - Modern features without frameworks
-- **🧩 Web Components** - Reusable component architecture
-- **🌍 i18n** - Internationalization system
-- **🎯 Event System** - Pub/sub communication pattern
-
----
-
-## 🎨 Design Philosophy
-
-### Cyberpunk/Neon Theme
-- Deep space backgrounds with neon accents
-- CRT effects (scanlines, glitch)
-- Terminal-inspired UI elements
-- High contrast readability
-
-### Core Principles
-- **Vanilla First** - No external frameworks
-- **Component-Based** - Atomic design methodology
-- **Performance Optimized** - Minimal dependencies
-- **Modular Architecture** - Clear separation of concerns
+- **🎨 HTML5** - Marcado semántico y estructura
+- **⚡ Vanilla CSS3** - Metodología ITCSS con tema cyberpunk
+- **🟨 JavaScript ES6+** - Características modernas sin frameworks
+- **🧩 Web Components** - Arquitectura de componentes reutilizables
+- **🌍 i18n** - Sistema de internacionalización
+- **🎯 Sistema de Eventos** - Patrón de comunicación Pub/sub
 
 ---
 
-## 🚀 Getting Started
+## 🎨 Filosofía de Diseño
 
-### Prerequisites
-- Modern web browser with ES6+ support
-- Basic knowledge of HTML/CSS/JavaScript
-- Understanding of Git workflow
+### Tema Cyberpunk/Neón
+- Fondos de espacio profundo con acentos de neón
+- Efectos CRT (scanlines, glitch)
+- Elementos de UI inspirados en la terminal
+- Legibilidad de alto contraste
 
-### Development Setup
+### Principios Centrales
+- **Vanilla Primero** - Sin frameworks externos
+- **Basado en Componentes** - Metodología de diseño atómico
+- **Rendimiento Optimizado** - Dependencias mínimas
+- **Arquitectura Modular** - Clara separación de responsabilidades
+
+---
+
+## 🚀 Empezando
+
+### Prerrequisitos
+- Navegador web moderno con soporte para ES6+
+- Conocimientos básicos de HTML/CSS/JavaScript
+- Comprensión del flujo de trabajo de Git
+
+### Configuración de Desarrollo
 ```bash
-# Clone repository
-git clone <repository-url>
+# Clonar repositorio
+git clone <url-del-repositorio>
 cd portfolio_vanilla
 
-# Install dependencies
+# Instalar dependencias
 pnpm install
 
-# Start development server
+# Iniciar servidor de desarrollo
 pnpm dev
 ```
 
-### Project Structure Deep Dive
-For detailed explanation of each directory and file, see [Complete Architecture Guide](./ARCHITECTURE.md).
+### Análisis Profundo de la Estructura del Proyecto
+Para una explicación detallada de cada directorio y archivo, consulta la [Guía Completa de Arquitectura](./ARCHITECTURE.md).
 
 ---
 
-## 📖 Documentation Guide
+## 📖 Guía de Documentación
 
-### How to Use This Documentation
+### Cómo Usar Esta Documentación
 
-1. **[README.md](./README.md)** - This index and overview
-2. **[ARCHITECTURE.md](./ARCHITECTURE.md)** - System architecture and patterns
-3. **[CORE_SYSTEMS.md](./CORE_SYSTEMS.md)** - Terminal, events, and business logic
-4. **[UI_COMPONENTS.md](./UI_COMPONENTS.md)** - Component development guide
-5. **[STYLING.md](./STYLING.md)** - CSS architecture and theming
+1. **[README.md](./README.md)** - Este índice y visión general
+2. **[ARCHITECTURE.md](./ARCHITECTURE.md)** - Arquitectura del sistema y patrones
+3. **[CORE_SYSTEMS.md](./CORE_SYSTEMS.md)** - Terminal, eventos y lógica de negocio
+4. **[NEW_FEATURES.md](./NEW_FEATURES.md)** - Documentación completa de nuevas implementaciones
+5. **[UI_COMPONENTS.md](./UI_COMPONENTS.md)** - Guía de desarrollo de componentes
+6. **[STYLING.md](./STYLING.md)** - Arquitectura CSS y tematización
 
-### Navigation Tips
-- Use the **Quick Links** in each guide table
-- Follow the **Need Specific Information?** section above
-- Check **File Structure** sections for exact file locations
-- Look for **Code Examples** throughout the documentation
-
----
-
-## 🔄 Version Information
-
-- **Documentation Version**: v2.0 (Consolidated Structure)
-- **Project Status**: Active Development
-- **Last Updated**: Latest commit integration
+### Consejos de Navegación
+- Usa los **Enlaces Rápidos** en cada tabla de guía
+- Sigue la sección **¿Necesitas Información Específica?** de arriba
+- Revisa las secciones de **Estructura de Archivos** para la ubicación exacta de los archivos
+- Busca **Ejemplos de Código** a lo largo de la documentación
 
 ---
 
-## 🤝 Contributing to Documentation
+## 🔄 Información de Versión
 
-When adding new features:
-1. Update relevant documentation sections
-2. Add examples to [UI_COMPONENTS.md](./UI_COMPONENTS.md) if adding components
-3. Update [CORE_SYSTEMS.md](./CORE_SYSTEMS.md) for new systems
-4. Maintain this index with new references
+- **Versión de la Documentación**: v3.0 (Nuevas Características Añadidas)
+- **Estado del Proyecto**: Características Completas
+- **Última Actualización**: 1 de enero de 2026 - Documentadas todas las nuevas implementaciones
 
 ---
 
-**💡 Tip**: Bookmark this page as your main entry point to project documentation. Use the quick links at the top for rapid navigation between sections.
+## 🤝 Contribuyendo a la Documentación
+
+Al añadir nuevas características:
+1. **Documenta las nuevas implementaciones** en [NEW_FEATURES.md](./NEW_FEATURES.md)
+2. Actualiza las secciones de documentación relevantes
+3. Añade ejemplos a [UI_COMPONENTS.md](./UI_COMPONENTS.md) if adding components
+4. Actualiza [CORE_SYSTEMS.md](./CORE_SYSTEMS.md) para nuevos sistemas
+5. Mantén este índice con nuevas referencias
+
+---
+
+**💡 Consejo**: Marca esta página como tu punto de entrada principal a la documentación del proyecto. Usa los enlaces rápidos en la parte superior para una navegación rápida entre secciones.

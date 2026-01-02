@@ -1,34 +1,34 @@
-# UI Components Guide
+# Guía de Componentes de UI
 
-> **📚 Navigation Index** → [Architecture](./ARCHITECTURE.md) | [Core Systems](./CORE_SYSTEMS.md) | [Styling](./STYLING.md)
+> **📚 Índice de Navegación** → [Arquitectura](./ARCHITECTURE.md) | [Sistemas Centrales](./CORE_SYSTEMS.md) | [Estilos](./STYLING.md)
 
 ---
 
-## 🎯 Quick Access
+## 🎯 Acceso Rápido
 
-| Level | Components | Examples | File Location |
+| Nivel | Componentes | Ejemplos | Ubicación del Archivo |
 |-------|------------|----------|---------------|
-| **[🧱 Atoms](#atoms)** | Basic indivisible elements | LanguageSwitcher, Button, Input | `src/ui/atoms/` |
-| **[🔬 Molecules](#molecules)** | Simple combinations | ProfileCard, SearchField | `src/ui/molecules/` |
-| **[🧬 Organisms](#organisms)** | Complex sections | Terminal, Viewport | `src/ui/organisms/` |
+| **[🧱 Átomos](#átomos)** | Elementos básicos indivisibles | LanguageSwitcher, Botón, Input | `src/ui/atoms/` |
+| **[🔬 Moléculas](#moléculas)** | Combinaciones simples | ProfileCard, SearchField | `src/ui/molecules/` |
+| **[🧬 Organismos](#organismos)** | Secciones complejas | Terminal, Viewport | `src/ui/organisms/` |
 
 ---
 
-## 🧱 Atoms
+## 🧱 Átomos
 
-### Overview
+### Descripción General
 
-Atoms are the **smallest indivisible UI components**. They cannot be broken down further without losing their functionality and are completely independent.
+Los átomos son los **componentes de UI más pequeños e indivisibles**. No pueden descomponerse más sin perder su funcionalidad y son completamente independientes.
 
-### Characteristics
+### Características
 
-- **Single Responsibility** - One specific function
-- **Reusable** - Used in multiple contexts  
-- **Independent** - No dependencies on other components
-- **Simple Logic** - Usually presentation only
-- **No Child Components** - Standalone elements
+- **Responsabilidad Única** - Una función específica
+- **Reutilizables** - Usados en múltiples contextos  
+- **Independientes** - Sin dependencias de otros componentes
+- **Lógica Simple** - Generalmente solo presentación
+- **Sin Componentes Hijos** - Elementos autónomos
 
-### LanguageSwitcher Example
+### Ejemplo de LanguageSwitcher
 
 ```javascript
 import { setLanguage, getLanguage, onLanguageChange } from "../../core/i18n/i18n.js";
@@ -74,9 +74,9 @@ export class LanguageSwitcher extends HTMLElement {
 customElements.define("x-lang-switch", LanguageSwitcher);
 ```
 
-### Atom Patterns
+### Patrones de Átomos
 
-#### Button Component
+#### Componente de Botón
 ```javascript
 class CyberButton extends HTMLElement {
   static get observedAttributes() {
@@ -105,7 +105,7 @@ class CyberButton extends HTMLElement {
 customElements.define('cyber-button', CyberButton);
 ```
 
-#### Input Component
+#### Componente de Input
 ```javascript
 class CyberInput extends HTMLElement {
   static get observedAttributes() {
@@ -136,35 +136,35 @@ class CyberInput extends HTMLElement {
 customElements.define('cyber-input', CyberInput);
 ```
 
-### Atom Structure
+### Estructura de Átomos
 
 ```
 src/ui/atoms/
-├── LanguageSwitcher.js    # Language switcher (current)
-├── Button.js             # Action buttons
-├── Input.js              # Text inputs
-├── Icon.js               # SVG icons
-├── Badge.js              # Status badges
-├── Avatar.js             # User avatars
-└── index.js              # Export barrel
+├── LanguageSwitcher.js    # Selector de idioma (actual)
+├── Button.js             # Botones de acción
+├── Input.js              # Entradas de texto
+├── Icon.js               # Iconos SVG
+├── Badge.js              # Insignias de estado
+├── Avatar.js             # Avatares de usuario
+└── index.js              # Barril de exportación
 ```
 
 ---
 
-## 🔬 Molecules
+## 🔬 Moléculas
 
-### Overview
+### Descripción General
 
-Molecules are **simple combinations of 2-4 atoms** that work together to form a specific functional unit. They have basic logic and state management.
+Las moléculas son **combinaciones simples de 2 a 4 átomos** que trabajan juntos para formar una unidad funcional específica. Tienen lógica básica y gestión de estado.
 
-### Characteristics
+### Características
 
-- **Combines Atoms** - Groups 2-4 basic components
-- **Cooperative** - Atoms work together toward a goal
-- **Simple Logic** - Basic state and behavior
-- **Specific Purpose** - Solves particular UI problem
+- **Combina Átomos** - Agrupa de 2 a 4 componentes básicos
+- **Cooperativas** - Los átomos trabajan juntos hacia un objetivo
+- **Lógica Simple** - Estado y comportamiento básicos
+- **Propósito Específico** - Resuelve un problema de UI particular
 
-### ProfileCard Example
+### Ejemplo de ProfileCard
 
 ```javascript
 class ProfileCard extends HTMLElement {
@@ -178,7 +178,7 @@ class ProfileCard extends HTMLElement {
   }
 
   render() {
-    const name = this.data?.name || "Unknown";
+    const name = this.data?.name || "Desconocido";
     const role = this.data?.role || "";
     const stats = this.data?.stats || {};
     
@@ -190,7 +190,7 @@ class ProfileCard extends HTMLElement {
         </div>
         <div class="profile-stats">
           <div class="stat-item">
-            <span class="stat-label">STR</span>
+            <span class="stat-label">FUE</span>
             <span class="stat-value">${stats.str ?? "-"}</span>
           </div>
           <div class="stat-item">
@@ -206,9 +206,9 @@ class ProfileCard extends HTMLElement {
 customElements.define("x-profile-card", ProfileCard);
 ```
 
-#### Usage Example
+#### Ejemplo de Uso
 ```javascript
-// In viewport system
+// En el sistema de viewport
 if (route === "about") {
   const card = stage.querySelector("x-profile-card");
   if (card) {
@@ -221,9 +221,9 @@ if (route === "about") {
 }
 ```
 
-### Molecule Patterns
+### Patrones de Moléculas
 
-#### SearchField Component
+#### Componente SearchField
 ```javascript
 class SearchField extends HTMLElement {
   connectedCallback() {
@@ -234,11 +234,11 @@ class SearchField extends HTMLElement {
   render() {
     this.innerHTML = `
       <div class="search-field">
-        <cyber-input placeholder="Search projects..." 
+        <cyber-input placeholder="Buscar proyectos..." 
                      size="large">
         </cyber-input>
         <cyber-button variant="primary" size="large">
-          🔍 Search
+          🔍 Buscar
         </cyber-button>
       </div>
     `;
@@ -269,7 +269,7 @@ class SearchField extends HTMLElement {
 customElements.define('search-field', SearchField);
 ```
 
-#### LoginForm Component
+#### Componente LoginForm
 ```javascript
 class LoginForm extends HTMLElement {
   connectedCallback() {
@@ -282,15 +282,15 @@ class LoginForm extends HTMLElement {
       <form class="login-form">
         <div class="form-group">
           <label>Email</label>
-          <cyber-input type="email" placeholder="user@domain.com"></cyber-input>
+          <cyber-input type="email" placeholder="usuario@dominio.com"></cyber-input>
         </div>
         <div class="form-group">
-          <label>Password</label>
+          <label>Contraseña</label>
           <cyber-input type="password" placeholder="••••••••"></cyber-input>
         </div>
         <div class="form-actions">
           <cyber-button type="submit" variant="primary">
-            Access System
+            Acceder al Sistema
           </cyber-button>
         </div>
       </form>
@@ -314,34 +314,34 @@ class LoginForm extends HTMLElement {
 customElements.define('login-form', LoginForm);
 ```
 
-### Molecule Structure
+### Estructura de Moléculas
 
 ```
 src/ui/molecules/
-├── ProfileCard.js         # User profile display (current)
-├── SearchField.js         # Input + button combination
-├── LoginForm.js           # Multiple inputs + button
-├── NavigationItem.js      # Icon + text link
-├── StatCard.js           # Value + label display
-└── index.js              # Export barrel
+├── ProfileCard.js         # Muestra de perfil de usuario (actual)
+├── SearchField.js         # Combinación de input + botón
+├── LoginForm.js           # Múltiples inputs + botón
+├── NavigationItem.js      # Icono + enlace de texto
+├── StatCard.js           # Muestra de valor + etiqueta
+└── index.js              # Barril de exportación
 ```
 
 ---
 
-## 🧬 Organisms
+## 🧬 Organismos
 
-### Overview
+### Descripción General
 
-Organisms are **complex sections** that combine multiple atoms and molecules to form complete, autonomous systems with sophisticated logic and state management.
+Los organismos son **secciones complejas** que combinan múltiples átomos y moléculas para formar sistemas completos y autónomos con lógica y gestión de estado sofisticadas.
 
-### Characteristics
+### Características
 
-- **Complex Structure** - Combines many components
-- **Autonomous** - Functions as independent system
-- **Complex Logic** - Advanced state and behavior
-- **Specific Purpose** - Solves major business problems
+- **Estructura Compleja** - Combina muchos componentes
+- **Autónomos** - Funcionan como un sistema independiente
+- **Lógica Compleja** - Estado y comportamiento avanzados
+- **Propósito Específico** - Resuelven problemas de negocio importantes
 
-### Terminal Organism
+### Organismo de Terminal
 
 ```javascript
 export class Terminal extends HTMLElement {
@@ -363,10 +363,10 @@ export class Terminal extends HTMLElement {
       <div class="terminal-content">
         <div class="terminal-output" id="output"></div>
         <div class="command-line">
-          <span class="prompt">visitor@jojo-os:~$</span>
+          <span class="prompt">visitante@jojo-os:~$</span>
           <input type="text" 
                  class="cmd-input" 
-                 placeholder="Type 'help' to see all commands"
+                 placeholder="Escribe 'help' para ver todos los comandos"
                  autocomplete="off" 
                  spellcheck="false" 
                  autofocus>
@@ -381,7 +381,7 @@ export class Terminal extends HTMLElement {
     input.addEventListener("keydown", (e) => {
       if (e.key === "Enter") {
         const command = input.value.trim();
-        this.printLine(`visitor@jojo-os:~$ ${command}`, "muted");
+        this.printLine(`visitante@jojo-os:~$ ${command}`, "muted");
         emit(EVENTS.CLI_INPUT, command);
         input.value = "";
       }
@@ -406,7 +406,7 @@ export class Terminal extends HTMLElement {
     const output = this.querySelector("#output");
     const line = document.createElement("div");
     line.className = `terminal-line ${type}`;
-    line.textContent = text; // XSS protection
+    line.textContent = text; // Protección XSS
     output.appendChild(line);
     output.scrollTop = output.scrollHeight;
   }
@@ -415,9 +415,9 @@ export class Terminal extends HTMLElement {
 customElements.define("x-terminal", Terminal);
 ```
 
-### Organism Patterns
+### Patrones de Organismos
 
-#### Header Navigation Component
+#### Componente de Navegación del Encabezado
 ```javascript
 class HeaderNavigation extends HTMLElement {
   connectedCallback() {
@@ -471,7 +471,7 @@ class HeaderNavigation extends HTMLElement {
 customElements.define('header-nav', HeaderNavigation);
 ```
 
-#### Projects Grid Component
+#### Componente de Rejilla de Proyectos
 ```javascript
 class ProjectsGrid extends HTMLElement {
   constructor() {
@@ -515,7 +515,7 @@ class ProjectsGrid extends HTMLElement {
             ).join('')}
           </div>
           <div class="project-links">
-            <a href="${project.demo}" class="project-link demo">Live Demo</a>
+            <a href="${project.demo}" class="project-link demo">Demo en Vivo</a>
             <a href="${project.github}" class="project-link github">GitHub</a>
           </div>
         </div>
@@ -527,45 +527,45 @@ class ProjectsGrid extends HTMLElement {
 customElements.define('projects-grid', ProjectsGrid);
 ```
 
-### Organism Structure
+### Estructura de Organismos
 
 ```
 src/ui/organisms/
-├── terminal.js             # Terminal interface (current)
-├── Header.js              # Navigation and header
-├── Viewport.js            # Content container
-├── ProjectsGrid.js        # Project showcase
-├── ContactForm.js         # Contact interface
-└── index.js              # Export barrel
+├── terminal.js             # Interfaz de terminal (actual)
+├── Header.js              # Navegación y encabezado
+├── Viewport.js            # Contenedor de contenido
+├── ProjectsGrid.js        # Muestra de proyectos
+├── ContactForm.js         # Interfaz de contacto
+└── index.js              # Barril de exportación
 ```
 
 ---
 
-## 🏗️ Component Architecture
+## 🏗️ Arquitectura de Componentes
 
-### Decision Tree
+### Árbol de Decisión
 
 ```
-Is the component the smallest possible?
-  ├── Yes → 🧱 ATOM
-  └── No → Does it combine 2-4 simple components?
-          ├── Yes → 🔬 MOLECULE
-          └── No → Is it a complete, autonomous section?
-                  ├── Yes → 🧬 ORGANISM
-                  └── No → Reconsider design
+¿Es el componente lo más pequeño posible?
+  ├── Sí → 🧱 ÁTOMO
+  └── No → ¿Combina de 2 a 4 componentes simples?
+          ├── Sí → 🔬 MOLÉCULA
+          └── No → ¿Es una sección completa y autónoma?
+                  ├── Sí → 🧬 ORGANISMO
+                  └── No → Reconsiderar el diseño
 ```
 
-### Classification Rules
+### Reglas de Clasificación
 
-| Rule | Atoms | Molecules | Organisms |
+| Regla | Átomos | Moléculas | Organismos |
 |------|--------|-----------|-----------|
-| **Divisible?** | No | Yes | Yes |
-| **Combination Count** | 0 | 2-4 | 5+ |
-| **Logic Complexity** | Low | Medium | High |
-| **State Management** | None | Simple | Complex |
-| **Dependencies** | None | Basic atoms | Multiple atoms/molecules |
+| **¿Divisible?** | No | Sí | Sí |
+| **Cantidad de Combinaciones** | 0 | 2-4 | 5+ |
+| **Complejidad Lógica** | Baja | Media | Alta |
+| **Gestión de Estado** | Ninguna | Simple | Compleja |
+| **Dependencias** | Ninguna | Átomos básicos | Múltiples átomos/moléculas |
 
-### Component Lifecycle
+### Ciclo de Vida del Componente
 
 ```javascript
 class MyComponent extends HTMLElement {
@@ -576,14 +576,14 @@ class MyComponent extends HTMLElement {
     this._unsubscribe = null;
   }
 
-  // 2. Connected to DOM
+  // 2. Conectado al DOM
   connectedCallback() {
     this.render();
     this.setupEventListeners();
     this.setupSystemListeners();
   }
 
-  // 3. Attribute changes (optional)
+  // 3. Cambios de atributos (opcional)
   static get observedAttributes() {
     return ['data', 'variant'];
   }
@@ -594,7 +594,7 @@ class MyComponent extends HTMLElement {
     }
   }
 
-  // 4. Disconnected from DOM
+  // 4. Desconectado del DOM
   disconnectedCallback() {
     this.cleanupEventListeners();
     if (this._unsubscribe) {
@@ -602,7 +602,7 @@ class MyComponent extends HTMLElement {
     }
   }
 
-  // 5. Property setters/getters
+  // 5. Setters/getters de propiedades
   set data(value) {
     this._data = value;
     this.render();
@@ -612,22 +612,22 @@ class MyComponent extends HTMLElement {
     return this._data;
   }
 
-  // 6. Rendering
+  // 6. Renderizado
   render() {
     this.innerHTML = `<div class="my-component">${this._data}</div>`;
   }
 
-  // 7. Event setup
+  // 7. Configuración de eventos
   setupEventListeners() {
     this.addEventListener('click', this.handleClick.bind(this));
   }
 
-  // 8. System listeners
+  // 8. Escuchas del sistema
   setupSystemListeners() {
     this._unsubscribe = on(EVENTS.SOME_EVENT, this.handleSystemEvent.bind(this));
   }
 
-  // 9. Cleanup
+  // 9. Limpieza
   cleanupEventListeners() {
     this.removeEventListener('click', this.handleClick);
   }
@@ -638,38 +638,38 @@ customElements.define('my-component', MyComponent);
 
 ---
 
-## 🎨 Styling Integration
+## 🎨 Integración de Estilos
 
-### CSS Class Naming
+### Nomenclatura de Clases CSS
 
-#### BEM Methodology
+#### Metodología BEM
 ```css
-.component { /* Block */ }
-.component__element { /* Element */ }
-.component--modifier { /* Modifier */ }
+.component { /* Bloque */ }
+.component__element { /* Elemento */ }
+.component--modifier { /* Modificador */ }
 ```
 
-#### Example
+#### Ejemplo
 ```css
-/* Block */
+/* Bloque */
 .profile-card {
   background: var(--bg-panel);
   border-radius: var(--radius-md);
 }
 
-/* Element */
+/* Elemento */
 .profile-card__name {
   font-size: 1.5rem;
   color: var(--primary-neon);
 }
 
-/* Modifier */
+/* Modificador */
 .profile-card--compact {
   padding: var(--spacing-sm);
 }
 ```
 
-### Component Styles Organization
+### Organización de Estilos de Componentes
 
 ```
 src/styles/components/
@@ -687,16 +687,16 @@ src/styles/components/
     └── projects-grid.css
 ```
 
-### Theme Integration
+### Integración de Temas
 
 ```css
 .component {
-  /* Use CSS variables for theming */
+  /* Usa variables CSS para tematización */
   background: var(--bg-panel);
   color: var(--text-main);
   border: 1px solid var(--primary-dim);
   
-  /* Use variables for effects */
+  /* Usa variables para efectos */
   box-shadow: var(--shadow-neon);
   text-shadow: var(--glow-text);
 }
@@ -704,40 +704,40 @@ src/styles/components/
 
 ---
 
-## 🔧 Development Guidelines
+## 🔧 Directrices de Desarrollo
 
-### Component Creation Checklist
+### Lista de Verificación para la Creación de Componentes
 
-1. **[ ] Determine Level** - Atom, Molecule, or Organism?
-2. **[ ] Define Interface** - Properties, events, attributes
-3. **[ ] Implement Lifecycle** - connectedCallback, disconnectedCallback
-4. **[ ] Add Event Handling** - User interactions and system events
-5. **[ ] Create Styles** - Component-specific CSS with variables
-6. **[ ] Add Documentation** - Usage examples and API reference
-7. **[ ] Test Integration** - Verify in different contexts
+1. **[ ] Determinar Nivel** - ¿Átomo, Molécula u Organismo?
+2. **[ ] Definir Interfaz** - Propiedades, eventos, atributos
+3. **[ ] Implementar Ciclo de Vida** - connectedCallback, disconnectedCallback
+4. **[ ] Añadir Manejo de Eventos** - Interacciones de usuario y eventos del sistema
+5. **[ ] Crear Estilos** - CSS específico del componente con variables
+6. **[ ] Añadir Documentación** - Ejemplos de uso y referencia de API
+7. **[ ] Probar Integración** - Verificar en diferentes contextos
 
-### Best Practices
+### Mejores Prácticas
 
-#### Do's
-- ✅ Use semantic HTML elements
-- ✅ Implement proper cleanup
-- ✅ Use CSS variables for theming
-- ✅ Handle accessibility
-- ✅ Add proper event handling
-- ✅ Document component API
+#### Qué Hacer
+- ✅ Usar elementos HTML semánticos
+- ✅ Implementar una limpieza adecuada
+- ✅ Usar variables CSS para tematización
+- ✅ Manejar la accesibilidad
+- ✅ Añadir un manejo de eventos adecuado
+- ✅ Documentar la API del componente
 
-#### Don'ts
-- ❌ Skip cleanup in disconnectedCallback
-- ❌ Use inline styles
-- ❌ Create overly complex components
-- ❌ Ignore accessibility
-- ❌ Mix concerns in single component
-- ❌ Hardcode values, use variables
+#### Qué No Hacer
+- ❌ Omitir la limpieza en disconnectedCallback
+- ❌ Usar estilos en línea
+- ❌ Crear componentes demasiado complejos
+- ❌ Ignorar la accesibilidad
+- ❌ Mezclar responsabilidades en un solo componente
+- ❌ Escribir valores fijos, usar variables
 
-### Testing Components
+### Prueba de Componentes
 
 ```javascript
-// Example testing approach
+// Ejemplo de enfoque de prueba
 describe('ProfileCard', () => {
   let card;
   
@@ -750,24 +750,24 @@ describe('ProfileCard', () => {
     document.body.removeChild(card);
   });
 
-  it('should render profile data', () => {
+  it('debería renderizar los datos del perfil', () => {
     card.data = {
-      name: 'Test User',
-      role: 'Developer',
+      name: 'Usuario de Prueba',
+      role: 'Desarrollador',
       stats: { str: '10', int: '15' }
     };
     
-    expect(card.querySelector('.profile-name').textContent).toBe('Test User');
-    expect(card.querySelector('.profile-role').textContent).toBe('Developer');
+    expect(card.querySelector('.profile-name').textContent).toBe('Usuario de Prueba');
+    expect(card.querySelector('.profile-role').textContent).toBe('Desarrollador');
   });
 });
 ```
 
 ---
 
-## 📁 File Organization
+## 📁 Organización de Archivos
 
-### Export Barrels
+### Barriles de Exportación
 
 ```javascript
 // src/ui/atoms/index.js
@@ -789,16 +789,16 @@ export * from './molecules';
 export * from './organisms';
 ```
 
-### Import Patterns
+### Patrones de Importación
 
 ```javascript
-// Individual imports
+// Importaciones individuales
 import { LanguageSwitcher } from '../ui/atoms/LanguageSwitcher.js';
 
-// Barrel imports
+// Importaciones de barril
 import { LanguageSwitcher, Button, Input } from '../ui/atoms/index.js';
 
-// Full UI import
+// Importación completa de UI
 import { 
   LanguageSwitcher, 
   ProfileCard, 
@@ -808,4 +808,4 @@ import {
 
 ---
 
-This component architecture provides a scalable, maintainable, and consistent approach to building the cyberpunk-themed portfolio interface with clear separation of concerns and reusable patterns.
+Esta arquitectura de componentes proporciona un enfoque escalable, mantenible y consistente para construir la interfaz del portafolio con temática cyberpunk, con una clara separación de responsabilidades y patrones reutilizables.

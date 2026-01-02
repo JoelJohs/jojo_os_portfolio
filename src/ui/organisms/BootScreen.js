@@ -1,0 +1,56 @@
+import { emit } from "../../core/events/bus.js";
+import { EVENTS } from "../../core/events/types.js";
+
+export class BootScreen extends HTMLElement {
+  constructor() {
+    super();
+    this.logs = [
+      "INITIALIZING KERNEL...",
+      "CHECKING MEMORY INTEGRITY... OK",
+      "MOUNTING VIRTUAL FILESYSTEM... OK",
+      "LOADING DRIVERS: [VIDEO] [AUDIO] [INPUT]",
+      "DECRYPTING USER PROFILE...",
+      "ESTABLISHING SECURE CONNECTION...",
+      "SYSTEM READY.",
+    ];
+  }
+
+  connectedCallback() {
+    this.render();
+    this.runSequence();
+  }
+
+  render() {
+    this.innerHTML = `
+            <div class="boot-container">
+                <div class="boot-logo glitch" data-text="JOJO-OS">JOJO-OS</div>
+                <div class="boot-version">v1.0.4 [STABLE]</div>
+                
+                <div class="log-container" id="boot-logs"></div>
+                
+                <div class="progress-bar-container">
+                    <div class="progress-bar" id="boot-progress"></div>
+                </div>
+            </div>
+        `;
+  }
+
+  async runSequence() {
+    const logContainer = this.querySelector("#boot-logs");
+    const progressBar = this.querySelector("#boot-progress");
+
+    // Empieza con la secuencia de los logs
+    for (let i = 0; i < this.logs.length; i++) {
+      await this.wait(Math.random() * 100 + 300); // Espera entre 300ms y 400ms
+
+      const p = document.createElement("div");
+      p.className = "log-line";
+      p.innerText = `> ${this.logs[i]}`;
+      logContainer.appendChild(p);
+
+      // Actualiza la barra de progreso segun el log actual
+      const percent = ((i + 1) / this.logs.length) * 100;
+      progressBar.style.width = `${percent}%`;
+    }
+  }
+}

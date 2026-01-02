@@ -1,109 +1,109 @@
-# Core Systems Guide
+# Guía de Sistemas Centrales
 
-> **📚 Navigation Index** → [Architecture](./ARCHITECTURE.md) | [UI Components](./UI_COMPONENTS.md) | [Styling](./STYLING.md)
+> **📚 Índice de Navegación** → [Arquitectura](./ARCHITECTURE.md) | [Componentes de UI](./UI_COMPONENTS.md) | [Estilos](./STYLING.md)
 
 ---
 
-## 🎯 Quick Access
+## 🎯 Acceso Rápido
 
-| System | Purpose | Quick Links |
+| Sistema | Propósito | Enlaces Rápidos |
 |--------|---------|-------------|
-| **[Terminal System](#terminal-system)** | CLI interface and command processing | [Commands](#terminal-commands) • [Layout](#terminal-layout) • [Integration](#terminal-integration) |
-| **[Event System](#event-system)** | Pub/sub communication pattern | [API](#event-api) • [Constants](#event-constants) • [Examples](#event-examples) |
-| **[i18n System](#i18n-system)** | Internationalization and localization | [Translation](#translation-function) • [Languages](#language-management) • [Usage](#i18n-usage) |
-| **[Viewport System](#viewport-system)** | Dynamic content navigation | [Routing](#viewport-routing) • [Integration](#viewport-integration) • [Content](#viewport-content) |
+| **[Sistema de Terminal](#sistema-de-terminal)** | Interfaz CLI y procesamiento de comandos | [Comandos](#comandos-de-terminal) • [Layout](#layout-de-terminal) • [Integración](#integración-de-terminal) |
+| **[Sistema de Eventos](#sistema-de-eventos)** | Patrón de comunicación pub/sub | [API](#api-de-eventos) • [Constantes](#constantes-de-eventos) • [Ejemplos](#ejemplos-de-eventos) |
+| **[Sistema i18n](#sistema-i18n)** | Internacionalización y localización | [Traducción](#función-de-traducción) • [Gestión de Idiomas](#gestión-de-idiomas) • [Uso](#uso-de-i18n) |
+| **[Sistema de Viewport](#sistema-de-viewport)** | Navegación de contenido dinámico | [Enrutamiento](#enrutamiento-de-viewport) • [Integración](#integración-de-viewport) • [Contenido](#contenido-de-viewport) |
 
 ---
 
-## 🖥️ Terminal System
+## 🖥️ Sistema de Terminal
 
-### Architecture Overview
+### Descripción General de la Arquitectura
 
-The terminal system implements a **cyberpunk-themed CLI interface** that integrates with the viewport for dynamic content navigation. It combines Web Components with event-driven communication.
+El sistema de terminal implementa una **interfaz CLI con temática cyberpunk** que se integra con el viewport para la navegación de contenido dinámico. Combina Web Components con comunicación orientada a eventos.
 
-### Component Structure
+### Estructura de Componentes
 
 ```
-┌── Terminal System
-├── UI Layer
+┌── Sistema de Terminal
+├── Capa de UI
 │   ├── x-terminal (Web Component)
-│   └── Layout CSS (viewport + dock)
-├── Core Logic
-│   ├── shell.js (command interpreter)
-│   ├── commandParser.js (input parser)
-│   └── REGISTRY (command definitions)
-└── Communication
-    ├── events/bus.js (pub/sub system)
-    └── events/types.js (event constants)
+│   └── CSS de Layout (viewport + dock)
+├── Lógica Central
+│   ├── shell.js (intérprete de comandos)
+│   ├── commandParser.js (analizador de entrada)
+│   └── REGISTRY (definiciones de comandos)
+└── Comunicación
+    ├── events/bus.js (sistema pub/sub)
+    └── events/types.js (constantes de eventos)
 ```
 
-### Layout Structure (75/25 Split)
+### Estructura de Layout (División 75/25)
 
 ```
 ┌─────────────────────────────────┐
-│        Viewport (75vh)         │ ← Dynamic GUI content
+│        Viewport (75vh)         │ ← Contenido dinámico de la GUI
 │   (home/about/projects/etc.)    │
 ├─────────────────────────────────┤
-│     Terminal Dock (25vh)       │ ← CLI interface
+│     Muelle de la Terminal (25vh)       │ ← Interfaz CLI
 │   ┌─────────────────────────┐   │
 │   │ visitor@jojo-os:~$     │   │
-│   │ _ command input       │   │
+│   │ _ entrada de comando      │   │
 │   └─────────────────────────┘   │
 └─────────────────────────────────┘
 ```
 
-### Terminal Commands
+### Comandos de Terminal
 
-#### Navigation Commands
+#### Comandos de Navegación
 
 ```javascript
 const NAVIGATION_COMMANDS = {
   home: () => {
     emit(EVENTS.NAV_NAVIGATE, "home");
-    return "Jumping to sector: HOME";
+    return "Saltando al sector: HOME";
   },
   about: () => {
     emit(EVENTS.NAV_NAVIGATE, "about");
-    return "Retrieving personnel file...";
+    return "Recuperando archivo de personal...";
   },
   projects: () => {
     emit(EVENTS.NAV_NAVIGATE, "projects");
-    return "Accessing project repository...";
+    return "Accediendo al repositorio de proyectos...";
   },
   contact: () => {
     emit(EVENTS.NAV_NAVIGATE, "contact");
-    return "Opening secure channel...";
+    return "Abriendo canal seguro...";
   }
 };
 ```
 
-#### System Commands
+#### Comandos del Sistema
 
 ```javascript
 const SYSTEM_COMMANDS = {
   clear: () => {
     emit(EVENTS.CLI_CLEAR);
-    return null; // No output, just clear
+    return null; // Sin salida, solo limpiar
   },
   echo: (args) => args.join(" "),
-  help: () => "Available sectors: home, about, projects, contact. System cmds: clear, echo."
+  help: () => "Sectores disponibles: home, about, projects, contact. Comandos del sistema: clear, echo."
 };
 ```
 
-### Command Processing Flow
+### Flujo de Procesamiento de Comandos
 
-1. **User Input** → Terminal captures text
-2. **Parse** → `commandParser.js` structures input
-3. **Validate** → Shell checks command existence
-4. **Execute** → Command function runs with args
-5. **Respond** → Result emitted to terminal
+1. **Entrada del Usuario** → La terminal captura el texto
+2. **Análisis (Parse)** → `commandParser.js` estructura la entrada
+3. **Validación** → El shell comprueba la existencia del comando
+4. **Ejecución** → La función del comando se ejecuta con argumentos
+5. **Respuesta** → El resultado se emite a la terminal
 
 ```javascript
-// Example: "echo Hello World"
-Input → Parse → {command: "echo", args: ["Hello", "World"]} → Execute → "Hello World"
+// Ejemplo: "echo Hola Mundo"
+Entrada → Análisis → {command: "echo", args: ["Hola", "Mundo"]} → Ejecución → "Hola Mundo"
 ```
 
-### Terminal Component Implementation
+### Implementación del Componente Terminal
 
 ```javascript
 export class Terminal extends HTMLElement {
@@ -118,8 +118,8 @@ export class Terminal extends HTMLElement {
       <div class="terminal-content">
         <div class="terminal-output" id="output"></div>
         <div class="command-line">
-          <span class="prompt">visitor@jojo-os:~$</span>
-          <input type="text" class="cmd-input" placeholder="Type 'help' to see all commands" 
+          <span class="prompt">visitante@jojo-os:~$</span>
+          <input type="text" class="cmd-input" placeholder="Escribe 'help' para ver todos los comandos" 
                  autocomplete="off" spellcheck="false" autofocus>
         </div>
       </div>
@@ -132,13 +132,13 @@ export class Terminal extends HTMLElement {
     input.addEventListener("keydown", (e) => {
       if (e.key === "Enter") {
         const command = input.value.trim();
-        this.printLine(`visitor@jojo-os:~$ ${command}`, "muted");
+        this.printLine(`visitante@jojo-os:~$ ${command}`, "muted");
         emit(EVENTS.CLI_INPUT, command);
         input.value = "";
       }
     });
 
-    // Auto-focus management
+    // Gestión del auto-focus
     this.addEventListener("click", () => input.focus());
   }
 
@@ -146,21 +146,21 @@ export class Terminal extends HTMLElement {
     const output = this.querySelector("#output");
     const line = document.createElement("div");
     line.className = `terminal-line ${type}`;
-    line.textContent = text; // XSS protection
+    line.textContent = text; // Protección XSS
     output.appendChild(line);
     output.scrollTop = output.scrollHeight;
   }
 }
 ```
 
-### Terminal Integration
+### Integración de Terminal
 
-#### Events it EMITS
+#### Eventos que EMITE
 ```javascript
-emit(EVENTS.CLI_INPUT, command); // User input
+emit(EVENTS.CLI_INPUT, command); // Entrada del usuario
 ```
 
-#### Events it LISTENS to
+#### Eventos que ESCUCHA
 ```javascript
 on(EVENTS.CLI_OUTPUT, (text) => {
   this.printLine(text);
@@ -173,57 +173,57 @@ on(EVENTS.CLI_CLEAR, () => {
 
 ---
 
-## 📡 Event System
+## 📡 Sistema de Eventos
 
-### Architecture Overview
+### Descripción General de la Arquitectura
 
-**Publish/Subscribe pattern** for **decoupled communication** between components. Components don't need to know about each other, they just emit and listen to events.
+**Patrón Publicar/Suscribir (Publish/Subscribe)** para una **comunicación desacoplada** entre componentes. Los componentes no necesitan conocerse entre sí, solo emiten y escuchan eventos.
 
-### Core Components
+### Componentes Centrales
 
 ```
-┌── Event System
-├── types.js (Event Constants)
-├── bus.js (Implementation)
-└── Components (Producers/Consumers)
+┌── Sistema de Eventos
+├── types.js (Constantes de Eventos)
+├── bus.js (Implementación)
+└── Componentes (Productores/Consumidores)
 ```
 
-### Event Constants (types.js)
+### Constantes de Eventos (types.js)
 
 ```javascript
 export const EVENTS = {
-  // System Events
+  // Eventos del Sistema
   SYS_BOOT: "sys:boot",
   SYS_SHUTDOWN: "sys:shutdown",
 
-  // UI Events
+  // Eventos de UI
   UI_THEME_CHANGED: "ui:theme_changed",
 
-  // Navigation Events
+  // Eventos de Navegación
   NAV_NAVIGATE: "nav:navigate",
 
-  // Terminal (CLI) Events
-  CLI_INPUT: "cli:input",    // User pressed Enter
-  CLI_OUTPUT: "cli:output",  // System response
-  CLI_CLEAR: "cli:clear",    // Clear terminal
+  // Eventos de la Terminal (CLI)
+  CLI_INPUT: "cli:input",    // El usuario presionó Enter
+  CLI_OUTPUT: "cli:output",  // Respuesta del sistema
+  CLI_CLEAR: "cli:clear",    // Limpiar la terminal
 
-  // Command Events
+  // Eventos de Comandos
   CMD_NOT_FOUND: "cmd:not_found",
-  CMD_EXEC: "cmd:exec",     // Specific command executed
+  CMD_EXEC: "cmd:exec",     // Se ejecutó un comando específico
 };
 ```
 
-#### Naming Convention
+#### Convención de Nombres
 
-Format: `CATEGORY:ACTION`
+Formato: `CATEGORÍA:ACCIÓN`
 
-- `sys` - System-level events
-- `ui` - User interface events
-- `nav` - Navigation events
-- `cli` - Terminal interface events
-- `cmd` - Command-specific events
+- `sys` - Eventos a nivel de sistema
+- `ui` - Eventos de la interfaz de usuario
+- `nav` - Eventos de navegación
+- `cli` - Eventos de la interfaz de la terminal
+- `cmd` - Eventos específicos de comandos
 
-### Event Bus Implementation (bus.js)
+### Implementación del Bus de Eventos (bus.js)
 
 ```javascript
 const subscribers = {}; // {eventName: [callback1, callback2, ...]}
@@ -234,7 +234,7 @@ export function on(eventName, callback) {
   }
   subscribers[eventName].push(callback);
   
-  // Return cleanup function
+  // Devuelve una función de limpieza
   return () => off(eventName, callback);
 }
 
@@ -245,7 +245,7 @@ export function emit(eventName, payload) {
     try {
       callback(payload);
     } catch (error) {
-      console.error(`[EventBus] Error in listener for "${eventName}":`, error);
+      console.error(`[EventBus] Error en el listener para "${eventName}":`, error);
     }
   });
 }
@@ -256,72 +256,72 @@ function off(eventName, callback) {
 }
 ```
 
-### Event API
+### API de Eventos
 
-#### Subscribe to Events
+#### Suscribirse a Eventos
 ```javascript
 import { on, EVENTS } from '../core/events/bus.js';
 
 const unsubscribe = on(EVENTS.CLI_OUTPUT, (text) => {
-  console.log('Terminal output:', text);
+  console.log('Salida de la terminal:', text);
 });
 
-// Cleanup when needed
+// Limpieza cuando sea necesario
 unsubscribe();
 ```
 
-#### Emit Events
+#### Emitir Eventos
 ```javascript
 import { emit, EVENTS } from '../core/events/bus.js';
 
 emit(EVENTS.NAV_NAVIGATE, 'about');
-emit(EVENTS.CLI_OUTPUT, 'Command executed successfully');
+emit(EVENTS.CLI_OUTPUT, 'Comando ejecutado con éxito');
 ```
 
-### Event Examples
+### Ejemplos de Eventos
 
-#### Terminal Navigation Flow
+#### Flujo de Navegación de la Terminal
 ```javascript
-// User types "about" in terminal
-1. Terminal emits: EVENTS.CLI_INPUT with "about"
-2. Shell listens to EVENTS.CLI_INPUT
-3. Shell processes command and emits: EVENTS.NAV_NAVIGATE with "about"
-4. Viewport listens to EVENTS.NAV_NAVIGATE
-5. Viewport updates content to show ProfileCard
-6. Shell emits: EVENTS.CLI_OUTPUT with "Retrieving personnel file..."
-7. Terminal listens to EVENTS.CLI_OUTPUT and displays message
+// El usuario escribe "about" en la terminal
+1. La terminal emite: EVENTS.CLI_INPUT con "about"
+2. El shell escucha EVENTS.CLI_INPUT
+3. El shell procesa el comando y emite: EVENTS.NAV_NAVIGATE con "about"
+4. El viewport escucha EVENTS.NAV_NAVIGATE
+5. El viewport actualiza el contenido para mostrar ProfileCard
+6. El shell emite: EVENTS.CLI_OUTPUT con "Recuperando archivo de personal..."
+7. La terminal escucha EVENTS.CLI_OUTPUT y muestra el mensaje
 ```
 
-#### Language Change Flow
+#### Flujo de Cambio de Idioma
 ```javascript
-// User changes language
-1. LanguageSwitcher calls: setLanguage('es')
-2. i18n system emits: EVENTS.UI_LANGUAGE_CHANGED with 'es'
-3. Components listening update their text
-4. DOM utilities update all [data-i18n] elements
+// El usuario cambia el idioma
+1. LanguageSwitcher llama a: setLanguage('es')
+2. El sistema i18n emite: EVENTS.UI_LANGUAGE_CHANGED con 'es'
+3. Los componentes que escuchan actualizan su texto
+4. Las utilidades del DOM actualizan todos los elementos [data-i18n]
 ```
 
 ---
 
-## 🌍 i18n System
+## 🌍 Sistema i18n
 
-### Architecture Overview
+### Descripción General de la Arquitectura
 
-**Custom internationalization system** without external dependencies. Supports multiple languages with automatic detection and persistent storage.
+**Sistema de internacionalización personalizado** sin dependencias externas. Soporta múltiples idiomas con detección automática y almacenamiento persistente.
 
-### File Structure
+### Estructura de Archivos
 
 ```
 src/core/i18n/
-├── index.js        # Main entry point
-└── i18n.js         # Core i18n logic
+├── index.js        # Punto de entrada principal
+└── i18n.js         # Lógica central de i18n
 
 data/locales/
-├── es.js          # Spanish dictionary
-└── en.js          # English dictionary
+├── es.js          # Diccionario en español
+└── en.js          # Diccionario en inglés
 ```
 
-### Dictionary Structure
+### Estructura del Diccionario
 
 ```javascript
 // es.js
@@ -342,9 +342,9 @@ export default {
 };
 ```
 
-### i18n API
+### API de i18n
 
-#### Translation Function
+#### Función de Traducción
 ```javascript
 import { t } from '../core/i18n';
 
@@ -353,107 +353,107 @@ t('ui.projects')        // "Proyectos"
 t('nonexistent.key')    // "nonexistent.key" (fallback)
 ```
 
-#### Language Management
+#### Gestión de Idiomas
 ```javascript
 import { setLanguage, getCurrentLanguage, getAvailableLanguages } from '../core/i18n';
 
-// Change language
-setLanguage('es');       // true if successful, false if not available
+// Cambiar idioma
+setLanguage('es');       // true si tiene éxito, false si no está disponible
 
-// Get current language
-const current = getCurrentLanguage(); // 'es' or 'en'
+// Obtener idioma actual
+const current = getCurrentLanguage(); // 'es' o 'en'
 
-// Get available languages
+// Obtener idiomas disponibles
 const available = getAvailableLanguages(); // ['es', 'en']
 ```
 
-### Language Detection
+### Detección de Idioma
 
-Automatic detection in this order:
+Detección automática en este orden:
 
-1. **localStorage** - Previously saved preference
-2. **Browser language** - `navigator.language`
-3. **Default** - Fallback to English
+1. **localStorage** - Preferencia guardada previamente
+2. **Idioma del navegador** - `navigator.language`
+3. **Por defecto** - Fallback a inglés
 
 ```javascript
 function detectLanguage() {
-  // 1. Check localStorage
+  // 1. Comprobar localStorage
   const stored = localStorage.getItem('jojo_os_language');
   if (stored && DICTIONARIES[stored]) return stored;
   
-  // 2. Check browser language
+  // 2. Comprobar el idioma del navegador
   const browserLang = navigator.language.split('-')[0];
   if (DICTIONARIES[browserLang]) return browserLang;
   
-  // 3. Use default
+  // 3. Usar el por defecto
   return 'en';
 }
 ```
 
-### DOM Integration
+### Integración con el DOM
 
-#### Data Attribute Translation
+#### Traducción con Atributos de Datos
 ```html
 <h1 data-i18n="system.boot">Loading...</h1>
 <p data-i18n="ui.projects">Projects</p>
 <button data-i18n="ui.about">About</button>
 ```
 
-#### JavaScript Integration
+#### Integración con JavaScript
 ```javascript
 import { updateLocalizedText } from '../core/utils/dom.js';
 
-// Update all [data-i18n] elements
+// Actualiza todos los elementos [data-i18n]
 updateLocalizedText();
 
-// Manual translation for dynamic content
+// Traducción manual para contenido dinámico
 const element = document.createElement('div');
 element.textContent = t('system.ready');
 ```
 
-### Language Change Listeners
+### Escuchas de Cambio de Idioma
 
 ```javascript
 import { onLanguageChange } from '../core/i18n';
 
 const unsubscribe = onLanguageChange((newLang) => {
-  console.log(`Language changed to: ${newLang}`);
-  // Re-render components, update UI, etc.
+  console.log(`Idioma cambiado a: ${newLang}`);
+  // Volver a renderizar componentes, actualizar UI, etc.
 });
 
-// Cleanup when needed
+// Limpieza cuando sea necesario
 unsubscribe();
 ```
 
 ---
 
-## 🖼️ Viewport System
+## 🖼️ Sistema de Viewport
 
-### Architecture Overview
+### Descripción General de la Arquitectura
 
-**Dynamic content system** that responds to navigation events. Renders different content sections based on terminal commands.
+**Sistema de contenido dinámico** que responde a eventos de navegación. Renderiza diferentes secciones de contenido basadas en los comandos de la terminal.
 
-### Component Structure
+### Estructura de Componentes
 
 ```
-┌── Viewport System
-├── HTML Structure
-│   ├── #viewport (container)
-│   └── #content-stage (dynamic area)
-├── JavaScript Controller
-│   ├── viewport.js (navigation logic)
-│   └── ROUTES (content definitions)
-└── Event Integration
-    └── EVENTS.NAV_NAVIGATE listener
+┌── Sistema de Viewport
+├── Estructura HTML
+│   ├── #viewport (contenedor)
+│   └── #content-stage (área dinámica)
+├── Controlador JavaScript
+│   ├── viewport.js (lógica de navegación)
+│   └── ROUTES (definiciones de contenido)
+└── Integración de Eventos
+    └── Escucha de EVENTS.NAV_NAVIGATE
 ```
 
-### HTML Layout
+### Layout HTML
 
 ```html
 <main id="app">
   <section id="viewport">
     <div id="content-stage">
-      <!-- Dynamic content injected here -->
+      <!-- Contenido dinámico inyectado aquí -->
     </div>
   </section>
   
@@ -463,31 +463,31 @@ unsubscribe();
 </main>
 ```
 
-### Viewport Routing
+### Enrutamiento de Viewport
 
 ```javascript
 const ROUTES = {
-  home: "<h1>HOME SECURE SERVER</h1><p>Welcome back, User.</p>",
+  home: "<h1>SERVIDOR SEGURO HOME</h1><p>Bienvenido de nuevo, Usuario.</p>",
   about: "<x-profile-card></x-profile-card>",
-  projects: "<h1>PROJECTS GRID</h1><p>Loading modules...</p>",
-  contact: "<h1>ENCRYPTED CHANNEL</h1><p>Send a message...</p>"
+  projects: "<h1>REJILLA DE PROYECTOS</h1><p>Cargando módulos...</p>",
+  contact: "<h1>CANAL ENCRIPTADO</h1><p>Enviar un mensaje...</p>"
 };
 
 export function initViewport() {
   const stage = document.getElementById("content-stage");
   if (!stage) return;
 
-  // Set initial content
+  // Establecer contenido inicial
   stage.innerHTML = ROUTES.home;
 
-  // Listen for navigation events
+  // Escuchar eventos de navegación
   on(EVENTS.NAV_NAVIGATE, (route) => {
-    const content = ROUTES[route] || "<h1>404 NOT FOUND</h1><p>Route does not exist.</p>";
+    const content = ROUTES[route] || "<h1>404 NO ENCONTRADO</h1><p>La ruta no existe.</p>";
     
     if (content) {
       stage.innerHTML = content;
       
-      // Configure dynamic components
+      // Configurar componentes dinámicos
       if (route === "about") {
         const card = stage.querySelector("x-profile-card");
         if (card) {
@@ -503,19 +503,19 @@ export function initViewport() {
 }
 ```
 
-### Content Types
+### Tipos de Contenido
 
-#### Static HTML Content
+#### Contenido HTML Estático
 ```javascript
-const staticContent = "<h1>Static Title</h1><p>Static description</p>";
+const staticContent = "<h1>Título Estático</h1><p>Descripción estática</p>";
 ```
 
-#### Web Component Content
+#### Contenido de Web Component
 ```javascript
 const componentContent = "<x-profile-card></x-profile-card>";
 ```
 
-#### Dynamic Content with Data
+#### Contenido Dinámico con Datos
 ```javascript
 const dynamicContent = (data) => `
   <div class="user-profile">
@@ -525,32 +525,32 @@ const dynamicContent = (data) => `
 `;
 ```
 
-### Navigation Flow
+### Flujo de Navegación
 
 ```
-User Command → Shell → NAV_NAVIGATE Event → Viewport → Content Update
-     "about"    →       → emit("nav:navigate", "about") →      → ProfileCard
+Comando del Usuario → Shell → Evento NAV_NAVIGATE → Viewport → Actualización de Contenido
+     "about"         →       → emit("nav:navigate", "about") →      → ProfileCard
 ```
 
-### Error Handling
+### Manejo de Errores
 
 ```javascript
 const content = ROUTES[route] || `
   <div class="error-404">
-    <h1>404 NOT FOUND</h1>
-    <p>Route "${route}" does not exist.</p>
+    <h1>404 NO ENCONTRADO</h1>
+    <p>La ruta "${route}" no existe.</p>
   </div>
 `;
 ```
 
-### Component Integration
+### Integración de Componentes
 
-#### ProfileCard Setup
+#### Configuración de ProfileCard
 ```javascript
 if (route === "about") {
   const card = stage.querySelector("x-profile-card");
   if (card) {
-    // Set data property (triggers render)
+    // Establece la propiedad data (desencadena el renderizado)
     card.data = {
       name: "Joel Johs",
       role: "SysAdmin",
@@ -560,9 +560,9 @@ if (route === "about") {
 }
 ```
 
-#### Future Component Integration
+#### Integración Futura de Componentes
 ```javascript
-// Future: Projects Grid
+// Futuro: Rejilla de Proyectos
 if (route === "projects") {
   const grid = stage.querySelector("projects-grid");
   if (grid) {
@@ -573,53 +573,53 @@ if (route === "projects") {
 
 ---
 
-## 🔄 System Integration
+## 🔄 Integración del Sistema
 
-### Complete Navigation Flow Example
+### Ejemplo Completo de Flujo de Navegación
 
 ```
-1. User types "about" in terminal
+1. El usuario escribe "about" en la terminal
    ↓
-2. Terminal captures input and emits CLI_INPUT event
+2. La terminal captura la entrada y emite el evento CLI_INPUT
    ↓
-3. Shell listens to CLI_INPUT, processes command
+3. El shell escucha CLI_INPUT, procesa el comando
    ↓
-4. Shell emits NAV_NAVIGATE event with "about"
+4. El shell emite el evento NAV_NAVIGATE con "about"
    ↓
-5. Viewport listens to NAV_NAVIGATE, updates content
+5. El viewport escucha NAV_NAVIGATE, actualiza el contenido
    ↓
-6. ProfileCard component renders with data
+6. El componente ProfileCard se renderiza con datos
    ↓
-7. Shell emits CLI_OUTPUT with confirmation message
+7. El shell emite CLI_OUTPUT con un mensaje de confirmación
    ↓
-8. Terminal displays confirmation to user
+8. La terminal muestra la confirmación al usuario
 ```
 
-### Event Communication Map
+### Mapa de Comunicación de Eventos
 
 ```
 ┌─────────────────┐    emit()    ┌─────────────┐    on()    ┌─────────────────┐
-│   Terminal     │ ──────────────→ │ Event Bus   │ ───────────→ │     Shell      │
-│  (CLI Input)   │               │ (Pub/Sub)   │             │ (Processing)   │
+│   Terminal     │ ──────────────→ │ Bus de Eventos │ ───────────→ │     Shell      │
+│ (Entrada CLI)  │               │ (Pub/Sub)   │             │ (Procesamiento)   │
 └─────────────────┘               └─────────────┘             └─────────────────┘
                                                                  │
                                                                  emit()
                                                                  │
                                                                  ↓
 ┌─────────────────┐    on()     ┌─────────────┐    emit()    ┌─────────────────┐
-│   Viewport     │ ←───────────── │ Event Bus   │ ←──────────── │     Shell      │
-│ (Content)      │               │ (Pub/Sub)   │             │ (Navigation)   │
+│   Viewport     │ ←───────────── │ Bus de Eventos │ ←──────────── │     Shell      │
+│ (Contenido)    │               │ (Pub/Sub)   │             │ (Navegación)   │
 └─────────────────┘               └─────────────┘             └─────────────────┘
 ```
 
-### Performance Considerations
+### Consideraciones de Rendimiento
 
-1. **Event Listeners**: Always return cleanup functions
-2. **DOM Updates**: Minimal, targeted updates only
-3. **Component Lifecycle**: Proper cleanup in disconnectedCallback
-4. **Memory Management**: Remove unused event listeners
+1. **Escuchas de Eventos**: Siempre devolver funciones de limpieza
+2. **Actualizaciones del DOM**: Mínimas y solo en áreas específicas
+3. **Ciclo de Vida del Componente**: Limpieza adecuada en disconnectedCallback
+4. **Gestión de Memoria**: Eliminar escuchas de eventos no utilizadas
 
-### Error Handling Patterns
+### Patrones de Manejo de Errores
 
 ```javascript
 try {
@@ -629,64 +629,64 @@ try {
   }
 } catch (error) {
   if (error.name === "SyntaxError") {
-    emit(EVENTS.CLI_OUTPUT, `[ERROR] Invalid syntax: ${error.message}`);
+    emit(EVENTS.CLI_OUTPUT, `[ERROR] Sintaxis inválida: ${error.message}`);
   } else {
-    emit(EVENTS.CLI_OUTPUT, `[ERROR] System failure: ${error.message}`);
+    emit(EVENTS.CLI_OUTPUT, `[ERROR] Fallo del sistema: ${error.message}`);
   }
-  console.error(`[Shell] Command failed:`, error);
+  console.error(`[Shell] Falló el comando:`, error);
 }
 ```
 
 ---
 
-## 🔧 Development Guidelines
+## 🔧 Directrices de Desarrollo
 
-### Adding New Commands
+### Añadir Nuevos Comandos
 
 ```javascript
 const REGISTRY = {
-  // Existing commands...
+  // Comandos existentes...
   
   newCommand: (args) => {
-    // Process arguments
-    return "Command executed successfully";
+    // Procesar argumentos
+    return "Comando ejecutado con éxito";
   }
 };
 ```
 
-### Adding New Event Types
+### Añadir Nuevos Tipos de Eventos
 
 ```javascript
-// 1. Add to types.js
+// 1. Añadir a types.js
 export const EVENTS = {
-  // Existing events...
+  // Eventos existentes...
   NEW_FEATURE: "new:feature"
 };
 
-// 2. Emit from producer
+// 2. Emitir desde el productor
 emit(EVENTS.NEW_FEATURE, data);
 
-// 3. Listen in consumer
+// 3. Escuchar en el consumidor
 on(EVENTS.NEW_FEATURE, (data) => {
-  // Handle event
+  // Manejar el evento
 });
 ```
 
-### Adding New Languages
+### Añadir Nuevos Idiomas
 
 ```javascript
-// 1. Create data/locales/fr.js
+// 1. Crear data/locales/fr.js
 export default {
   system: {
     boot: "DÉMARRAGE DU SYSTÈME...",
     ready: "SYSTÈME PRÊT"
   },
-  // ... other translations
+  // ... otras traducciones
 };
 
-// 2. Add to DICTIONARIES in i18n.js
+// 2. Añadir a DICTIONARIES en i18n.js
 import fr from '../../data/locales/fr.js';
 const DICTIONARIES = { es, en, fr };
 ```
 
-This core systems architecture provides a robust foundation for the cyberpunk-themed portfolio with clear separation of concerns, event-driven communication, and modular extensibility.
+Esta arquitectura de sistemas centrales proporciona una base sólida para el portafolio con temática cyberpunk con una clara separación de responsabilidades, comunicación orientada a eventos y extensibilidad modular.

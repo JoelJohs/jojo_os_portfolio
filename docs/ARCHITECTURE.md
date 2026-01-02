@@ -1,355 +1,355 @@
-# Architecture Guide
+# Guía de Arquitectura
 
-> **📚 Navigation Index** → [Core Systems](./CORE_SYSTEMS.md) | [UI Components](./UI_COMPONENTS.md) | [Styling](./STYLING.md)
+> **📚 Índice de Navegación** → [Sistemas Centrales](./CORE_SYSTEMS.md) | [Componentes de UI](./UI_COMPONENTS.md) | [Estilos](./STYLING.md)
 
 ---
 
-## 🏗️ System Architecture
+## 🏗️ Arquitectura del Sistema
 
-### Overview
+### Descripción General
 
-Portfolio Vanilla implements a **cyberpunk-themed portfolio** using **vanilla web technologies** with a **component-based architecture**. The system follows modern web development patterns while maintaining zero external framework dependencies.
+Portfolio Vanilla implementa un **portafolio con temática cyberpunk** utilizando **tecnologías web vanilla** con una **arquitectura basada en componentes**. El sistema sigue patrones de desarrollo web modernos manteniendo cero dependencias de frameworks externos.
 
-### Core Architecture Principles
+### Principios Fundamentales de la Arquitectura
 
-| Principle | Implementation | Benefits |
+| Principio | Implementación | Beneficios |
 |-----------|----------------|-----------|
-| **Component-First** | Atomic Design (Atoms-Molecules-Organisms) | Reusable, maintainable UI |
-| **Event-Driven** | Pub/Sub communication pattern | Decoupled, testable logic |
-| **Modular** | Clear separation of concerns | Scalable, organized codebase |
-| **Vanilla First** | No frameworks, pure web standards | Fast, lightweight, secure |
-| **Theme-Driven** | Cyberpunk/neon aesthetic system | Consistent visual identity |
+| **Componentes Primero** | Atomic Design (Átomos-Moléculas-Organismos) | UI reutilizable y mantenible |
+| **Orientado a Eventos** | Patrón de comunicación Pub/Sub | Lógica desacoplada y comprobable |
+| **Modular** | Clara separación de responsabilidades | Código base escalable y organizado |
+| **Vanilla Primero** | Sin frameworks, estándares web puros | Rápido, ligero y seguro |
+| **Impulsado por el Tema** | Sistema de estética Cyberpunk/neón | Identidad visual consistente |
 
 ---
 
-## 📁 Project Structure
+## 📁 Estructura del Proyecto
 
 ```
 portfolio_vanilla/
-├── 📚 docs/                     # Documentation
-│   ├── README.md                 # Main index
-│   ├── ARCHITECTURE.md           # This guide
-│   ├── CORE_SYSTEMS.md           # Terminal, events, i18n, viewport
-│   ├── UI_COMPONENTS.md          # Component architecture
-│   └── STYLING.md               # CSS architecture
-├── 💻 src/                      # Source code
-│   ├── core/                    # Business logic and systems
-│   │   ├── i18n/               # Internationalization
-│   │   ├── events/             # Event system
-│   │   ├── system/             # Terminal and viewport
-│   │   └── utils/              # DOM utilities
-│   ├── ui/                      # User interface components
-│   │   ├── atoms/              # Basic components
-│   │   ├── molecules/          # Component combinations
-│   │   └── organisms/          # Complex sections
-│   ├── styles/                  # CSS and styling
-│   │   ├── vars.css            # Design system variables
-│   │   ├── reset.css           # Base reset styles
-│   │   ├── base.css            # Global components
-│   │   ├── layout.css          # Layout structure
-│   │   └── components/         # Component-specific styles
-│   └── main.js                  # Application entry point
-├── data/                        # Data and configuration
-│   ├── locales/                 # Translation files
-│   └── db.js                   # Static data
-├── 🌐 index.html                # Main HTML entry
-├── 📦 package.json              # Dependencies and scripts
-└── 🔒 .gitignore               # Git ignore rules
+├── 📚 docs/                     # Documentación
+│   ├── README.md                 # Índice principal
+│   ├── ARCHITECTURE.md           # Esta guía
+│   ├── CORE_SYSTEMS.md           # Terminal, eventos, i18n, viewport
+│   ├── UI_COMPONENTS.md          # Arquitectura de componentes
+│   └── STYLING.md               # Arquitectura CSS
+├── 💻 src/                      # Código fuente
+│   ├── core/                    # Lógica de negocio y sistemas
+│   │   ├── i18n/               # Internacionalización
+│   │   ├── events/             # Sistema de eventos
+│   │   ├── system/             # Terminal y viewport
+│   │   └── utils/              # Utilidades del DOM
+│   ├── ui/                      # Componentes de la interfaz de usuario
+│   │   ├── atoms/              # Componentes básicos
+│   │   ├── molecules/          # Combinaciones de componentes
+│   │   └── organisms/          # Secciones complejas
+│   ├── styles/                  # CSS y estilos
+│   │   ├── vars.css            # Variables del sistema de diseño
+│   │   ├── reset.css           # Estilos de reseteo base
+│   │   ├── base.css            # Componentes globales
+│   │   ├── layout.css          # Estructura del layout
+│   │   └── components/         # Estilos específicos de componentes
+│   └── main.js                  # Punto de entrada de la aplicación
+├── data/                        # Datos y configuración
+│   ├── locales/                 # Archivos de traducción
+│   └── db.js                   # Datos estáticos
+├── 🌐 index.html                # Entrada principal HTML
+├── 📦 package.json              # Dependencias y scripts
+└── 🔒 .gitignore               # Reglas de ignorar de Git
 ```
 
 ---
 
-## 🎯 Core Concepts
+## 🎯 Conceptos Centrales
 
-### 1. Component Architecture (Atomic Design)
-
-```
-Atoms (Basic) → Molecules (Combinations) → Organisms (Complex Sections)
-     ↓                 ↓                          ↓
-LanguageSwitcher → ProfileCard → Terminal System
-Button           → SearchField → Header Navigation
-Input            → LoginForm   → Viewport Layout
-```
-
-### 2. Event-Driven Communication
+### 1. Arquitectura de Componentes (Atomic Design)
 
 ```
-User Action → Event Emitter → Event Bus → Event Listener → System Response
+Átomos (Básicos) → Moléculas (Combinaciones) → Organismos (Secciones Complejas)
+      ↓                  ↓                           ↓
+LanguageSwitcher → ProfileCard → Sistema de Terminal
+Botón            → SearchField → Navegación del Header
+Input            → LoginForm   → Layout del Viewport
 ```
 
-### 3. Layout System (75/25 Split)
+### 2. Comunicación Orientada a Eventos
+
+```
+Acción del Usuario → Emisor de Eventos → Bus de Eventos → Escucha de Eventos → Respuesta del Sistema
+```
+
+### 3. Sistema de Layout (División 75/25)
 
 ```
 ┌─────────────────────────────────┐
-│        Viewport (75vh)         │ ← Dynamic GUI content
+│        Viewport (75vh)         │ ← Contenido dinámico de la GUI
 │   (home/about/projects/etc.)    │
 ├─────────────────────────────────┤
-│     Terminal Dock (25vh)       │ ← CLI interface
+│     Muelle de la Terminal (25vh)       │ ← Interfaz CLI
 │   ┌─────────────────────────┐   │
 │   │ visitor@jojo-os:~$     │   │
-│   │ _ command input       │   │
+│   │ _ entrada de comando      │   │
 │   └─────────────────────────┘   │
 └─────────────────────────────────┘
 ```
 
 ---
 
-## 🧩 Component Organization
+## 🧩 Organización de Componentes
 
-### Atomic Design Implementation
+### Implementación de Atomic Design
 
-| Level | Purpose | Examples | File Location |
-|-------|---------|----------|---------------|
-| **🧱 Atoms** | Indivisible UI elements | LanguageSwitcher, Button, Input | `src/ui/atoms/` |
-| **🔬 Molecules** | Simple combinations | ProfileCard, SearchField | `src/ui/molecules/` |
-| **🧬 Organisms** | Complex sections | Terminal, Header, Viewport | `src/ui/organisms/` |
+| Nivel | Propósito | Ejemplos | Ubicación del Archivo |
+|-------|-----------|----------|---------------|
+| **🧱 Átomos** | Elementos de UI indivisibles | LanguageSwitcher, Botón, Input | `src/ui/atoms/` |
+| **🔬 Moléculas** | Combinaciones simples | ProfileCard, SearchField | `src/ui/molecules/` |
+| **🧬 Organismos** | Secciones complejas | Terminal, Header, Viewport | `src/ui/organisms/` |
 
-### Component Lifecycle
+### Ciclo de Vida del Componente
 
-1. **Definition** - Web Component class definition
-2. **Registration** - `customElements.define()`
-3. **Connection** - `connectedCallback()` when added to DOM
-4. **Rendering** - Internal HTML structure creation
-5. **Event Setup** - Event listeners and system integration
-6. **Disconnection** - Cleanup when removed from DOM
+1. **Definición** - Definición de la clase del Web Component
+2. **Registro** - `customElements.define()`
+3. **Conexión** - `connectedCallback()` cuando se añade al DOM
+4. **Renderizado** - Creación de la estructura HTML interna
+5. **Configuración de Eventos** - Escuchas de eventos e integración con el sistema
+6. **Desconexión** - Limpieza cuando se elimina del DOM
 
 ---
 
-## 🔄 Data Flow Architecture
+## 🔄 Arquitectura de Flujo de Datos
 
-### Event Communication Pattern
+### Patrón de Comunicación de Eventos
 
 ```
 ┌─────────────────┐    emit()    ┌─────────────┐    on()    ┌─────────────────┐
-│   Component A   │ ──────────────→ │ Event Bus   │ ───────────→ │   Component B   │
-│ (Event Emitter) │               │ (Pub/Sub)   │             │ (Event Listener)│
+│   Componente A  │ ──────────────→ │ Bus de Eventos │ ───────────→ │   Componente B  │
+│ (Emisor de Eventos) │               │   (Pub/Sub)  │             │ (Escucha de Eventos)│
 └─────────────────┘               └─────────────┘             └─────────────────┘
 ```
 
-### Example Flow: Terminal Navigation
+### Ejemplo de Flujo: Navegación por la Terminal
 
 ```
-User: "about" → Terminal → CLI_INPUT Event → Shell → NAV_NAVIGATE Event → Viewport → ProfileCard
+Usuario: "about" → Terminal → Evento CLI_INPUT → Shell → Evento NAV_NAVIGATE → Viewport → ProfileCard
 ```
 
 ---
 
-## 🎨 Design System Architecture
+## 🎨 Arquitectura del Sistema de Diseño
 
-### CSS Organization (ITCSS Methodology)
+### Organización de CSS (Metodología ITCSS)
 
 ```
-1. reset.css      - Reset and base browser styles
-2. vars.css       - Design system variables
-3. base.css       - Global components and effects
-4. layout.css     - Layout structure and grids
-5. components/    - Component-specific styles
+1. reset.css      - Reseteo y estilos base del navegador
+2. vars.css       - Variables del sistema de diseño
+3. base.css       - Componentes y efectos globales
+4. layout.css     - Estructura del layout y rejillas
+5. components/    - Estilos específicos de componentes
 ```
 
-### Design Token Structure
+### Estructura de Tokens de Diseño
 
 ```css
 :root {
-  /* Colors (The "Look") */
+  /* Colores (La "Apariencia") */
   --bg-deep-space: #02020a;
   --primary-neon: #bc13fe;
   
-  /* Typography (The "Voice") */
+  /* Tipografía (La "Voz") */
   --font-mono: 'Fira Code', monospace;
   
-  /* Effects (The "Juice") */
+  /* Efectos (El "Jugo") */
   --glow-text: 0 0 5px rgba(188, 19, 254, 0.7);
   
-  /* Spacing (The "Rhythm") */
+  /* Espaciado (El "Ritmo") */
   --spacing-sm: 0.5rem;
 }
 ```
 
 ---
 
-## 🔧 Technology Stack
+## 🔧 Pila Tecnológica
 
-### Core Technologies
+### Tecnologías Principales
 
-| Technology | Purpose | Why Chosen |
-|------------|---------|------------|
-| **HTML5** | Structure & semantics | Native web standard |
-| **CSS3** | Styling & animations | Powerful, no dependencies |
-| **JavaScript ES6+** | Logic & interactivity | Modern features, vanilla |
-| **Web Components** | Component architecture | Native, framework-free |
-| **CSS Grid/Flexbox** | Layout system | Modern, responsive |
+| Tecnología | Propósito | Por Qué se Eligió |
+|------------|-----------|------------|
+| **HTML5** | Estructura y semántica | Estándar web nativo |
+| **CSS3** | Estilos y animaciones | Potente, sin dependencias |
+| **JavaScript ES6+** | Lógica e interactividad | Características modernas, vanilla |
+| **Web Components** | Arquitectura de componentes | Nativo, sin frameworks |
+| **CSS Grid/Flexbox** | Sistema de layout | Moderno, responsivo |
 
-### Development Tools
+### Herramientas de Desarrollo
 
-| Tool | Purpose | Configuration |
-|------|---------|---------------|
-| **pnpm** | Package management | Fast, efficient |
-| **live-server** | Development server | Auto-reload |
-| **Git** | Version control | Distributed workflow |
+| Herramienta | Propósito | Configuración |
+|------|-----------|---------------|
+| **pnpm** | Gestión de paquetes | Rápido, eficiente |
+| **live-server** | Servidor de desarrollo | Recarga automática |
+| **Git** | Control de versiones | Flujo de trabajo distribuido |
 
 ---
 
-## 📐 Layout Architecture
+## 📐 Arquitectura del Layout
 
-### Main Layout Structure
+### Estructura Principal del Layout
 
 ```html
 <body>
-  <div class="scanlines"></div>          <!-- CRT Effect Layer -->
+  <div class="scanlines"></div>          <!-- Capa de Efecto CRT -->
   
   <main id="app">
-    <section id="viewport">              <!-- 75vh - Dynamic Content -->
+    <section id="viewport">              <!-- 75vh - Contenido Dinámico -->
       <div id="content-stage">
-        <!-- Content injected by viewport system -->
+        <!-- Contenido inyectado por el sistema del viewport -->
       </div>
     </section>
     
-    <section id="terminal-dock">         <!-- 25vh - CLI Interface -->
+    <section id="terminal-dock">         <!-- 25vh - Interfaz CLI -->
       <x-terminal></x-terminal>         <!-- Web Component -->
     </section>
   </main>
 </body>
 ```
 
-### Responsive Design Principles
+### Principios de Diseño Responsivo
 
-- **Fluid Layouts**: `vh`, `%`, and flexible units
-- **Mobile-First**: Progressive enhancement
-- **Performance**: Minimal reflows and repaints
-- **Accessibility**: Semantic HTML and keyboard navigation
+- **Layouts Fluidos**: `vh`, `%`, y unidades flexibles
+- **Mobile-First**: Mejora progresiva
+- **Rendimiento**: Mínimos reflows y repaints
+- **Accesibilidad**: HTML semántico y navegación por teclado
 
 ---
 
-## 🚀 Performance Architecture
+## 🚀 Arquitectura de Rendimiento
 
-### Optimization Strategies
+### Estrategias de Optimización
 
-1. **Minimal Dependencies** - Zero framework overhead
-2. **Efficient DOM** - Strategic component updates
-3. **CSS Performance** - Hardware-accelerated animations
-4. **Bundle Size** - Only necessary code loaded
-5. **Lazy Loading** - Components loaded on demand
+1. **Dependencias Mínimas** - Cero sobrecarga de frameworks
+2. **DOM Eficiente** - Actualizaciones estratégicas de componentes
+3. **Rendimiento de CSS** - Animaciones aceleradas por hardware
+4. **Tamaño del Paquete** - Solo se carga el código necesario
+5. **Carga Diferida (Lazy Loading)** - Componentes cargados bajo demanda
 
-### Performance Metrics
+### Métricas de Rendimiento
 
-| Metric | Target | Implementation |
+| Métrica | Objetivo | Implementación |
 |---------|--------|----------------|
-| **Bundle Size** | <100KB | Vanilla JS, minimal CSS |
-| **First Contentful Paint** | <1s | Optimized asset loading |
-| **Time to Interactive** | <2s | Progressive enhancement |
-| **Lighthouse Score** | 95+ | Performance best practices |
+| **Tamaño del Paquete** | <100KB | Vanilla JS, CSS mínimo |
+| **First Contentful Paint** | <1s | Carga de activos optimizada |
+| **Time to Interactive** | <2s | Mejora progresiva |
+| **Puntuación de Lighthouse** | 95+ | Mejores prácticas de rendimiento |
 
 ---
 
-## 🛡️ Security Architecture
+## 🛡️ Arquitectura de Seguridad
 
-### Security Principles
+### Principios de Seguridad
 
-1. **No eval()** - Safe code execution
-2. **textContent** - XSS prevention
-3. **CSP Headers** - Content Security Policy
-4. **No External Dependencies** - Reduced attack surface
-5. **Input Sanitization** - Safe data handling
+1. **No eval()** - Ejecución de código segura
+2. **textContent** - Prevención de XSS
+3. **Cabeceras CSP** - Política de Seguridad de Contenido
+4. **Sin Dependencias Externas** - Superficie de ataque reducida
+5. **Sanitización de Entradas** - Manejo seguro de datos
 
-### Safe Data Handling
+### Manejo Seguro de Datos
 
 ```javascript
-// ✅ Safe: textContent prevents XSS
+// ✅ Seguro: textContent previene XSS
 element.textContent = userInput;
 
-// ❌ Dangerous: innerHTML allows injection
-element.innerHTML = userInput; // NEVER do this
+// ❌ Peligroso: innerHTML permite inyección
+element.innerHTML = userInput; // NUNCA hagas esto
 ```
 
 ---
 
-## 🔄 Development Workflow
+## 🔄 Flujo de Trabajo de Desarrollo
 
-### Git Workflow
+### Flujo de Trabajo de Git
 
 ```
-main (production)
+main (producción)
 ├── feature/terminal-system
 ├── feature/i18n-implementation
 └── feature/component-architecture
 ```
 
-### Development Process
+### Proceso de Desarrollo
 
-1. **Feature Branch** - Create for new functionality
-2. **Development** - Implement with documentation
-3. **Testing** - Manual and automated checks
-4. **Documentation** - Update relevant guides
-5. **Pull Request** - Code review and merge
-6. **Deploy** - GitHub Pages deployment
-
----
-
-## 📏 Code Quality Standards
-
-### JavaScript Standards
-
-- **ES6+ Features** - Modern syntax and patterns
-- **Component Pattern** - Web Components class-based
-- **Event-Driven** - Pub/Sub communication
-- **Error Handling** - Comprehensive try/catch
-- **Documentation** - JSDoc comments
-
-### CSS Standards
-
-- **ITCSS** - Inverted Triangle methodology
-- **BEM Naming** - Block__Element--Modifier
-- **CSS Variables** - Design token system
-- **Mobile-First** - Progressive enhancement
-- **Performance** - Optimized selectors and animations
+1. **Rama de Característica (Feature Branch)** - Crear para nueva funcionalidad
+2. **Desarrollo** - Implementar con documentación
+3. **Pruebas** - Verificaciones manuales y automatizadas
+4. **Documentación** - Actualizar guías relevantes
+5. **Pull Request** - Revisión de código y fusión
+6. **Despliegue** - Despliegue en GitHub Pages
 
 ---
 
-## 🎯 Future Architecture Considerations
+## 📏 Estándares de Calidad del Código
 
-### Scalability Plans
+### Estándares de JavaScript
 
-| Area | Current | Future Enhancement |
+- **Características de ES6+** - Sintaxis y patrones modernos
+- **Patrón de Componentes** - Web Components basados en clases
+- **Orientado a Eventos** - Comunicación Pub/Sub
+- **Manejo de Errores** - try/catch exhaustivo
+- **Documentación** - Comentarios JSDoc
+
+### Estándares de CSS
+
+- **ITCSS** - Metodología del Triángulo Invertido
+- **Nomenclatura BEM** - Block__Element--Modifier
+- **Variables CSS** - Sistema de tokens de diseño
+- **Mobile-First** - Mejora progresiva
+- **Rendimiento** - Selectores y animaciones optimizadas
+
+---
+
+## 🎯 Consideraciones Futuras de la Arquitectura
+
+### Planes de Escalabilidad
+
+| Área | Actual | Mejora Futura |
 |-------|---------|-------------------|
-| **Components** | Basic atomic design | Advanced component library |
-| **State Management** | Event-based | Centralized state store |
-| **Routing** | Simple viewport system | Advanced routing with history |
-| **Data** | Static files | CMS integration |
-| **Performance** | Optimized | PWA capabilities |
+| **Componentes** | Diseño atómico básico | Biblioteca de componentes avanzada |
+| **Gestión de Estado** | Basado en eventos | Almacén de estado centralizado |
+| **Enrutamiento** | Sistema de viewport simple | Enrutamiento avanzado con historial |
+| **Datos** | Archivos estáticos | Integración con CMS |
+| **Rendimiento** | Optimizado | Capacidades de PWA |
 
-### Extensibility Points
+### Puntos de Extensibilidad
 
-1. **New Components** - Add to atoms/molecules/organisms
-2. **New Commands** - Extend terminal registry
-3. **New Languages** - Add to locales/
-4. **New Themes** - Modify CSS variables
-5. **New Features** - Follow established patterns
+1. **Nuevos Componentes** - Añadir a átomos/moléculas/organismos
+2. **Nuevos Comandos** - Extender el registro de la terminal
+3. **Nuevos Idiomas** - Añadir a locales/
+4. **Nuevos Temas** - Modificar las variables CSS
+5. **Nuevas Características** - Seguir los patrones establecidos
 
 ---
 
-## 🔍 Debugging Architecture
+## 🔍 Arquitectura de Depuración
 
-### Debug Tools
+### Herramientas de Depuración
 
-1. **Console Logging** - Structured logging system
-2. **Event Monitoring** - Event bus debugging
-3. **Component Inspection** - Web Components devtools
-4. **Performance Profiling** - Browser devtools
-5. **Error Tracking** - Comprehensive error handling
+1. **Registro en Consola (Console Logging)** - Sistema de registro estructurado
+2. **Monitorización de Eventos** - Depuración del bus de eventos
+3. **Inspección de Componentes** - Herramientas de desarrollo de Web Components
+4. **Perfilado de Rendimiento** - Herramientas de desarrollo del navegador
+5. **Seguimiento de Errores** - Manejo de errores exhaustivo
 
-### Common Debug Patterns
+### Patrones Comunes de Depuración
 
 ```javascript
-// Event debugging
-console.log(`[Event] ${EVENTS.CLI_INPUT} emitted:`, data);
+// Depuración de eventos
+console.log(`[Evento] ${EVENTS.CLI_INPUT} emitido:`, data);
 
-// Component debugging
-console.log(`[Component] ${this.constructor.name} connected`);
+// Depuración de componentes
+console.log(`[Componente] ${this.constructor.name} conectado`);
 
-// System debugging
-console.log(`[System] Shell initialized with ${Object.keys(REGISTRY).length} commands`);
+// Depuración del sistema
+console.log(`[Sistema] Shell inicializado con ${Object.keys(REGISTRY).length} comandos`);
 ```
 
 ---
 
-This architecture provides a solid foundation for a modern, performant, and maintainable cyberpunk-themed portfolio using vanilla web technologies. The component-based design, event-driven communication, and modular structure ensure the system can grow and evolve while maintaining code quality and performance.
+Esta arquitectura proporciona una base sólida para un portafolio con temática cyberpunk moderno, de alto rendimiento y mantenible, utilizando tecnologías web vanilla. El diseño basado en componentes, la comunicación orientada a eventos y la estructura modular aseguran que el sistema pueda crecer y evolucionar manteniendo la calidad del código y el rendimiento.
