@@ -37,7 +37,8 @@ export function initViewport() {
         break;
       }
       case "contact": {
-        stage.innerHTML = "<h1>ENCRYPTED CHANNEL</h1><p>Send a message...</p>";
+        const contact = document.createElement("x-contact-form");
+        stage.appendChild(contact);
         break;
       }
       default: {

@@ -51,6 +51,25 @@ export class BootScreen extends HTMLElement {
       // Actualiza la barra de progreso segun el log actual
       const percent = ((i + 1) / this.logs.length) * 100;
       progressBar.style.width = `${percent}%`;
+
+      // Autoscroll al final
+      logContainer.scrollTop = logContainer.scrollHeight;
     }
+
+    // finalización de la secuencia
+    await this.wait(500);
+    this.classList.add("fade-out");
+
+    // El sistema puede empezar después de la animación
+    setTimeout(() => {
+      emit(EVENTS.SYS_BOOT);
+      this.remove();
+    }, 1000);
+  }
+
+  wait(ms) {
+    return new Promise((resolve) => setTimeout(resolve, ms));
   }
 }
+
+customElements.define("x-boot-screen", BootScreen);
