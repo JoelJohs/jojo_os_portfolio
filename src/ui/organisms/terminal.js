@@ -1,16 +1,12 @@
 import { on, emit } from "../../core/events/bus.js";
 import { EVENTS } from "../../core/events/types.js";
+import { t, onLanguageChange } from "../../core/i18n/i18n.js";
 
 export class Terminal extends HTMLElement {
   constructor() {
     super();
     this.history = [];
-  }
-
-  connectedCallback() {
-    this.render();
-    this.setupEventListeners();
-    this.setupSystemListeners();
+    this.systemListenersBound = false;
   }
 
   render() {
@@ -18,8 +14,10 @@ export class Terminal extends HTMLElement {
             <div class="terminal-content">
                 <div class="terminal-output" id="output"></div>
                 <div class="command-line">
-                    <span class="prompt">visitor@jojo-os:~$</span>
-                    <input type="text" class="cmd-input" placeholder="Type 'help' to see all commands" autocomplete="off" spellcheck="false" autofocus>
+            <span class="prompt">visitor@jojo-os:~$</span>
+            <input type="text" class="cmd-input" placeholder="${t(
+              "terminal.placeholder"
+            )}" autocomplete="off" spellcheck="false" autofocus>
                 </div>
             </div>
         `;
@@ -57,10 +55,13 @@ export class Terminal extends HTMLElement {
   }
 
   setupSystemListeners() {
+    if (this.systemListenersBound) return;
+    this.systemListenersBound = true;
     // Recibe la respuest que el sistema da
     on(EVENTS.CLI_OUTPUT, (payload) => {
+      const isHtml = payload?.type === "html";
       const text = typeof payload === "string" ? payload : payload?.value ?? "";
-      this.printLine(text);
+      this.printLine(text, "", isHtml);
     });
 
     // Orden para limpiar la terminal
@@ -74,15 +75,37 @@ export class Terminal extends HTMLElement {
    * @param {string} text Texto a agregar
    * @param {string} type Tipo de línea (clase CSS adicional)
    */
-  printLine(text, type = "") {
+  printLine(text, type = "", isHtml = false) {
     const output = this.querySelector("#output");
     const line = document.createElement("div");
     line.className = `terminal-line ${type}`;
-    line.textContent = text; // textContent para poder evitar inyeccion de html no deseada
+    if (isHtml) {
+      line.innerHTML = text;
+    } else {
+      line.textContent = text; // textContent para poder evitar inyeccion de html no deseada
+    }
     output.appendChild(line);
 
     // Auto-scroll al final del terminal output
     output.scrollTop = output.scrollHeight;
+  }
+
+  connectedCallback() {
+    this.render();
+    this.setupEventListeners();
+    this.setupSystemListeners();
+    this._unsubscribe = onLanguageChange(() => {
+      const value = this.querySelector(".cmd-input")?.value || "";
+      this.render();
+      this.setupEventListeners();
+      this.setupSystemListeners();
+      const input = this.querySelector(".cmd-input");
+      if (input) input.value = value;
+    });
+  }
+
+  disconnectedCallback() {
+    if (typeof this._unsubscribe === "function") this._unsubscribe();
   }
 }
 

@@ -1,23 +1,38 @@
 import { emit } from "../../core/events/bus.js";
 import { EVENTS } from "../../core/events/types.js";
+import { t, onLanguageChange } from "../../core/i18n/i18n.js";
 
 export class BootScreen extends HTMLElement {
   constructor() {
     super();
-    this.logs = [
-      "INITIALIZING KERNEL...",
-      "CHECKING MEMORY INTEGRITY... OK",
-      "MOUNTING VIRTUAL FILESYSTEM... OK",
-      "LOADING DRIVERS: [VIDEO] [AUDIO] [INPUT]",
-      "DECRYPTING USER PROFILE...",
-      "ESTABLISHING SECURE CONNECTION...",
-      "SYSTEM READY.",
-    ];
+    this._unsubscribe = null;
+    this.updateLogs();
   }
 
   connectedCallback() {
     this.render();
     this.runSequence();
+    // Subscribe to language changes (in case boot stays visible long)
+    this._unsubscribe = onLanguageChange(() => this.updateLogs());
+  }
+
+  disconnectedCallback() {
+    if (typeof this._unsubscribe === "function") {
+      this._unsubscribe();
+      this._unsubscribe = null;
+    }
+  }
+
+  updateLogs() {
+    this.logs = [
+      t("boot.kernel") || "INITIALIZING KERNEL...",
+      t("boot.memory") || "CHECKING MEMORY INTEGRITY... OK",
+      t("boot.filesystem") || "MOUNTING VIRTUAL FILESYSTEM... OK",
+      t("boot.drivers") || "LOADING DRIVERS: [VIDEO] [AUDIO] [INPUT]",
+      t("boot.profile") || "DECRYPTING USER PROFILE...",
+      t("boot.connection") || "ESTABLISHING SECURE CONNECTION...",
+      t("boot.ready") || "SYSTEM READY.",
+    ];
   }
 
   render() {

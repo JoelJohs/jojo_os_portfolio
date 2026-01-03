@@ -1,5 +1,6 @@
 import { on } from "../events/bus.js";
 import { EVENTS } from "../events/types.js";
+import { t, onLanguageChange } from "../i18n/i18n.js";
 
 export function initViewport() {
   const stage = document.getElementById("content-stage");
@@ -10,8 +11,8 @@ export function initViewport() {
 
     switch (viewName) {
       case "home": {
-        stage.innerHTML =
-          "<h1>HOME SECURE SERVER</h1><p>Welcome back, User.</p>";
+        stage.innerHTML = "";
+        stage.appendChild(document.createElement("x-system-dashboard"));
         break;
       }
       case "about": {
@@ -25,13 +26,21 @@ export function initViewport() {
         break;
       }
       case "loading": {
-        stage.innerHTML = '<div class="loader">DECRYPTING DATA...</div>';
+        stage.innerHTML = `<div class="loader">${t("viewport.loading")}</div>`;
         break;
       }
       case "projects": {
+        console.log(`[VIEWPORT] Rendering projects view with data:`, viewData);
         const grid = document.createElement("x-project-grid");
         if (viewData) {
+          console.log(
+            `[VIEWPORT] Setting projects data:`,
+            viewData.length,
+            "items"
+          );
           grid.projects = viewData;
+        } else {
+          console.log(`[VIEWPORT] No projects data provided`);
         }
         stage.appendChild(grid);
         break;
@@ -42,14 +51,21 @@ export function initViewport() {
         break;
       }
       default: {
-        stage.innerHTML = "<h1>404 NOT FOUND</h1><p>Route does not exist.</p>";
+        stage.innerHTML = `<h1>${t("viewport.not_found_title")}</h1><p>${t(
+          "viewport.not_found_body"
+        )}</p>`;
       }
     }
   };
 
   renderView("home");
 
+  onLanguageChange(() => {
+    renderView("home");
+  });
+
   on(EVENTS.NAV_NAVIGATE, (payload) => {
+    console.log(`[VIEWPORT] Navigation event received:`, payload);
     let viewName = payload;
     let viewData = null;
 
@@ -58,6 +74,7 @@ export function initViewport() {
       viewData = payload?.data || null;
     }
 
+    console.log(`[VIEWPORT] Rendering view: ${viewName}`, viewData);
     renderView(viewName, viewData);
   });
 }

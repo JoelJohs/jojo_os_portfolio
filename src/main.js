@@ -3,9 +3,11 @@ import "./ui/atoms/LanguageSwitcher.js";
 import "./ui/molecules/ProfileCard.js";
 import "./ui/molecules/ProjectCard.js";
 import "./ui/molecules/ContactForm.js";
+import "./ui/molecules/ConsoleNav.js";
 import "./ui/organisms/ProjectGrid.js";
 import "./ui/organisms/Terminal.js";
 import "./ui/organisms/BootScreen.js";
+import "./ui/organisms/SystemDashboard.js";
 
 // -- Core Systems --
 import { updateLocalizedText } from "./core/utils/dom.js";

@@ -1,28 +1,46 @@
+import { t, onLanguageChange } from "../../core/i18n/i18n.js";
+
 export class ContactForm extends HTMLElement {
   connectedCallback() {
     this.render();
     this.bindEvents();
+    this._unsubscribe = onLanguageChange(() => {
+      this.render();
+      this.bindEvents();
+    });
+  }
+
+  disconnectedCallback() {
+    if (typeof this._unsubscribe === "function") this._unsubscribe();
   }
 
   render() {
     this.innerHTML = `
       <section class="contact-card">
-        <h2 class="contact-title">OPEN SECURE CHANNEL</h2>
-        <p class="contact-subtitle">Send an encrypted payload and we will respond ASAP.</p>
+        <h2 class="contact-title">${t("contactForm.title")}</h2>
+        <p class="contact-subtitle">${t("contactForm.subtitle")}</p>
         <form class="contact-form">
           <label class="contact-label">
-            Name / Alias
-            <input class="contact-input" name="name" type="text" placeholder="Neo" required />
+            ${t("contactForm.name")}
+            <input class="contact-input" name="name" type="text" placeholder="${t(
+              "contactForm.placeholder_name"
+            )}" required />
           </label>
           <label class="contact-label">
-            Secure Email
-            <input class="contact-input" name="email" type="email" placeholder="neo@matrix.io" required />
+            ${t("contactForm.email")}
+            <input class="contact-input" name="email" type="email" placeholder="${t(
+              "contactForm.placeholder_email"
+            )}" required />
           </label>
           <label class="contact-label">
-            Message
-            <textarea class="contact-textarea" name="message" rows="4" placeholder="Trace route, send payload..." required></textarea>
+            ${t("contactForm.message")}
+            <textarea class="contact-textarea" name="message" rows="4" placeholder="${t(
+              "contactForm.placeholder_message"
+            )}" required></textarea>
           </label>
-          <button class="contact-submit" type="submit">Transmit</button>
+          <button class="contact-submit" type="submit">${t(
+            "contactForm.submit"
+          )}</button>
         </form>
         <div class="contact-status" role="status" aria-live="polite"></div>
       </section>
@@ -45,7 +63,7 @@ export class ContactForm extends HTMLElement {
         message: data.get("message")?.toString().trim(),
       };
 
-      status.textContent = "Payload transmitted. Await response.";
+      status.textContent = t("contactForm.status_sent");
       this.dispatchEvent(
         new CustomEvent("contact:submit", {
           detail: payload,

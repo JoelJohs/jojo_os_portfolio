@@ -1,11 +1,8 @@
 x-lang-switch {
-    position: fixed;
-    top: 1rem;
-    right: 1rem;
-    z-index: 1000;
     cursor: pointer;
     font-family: var(--font-mono);
     font-weight: bold;
+    display: inline-block;
 }
 
 .lang-btn {
