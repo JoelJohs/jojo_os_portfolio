@@ -7,7 +7,7 @@ export default {
     PHP: { emoji: "🐘", level: 6, favorite: false },
   },
   frameworks: {
-    React: { emoji: "⚛️", level: 8, favorite: false },
+    React: { emoji: "⚛️", level: 7, favorite: false },
     "Next.js": { emoji: "▲", level: 6, favorite: true },
     "Nest.js": { emoji: "🐈", level: 7, favorite: true },
     FastAPI: { emoji: "⚡", level: 6, favorite: false },
