@@ -164,7 +164,7 @@ const REGISTRY = {
   // --- COMANDOS SECRETOS ---
   sudo: () => {
     return {
-      type: "text",
+      type: "html",
       value:
         "<span style='color:red'>PERMISSION DENIED:</span> You didn't say the magic word.",
     };
