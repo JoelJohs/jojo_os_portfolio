@@ -43,3 +43,34 @@ x-terminal {
     background: transparent;
     position: relative;
 }
+
+/* Responsive Layout */
+@media (max-width: 768px) {
+    #app {
+        min-height: 100vh;
+    }
+
+    #terminal-dock {
+        height: 25vh;
+        min-height: 120px;
+    }
+
+    #viewport {
+        min-height: 450px;
+    }
+}
+
+@media (max-width: 480px) {
+    #terminal-dock {
+        height: 20vh;
+        min-height: 100px;
+    }
+
+    #viewport {
+        min-height: 350px;
+    }
+
+    x-terminal {
+        min-height: 100px;
+    }
+}

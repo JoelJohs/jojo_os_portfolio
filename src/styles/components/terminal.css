@@ -141,3 +141,73 @@ x-terminal::after {
         var(--primary-neon)
     );
 }
+
+/* Responsive Terminal */
+@media (max-width: 768px) {
+    .terminal-content {
+        padding: 0.75rem;
+    }
+
+    .terminal-line {
+        font-size: 0.9rem;
+        line-height: 1.5;
+        margin-bottom: 0.2rem;
+    }
+
+    .command-line {
+        padding: 0.4rem 0;
+    }
+
+    .cmd-input {
+        font-size: 0.9rem;
+    }
+
+    .prompt {
+        font-size: 0.9rem;
+        margin-right: 0.3rem;
+    }
+
+    .terminal-output::-webkit-scrollbar {
+        width: 6px;
+    }
+}
+
+@media (max-width: 480px) {
+    .terminal-content {
+        padding: 0.5rem;
+    }
+
+    .terminal-line {
+        font-size: 0.85rem;
+        line-height: 1.4;
+        margin-bottom: 0.15rem;
+    }
+
+    .command-line {
+        padding: 0.3rem 0;
+        flex-wrap: wrap;
+    }
+
+    .cmd-input {
+        font-size: 0.85rem;
+        min-width: 0;
+    }
+
+    .prompt {
+        font-size: 0.85rem;
+        margin-right: 0.2rem;
+        min-width: auto;
+    }
+
+    .terminal-output::-webkit-scrollbar {
+        width: 4px;
+    }
+
+    .terminal-output::-webkit-scrollbar-track {
+        border-radius: 2px;
+    }
+
+    .terminal-output::-webkit-scrollbar-thumb {
+        border-radius: 2px;
+    }
+}

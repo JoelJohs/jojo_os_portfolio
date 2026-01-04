@@ -118,9 +118,166 @@
 
 /* Responsive Design */
 @media (max-width: 768px) {
+  .contact-card {
+    max-width: 100%;
+    margin: 0 1rem;
+    padding: 1.25rem;
+  }
+
   .contact-grid {
     grid-template-columns: 1fr;
     gap: 1.5rem;
+  }
+
+  .contact-info-section {
+    gap: 1.25rem;
+  }
+
+  .contact-info-title {
+    font-size: 1.1rem;
+  }
+
+  .contact-info-item {
+    padding: 0.875rem;
+    gap: 0.875rem;
+  }
+
+  .contact-info-icon {
+    font-size: 1.3rem;
+    width: 35px;
+  }
+
+  .contact-info-label {
+    font-size: 0.8rem;
+  }
+
+  .contact-info-text {
+    font-size: 0.85rem;
+  }
+
+  .contact-title {
+    font-size: 1.4rem;
+  }
+
+  .contact-label {
+    font-size: 0.85rem;
+  }
+
+  .contact-input,
+  .contact-textarea {
+    padding: 0.6rem 0.7rem;
+  }
+
+  .contact-submit {
+    padding: 0.6rem 1rem;
+    font-size: 0.9rem;
+  }
+
+  .availability-note {
+    padding: 0.875rem;
+    gap: 0.4rem;
+  }
+
+  .availability-icon {
+    font-size: 1.1rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .contact-card {
+    margin: 0 0.5rem;
+    padding: 1rem;
+    border-radius: 6px;
+  }
+
+  .contact-grid {
+    gap: 1rem;
+  }
+
+  .contact-info-section {
+    gap: 1rem;
+  }
+
+  .contact-info-title {
+    font-size: 1rem;
+    margin-bottom: 0.875rem;
+  }
+
+  .contact-info-item {
+    padding: 0.75rem;
+    gap: 0.75rem;
+    flex-direction: column;
+    text-align: center;
+    align-items: center;
+  }
+
+  .contact-info-icon {
+    font-size: 1.2rem;
+    width: 30px;
+    margin-bottom: 0.25rem;
+  }
+
+  .contact-info-label {
+    font-size: 0.75rem;
+    text-align: center;
+  }
+
+  .contact-info-text {
+    font-size: 0.8rem;
+    text-align: center;
+  }
+
+  .contact-title {
+    font-size: 1.3rem;
+  }
+
+  .contact-subtitle {
+    font-size: 0.9rem;
+    margin-bottom: 0.875rem;
+  }
+
+  .contact-form {
+    gap: 0.6rem;
+  }
+
+  .contact-label {
+    font-size: 0.8rem;
+  }
+
+  .contact-input,
+  .contact-textarea {
+    padding: 0.5rem 0.6rem;
+    border-radius: 4px;
+    font-size: 0.85rem;
+  }
+
+  .contact-submit {
+    padding: 0.5rem 0.875rem;
+    font-size: 0.85rem;
+    border-radius: 4px;
+    width: 100%;
+    justify-self: stretch;
+  }
+
+  .contact-status {
+    font-size: 0.85rem;
+  }
+
+  .availability-note {
+    padding: 0.75rem;
+    gap: 0.3rem;
+  }
+
+  .availability-icon {
+    font-size: 1rem;
+  }
+
+  .contact-hint {
+    font-size: 0.85rem;
+  }
+
+  .contact-hint .hint-icon {
+    font-size: 1rem;
   }
 }
 

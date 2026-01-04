@@ -59,3 +59,26 @@
     --accent-primary-glow: var(--glow-violet);
     --accent-favorite-glow: var(--glow-text);
 }
+
+/* --- RESPONSIVE BREAKPOINTS --- */
+@media (max-width: 1200px) {
+    :root {
+        --spacing-md: 0.875rem;
+    }
+}
+
+@media (max-width: 768px) {
+    :root {
+        --spacing-md: 0.75rem;
+        --font-mono: 'Fira Code', 'Courier New', monospace;
+        --font-display: 'Orbitron', sans-serif;
+    }
+}
+
+@media (max-width: 480px) {
+    :root {
+        --spacing-md: 0.625rem;
+        --radius-sm: 1px;
+        --radius-md: 2px;
+    }
+}

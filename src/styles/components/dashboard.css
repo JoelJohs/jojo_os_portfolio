@@ -267,6 +267,40 @@
   box-shadow: 0 4px 12px rgba(188, 19, 254, 0.3);
 }
 
+/* CV Download Button */
+.cv-download-section {
+  margin-top: 1rem;
+  text-align: left;
+}
+
+.btn-cv {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  text-decoration: none;
+  background: var(--bg-secondary-translucent);
+  color: var(--accent-cyan);
+  border: 1px solid var(--accent-cyan);
+  padding: 0.5rem 1rem;
+  font-size: 0.8rem;
+  font-family: var(--font-mono);
+  border-radius: var(--border-radius-md);
+  transition: all 0.3s ease;
+  cursor: pointer;
+}
+
+.btn-cv:hover {
+  background: var(--accent-cyan);
+  color: var(--bg-primary);
+  box-shadow: 0 0 15px rgba(0, 243, 255, 0.4);
+  transform: translateY(-2px);
+  text-decoration: none;
+}
+
+.btn-cv .icon {
+  font-size: 0.9rem;
+}
+
 /* Global Cyberpunk Scrollbar - All scrollbars */
 ::-webkit-scrollbar {
   width: 8px;
@@ -319,12 +353,145 @@ html[data-theme="cyberpunk"] ::-webkit-scrollbar-thumb:hover {
   }
 }
 
+@media (max-width: 1024px) {
+  .dashboard-grid {
+    grid-template-columns: 1fr;
+    grid-template-areas:
+      "main-profile"
+      "stack";
+    gap: 1rem;
+    padding: 1rem;
+  }
+}
+
 @media (max-width: 768px) {
   .dash-panel {
     padding: 1rem;
   }
+  
   .profile-header {
     flex-direction: column;
     text-align: center;
+    gap: 1rem;
+  }
+
+  .avatar-frame {
+    width: 120px;
+    height: 120px;
+    min-width: 120px;
+  }
+
+  .profile-info h2 {
+    font-size: 1.5rem;
+  }
+
+  .profile-info .role {
+    font-size: 1rem;
+  }
+
+  .xp-container {
+    max-width: 300px;
+  }
+
+  .system-title {
+    font-size: 1.3rem;
+  }
+
+  .cmd-chip {
+    font-size: 0.75rem;
+    padding: 0.25rem 0.5rem;
+  }
+
+  .cv-download-section {
+    margin-top: 0.875rem;
+    text-align: center;
+  }
+
+  .btn-cv {
+    font-size: 0.75rem;
+    padding: 0.4rem 0.875rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .dashboard-grid {
+    padding: 0.75rem;
+    gap: 0.75rem;
+  }
+
+  .dash-panel {
+    padding: 0.75rem;
+  }
+
+  .profile-header {
+    gap: 0.75rem;
+  }
+
+  .avatar-frame {
+    width: 100px;
+    height: 100px;
+    min-width: 100px;
+  }
+
+  .profile-info h2 {
+    font-size: 1.3rem;
+  }
+
+  .profile-info .role {
+    font-size: 0.9rem;
+  }
+
+  .xp-container {
+    max-width: 250px;
+  }
+
+  .system-title {
+    font-size: 1.2rem;
+  }
+
+  .panel-header {
+    font-size: 1rem;
+  }
+
+  .achievement-count {
+    font-size: 1.5rem;
+  }
+
+  .welcome-header {
+    flex-direction: column;
+    gap: 0.5rem;
+    text-align: center;
+  }
+
+  .instruction-line {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.25rem;
+  }
+
+  .command-suggestions {
+    flex-direction: column;
+    width: 100%;
+  }
+
+  .cmd-chip {
+    text-align: center;
+    width: 100%;
+  }
+
+  .cv-download-section {
+    margin-top: 0.75rem;
+    text-align: center;
+  }
+
+  .btn-cv {
+    font-size: 0.7rem;
+    padding: 0.35rem 0.75rem;
+    width: 100%;
+    justify-content: center;
+  }
+
+  .btn-cv .icon {
+    font-size: 0.8rem;
   }
 }

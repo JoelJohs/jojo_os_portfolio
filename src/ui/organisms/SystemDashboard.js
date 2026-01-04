@@ -1,8 +1,9 @@
 import { on, emit } from "../../core/events/bus.js";
 import { EVENTS } from "../../core/events/types.js";
 import { getMyAge } from "../../core/utils/profile.js";
-import { t, onLanguageChange } from "../../core/i18n/i18n.js";
+import { t, onLanguageChange, getLanguage } from "../../core/i18n/i18n.js";
 import { getAchievementStats } from "../../core/system/achievements.js";
+import { PROFESSIONAL_DATA } from "../../data/about.js";
 import "./TechStack.js";
 
 export class SystemDashboard extends HTMLElement {
@@ -28,6 +29,9 @@ export class SystemDashboard extends HTMLElement {
   loadData() {
     this.stats = getMyAge();
     this.achievements = getAchievementStats();
+    this.currentLang = getLanguage();
+    this.cvPath = PROFESSIONAL_DATA.header.cv_paths[this.currentLang] || PROFESSIONAL_DATA.header.cv_paths['es'];
+    this.cvButtonText = this.currentLang === 'en' ? '[ DOWNLOAD CV ]' : '[ DESCARGAR CV ]';
   }
 
   render() {
@@ -60,9 +64,16 @@ export class SystemDashboard extends HTMLElement {
                   </div>
                   <small class="xp-sub">${t("dashboard.next_level")}
                     ${this.stats.neededXP - this.stats.currentXP} ${t(
-      "dashboard.days"
-    )}
+                      "dashboard.days"
+                    )}
                   </small>
+                </div>
+                
+                <!-- CV Download Button -->
+                <div class="cv-download-section">
+                  <a href="${this.cvPath}" target="_blank" download class="btn-cv">
+                    <span class="icon">💾</span> ${this.cvButtonText}
+                  </a>
                 </div>
               </div>
             </div>

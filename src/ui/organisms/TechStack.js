@@ -1,12 +1,18 @@
 import techStackData from "../../data/techStack.js";
 import { t } from "../../core/i18n/i18n.js";
 
+const LEVEL_MAX = 10;
 const LEVEL_DESCRIPTIONS = {
-  1: "Beginner",
-  2: "Intermediate",
-  3: "Advanced",
-  4: "Expert",
-  5: "Master",
+  1: "1/10",
+  2: "2/10",
+  3: "3/10",
+  4: "4/10",
+  5: "5/10",
+  6: "6/10",
+  7: "7/10",
+  8: "8/10",
+  9: "9/10",
+  10: "10/10",
 };
 
 export class TechStack extends HTMLElement {
@@ -35,7 +41,9 @@ export class TechStack extends HTMLElement {
               (cat) =>
                 `<button class="tech-stack-tab ${
                   this.activeTab === cat ? "active" : ""
-                }" data-category="${cat}">${t(`tech_stack.tabs.${cat}`)}</button>`
+                }" data-category="${cat}">${t(
+                  `tech_stack.tabs.${cat}`
+                )}</button>`
             )
             .join("")}
         </div>
@@ -58,9 +66,15 @@ export class TechStack extends HTMLElement {
         const levelText = LEVEL_DESCRIPTIONS[level] || "Unknown";
         const isFavorite = details.favorite || false;
 
-        const segments = Array(5).fill(0).map((_, i) => 
-            `<div class="progress-segment ${i < level ? 'filled' : ''} ${isFavorite && i < level ? 'favorite-progress' : ''}"></div>`
-        ).join('');
+        const segments = Array(LEVEL_MAX)
+          .fill(0)
+          .map(
+            (_, i) =>
+              `<div class="progress-segment ${i < level ? "filled" : ""} ${
+                isFavorite && i < level ? "favorite-progress" : ""
+              }"></div>`
+          )
+          .join("");
 
         return `
           <div class="tech-stack-item ${isFavorite ? "favorite" : ""}">

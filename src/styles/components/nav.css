@@ -60,3 +60,62 @@
 .nav-links button:active {
     transform: translateY(1px);
 }
+
+/* Responsive Navigation */
+@media (max-width: 768px) {
+    .console-nav {
+        height: auto;
+        min-height: 50px;
+        flex-wrap: wrap;
+        padding: 0.5rem;
+    }
+
+    .nav-segment {
+        padding: 0 0.5rem;
+        font-size: 0.9rem;
+    }
+
+    .host {
+        padding-right: 1rem;
+        font-size: 0.8rem;
+    }
+
+    .path {
+        min-width: 100px;
+        font-size: 0.8rem;
+    }
+
+    .nav-links {
+        display: none;
+    }
+
+    .mobile-menu-toggle {
+        display: block;
+    }
+
+    .mobile-nav-overlay {
+        display: block;
+    }
+}
+
+@media (max-width: 480px) {
+    .console-nav {
+        padding: 0.4rem;
+    }
+
+    .nav-segment {
+        padding: 0 0.3rem;
+        font-size: 0.8rem;
+    }
+
+    .host {
+        padding-right: 0.8rem;
+        font-size: 0.75rem;
+    }
+
+    .path {
+        min-width: 80px;
+        font-size: 0.75rem;
+        display: none;
+    }
+}

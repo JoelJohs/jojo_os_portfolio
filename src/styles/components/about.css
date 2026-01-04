@@ -582,3 +582,237 @@
 .about-hint .hint-icon {
     font-size: 1.05rem;
 }
+
+/* Responsive About */
+@media (max-width: 768px) {
+    .about-container {
+        max-width: 100%;
+        margin: 0 1rem;
+    }
+
+    .about-tabs {
+        gap: 1px;
+        flex-wrap: wrap;
+    }
+
+    .tab-btn {
+        padding: 8px 16px;
+        font-size: 0.9rem;
+        flex: 1;
+        min-width: 80px;
+    }
+
+    .markdown-editor {
+        max-height: 60vh;
+        border-radius: 6px;
+    }
+
+    .editor-header {
+        padding: 6px 12px;
+        flex-direction: column;
+        gap: 8px;
+        align-items: flex-start;
+    }
+
+    .editor-path {
+        font-size: 0.8rem;
+    }
+
+    .editor-content {
+        max-height: calc(60vh - 50px);
+    }
+
+    .line-numbers {
+        padding: 12px 6px;
+        font-size: 0.75rem;
+        min-width: 35px;
+    }
+
+    .code-area {
+        padding: 12px 16px;
+        font-size: 0.85rem;
+    }
+
+    .markdown-h1 {
+        font-size: 1.8rem;
+    }
+
+    .markdown-h2 {
+        font-size: 1.3rem;
+    }
+
+    .markdown-h3 {
+        font-size: 1.1rem;
+    }
+
+    .markdown-text {
+        font-size: 0.9rem;
+    }
+
+    .secret-terminal {
+        max-height: 60vh;
+        border-radius: 6px;
+    }
+
+    .secret-body {
+        padding: 16px;
+        max-height: calc(60vh - 50px);
+    }
+
+    .decrypt-header {
+        font-size: 1.1rem;
+    }
+
+    .console-text {
+        font-size: 0.85rem;
+    }
+
+    .github-stats {
+        grid-template-columns: 1fr;
+        gap: 12px;
+    }
+
+    .stat-card {
+        padding: 12px;
+    }
+
+    .project-header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 8px;
+    }
+
+    .project-name {
+        font-size: 1rem;
+    }
+
+    .project-description {
+        font-size: 0.85rem;
+    }
+
+    .education-degree {
+        font-size: 1rem;
+    }
+
+    .meme-img {
+        max-height: 200px;
+    }
+
+    .terminal-footer {
+        flex-direction: column;
+        gap: 12px;
+        text-align: center;
+    }
+}
+
+@media (max-width: 480px) {
+    .about-container {
+        margin: 0 0.5rem;
+    }
+
+    .tab-btn {
+        padding: 6px 12px;
+        font-size: 0.8rem;
+        min-width: 60px;
+    }
+
+    .markdown-editor {
+        max-height: 50vh;
+        border-radius: 4px;
+    }
+
+    .editor-header {
+        padding: 4px 8px;
+    }
+
+    .editor-path {
+        font-size: 0.75rem;
+    }
+
+    .editor-content {
+        max-height: calc(50vh - 40px);
+    }
+
+    .line-numbers {
+        padding: 8px 4px;
+        font-size: 0.7rem;
+        min-width: 30px;
+    }
+
+    .code-area {
+        padding: 8px 12px;
+        font-size: 0.8rem;
+    }
+
+    .markdown-h1 {
+        font-size: 1.5rem;
+    }
+
+    .markdown-h2 {
+        font-size: 1.2rem;
+    }
+
+    .markdown-h3 {
+        font-size: 1rem;
+    }
+
+    .markdown-text {
+        font-size: 0.85rem;
+    }
+
+    .secret-terminal {
+        max-height: 50vh;
+        border-radius: 4px;
+    }
+
+    .secret-body {
+        padding: 12px;
+        max-height: calc(50vh - 40px);
+    }
+
+    .decrypt-header {
+        font-size: 1rem;
+    }
+
+    .console-text {
+        font-size: 0.8rem;
+        line-height: 1.5;
+    }
+
+    .stat-card {
+        padding: 8px;
+    }
+
+    .project-item {
+        padding: 12px;
+    }
+
+    .education-item {
+        padding: 12px;
+    }
+
+    .meme-container {
+        padding: 12px;
+        margin: 16px 0;
+    }
+
+    .meme-img {
+        max-height: 150px;
+    }
+
+    .quote-text {
+        font-size: 0.9rem;
+        padding: 12px;
+        margin-left: 16px;
+    }
+
+    .terminal-footer {
+        margin-top: 20px;
+        padding-top: 16px;
+    }
+
+    .status-text {
+        font-size: 0.7rem;
+        letter-spacing: 1px;
+    }
+}
