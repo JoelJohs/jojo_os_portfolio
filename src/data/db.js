@@ -48,9 +48,9 @@ export const PROJECTS_DB = [
     },
     tech_stack: ["Vanilla JS", "Web Components", "CSS Variables"],
     urls: {
-      demo: "#",
+      demo: "https://joeljohs.github.io/jojo_os_portfolio/",
       repository_main: {
-        url: "https://github.com/JoelJohs/portfolio_vanilla",
+        url: "https://github.com/JoelJohs/jojo_os_portfolio",
         type: "frontend",
       },
       repository_sec: null,
