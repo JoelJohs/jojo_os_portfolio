@@ -174,3 +174,114 @@
     transform: scale(1.2);
   }
 }
+
+/* Responsive Tech Stack */
+@media (max-width: 768px) {
+  .tech-stack-panel {
+    padding: 0.875rem;
+  }
+
+  .tech-stack-title {
+    font-size: 1.1rem;
+    letter-spacing: 1.5px;
+  }
+
+  .tech-stack-subtitle {
+    font-size: 0.75rem;
+  }
+
+  .tech-stack-tabs {
+    gap: 0.4rem;
+    margin-bottom: 0.875rem;
+  }
+
+  .tech-stack-tab {
+    padding: 0.35rem 0.7rem;
+    font-size: 0.7rem;
+  }
+
+  .tech-stack-item {
+    grid-template-columns: 1fr auto;
+    gap: 0.75rem;
+    padding: 0.6rem 0.875rem;
+  }
+
+  .tech-stack-name {
+    font-size: 0.85rem;
+  }
+
+  .tech-stack-level {
+    font-size: 0.75rem;
+    min-width: 70px;
+  }
+
+  .tech-stack-progress-bar {
+    grid-column: 1 / -1;
+    height: 8px;
+    order: 2;
+  }
+
+  .tech-stack-items {
+    gap: 0.6rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .tech-stack-panel {
+    padding: 0.75rem;
+  }
+
+  .tech-stack-title {
+    font-size: 1rem;
+    letter-spacing: 1px;
+  }
+
+  .tech-stack-subtitle {
+    font-size: 0.7rem;
+  }
+
+  .tech-stack-tabs {
+    gap: 0.3rem;
+    margin-bottom: 0.75rem;
+  }
+
+  .tech-stack-tab {
+    padding: 0.3rem 0.6rem;
+    font-size: 0.65rem;
+  }
+
+  .tech-stack-item {
+    grid-template-columns: 1fr;
+    gap: 0.5rem;
+    padding: 0.5rem 0.75rem;
+    text-align: center;
+  }
+
+  .tech-stack-name {
+    font-size: 0.8rem;
+    text-align: center;
+  }
+
+  .tech-stack-level {
+    font-size: 0.7rem;
+    min-width: auto;
+    text-align: center;
+  }
+
+  .tech-stack-progress-bar {
+    height: 6px;
+  }
+
+  .progress-segment {
+    border-radius: 1px;
+  }
+
+  .tech-stack-items {
+    gap: 0.5rem;
+  }
+
+  .favorite-indicator {
+    font-size: 0.8rem;
+    margin-left: 0.3rem;
+  }
+}

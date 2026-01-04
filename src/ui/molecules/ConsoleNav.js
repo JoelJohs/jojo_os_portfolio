@@ -74,15 +74,73 @@ export class ConsoleNav extends HTMLElement {
           <button data-nav="contact" class="nav-btn">${t("ui.contact")}</button>
           <x-lang-switch></x-lang-switch>
         </div>
+        <button class="mobile-menu-toggle">☰</button>
       </nav>
+      
+      <div class="mobile-nav-overlay">
+        <button class="mobile-nav-close">×</button>
+        <div class="mobile-nav-menu">
+          <button data-nav="home" class="nav-btn">${
+            t("ui.home") || "~/"
+          }</button>
+          <button data-nav="projects" class="nav-btn">${t(
+            "ui.projects"
+          )}</button>
+          <button data-nav="about" class="nav-btn">${t("ui.about")}</button>
+          <button data-nav="contact" class="nav-btn">${t("ui.contact")}</button>
+          <x-lang-switch></x-lang-switch>
+        </div>
+      </div>
     `;
 
-    this.querySelectorAll(".nav-btn").forEach((btn) => {
+    // Desktop nav buttons
+    this.querySelectorAll(".nav-links .nav-btn").forEach((btn) => {
       btn.addEventListener("click", (e) => {
         const view = e.target.dataset.nav;
         this.navigateTo(view);
       });
     });
+
+    // Mobile nav buttons
+    this.querySelectorAll(".mobile-nav-menu .nav-btn").forEach((btn) => {
+      btn.addEventListener("click", (e) => {
+        const view = e.target.dataset.nav;
+        this.navigateTo(view);
+        this.closeMobileMenu();
+      });
+    });
+
+    // Mobile menu toggle
+    const toggleBtn = this.querySelector(".mobile-menu-toggle");
+    const closeBtn = this.querySelector(".mobile-nav-close");
+    const overlay = this.querySelector(".mobile-nav-overlay");
+
+    if (toggleBtn) {
+      toggleBtn.addEventListener("click", () => {
+        overlay.classList.add("active");
+      });
+    }
+
+    if (closeBtn) {
+      closeBtn.addEventListener("click", () => {
+        this.closeMobileMenu();
+      });
+    }
+
+    if (overlay) {
+      overlay.addEventListener("click", (e) => {
+        if (e.target === overlay) {
+          this.closeMobileMenu();
+        }
+      });
+    }
+  }
+
+  closeMobileMenu() {
+    const overlay = this.querySelector(".mobile-nav-overlay");
+    if (overlay) {
+      overlay.classList.remove("active");
+    }
   }
 }
 

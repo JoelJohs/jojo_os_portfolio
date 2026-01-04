@@ -34,6 +34,49 @@ h1 {
     margin-bottom: 1rem;
 }
 
+/* Responsive Typography and Elements */
+@media (max-width: 768px) {
+    h1 {
+        font-size: 2rem;
+        margin-bottom: 0.875rem;
+    }
+
+    .boot-screen {
+        padding: 1rem;
+    }
+
+    .hint-note {
+        font-size: 0.8rem;
+        gap: 0.3rem;
+    }
+
+    .status {
+        font-size: 0.9rem;
+        padding: 0.4rem 0.875rem;
+    }
+}
+
+@media (max-width: 480px) {
+    h1 {
+        font-size: 1.8rem;
+        margin-bottom: 0.75rem;
+    }
+
+    .boot-screen {
+        padding: 0.75rem;
+    }
+
+    .hint-note {
+        font-size: 0.75rem;
+        gap: 0.25rem;
+    }
+
+    .status {
+        font-size: 0.85rem;
+        padding: 0.35rem 0.75rem;
+    }
+}
+
 .hint-note {
     display: inline-flex;
     gap: 0.35rem;

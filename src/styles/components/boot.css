@@ -81,3 +81,67 @@ x-boot-screen.fade-out {
     box-shadow: var(--glow-violet);
     transition: width 0.2s linear;
 }
+
+/* Responsive Boot Screen */
+@media (max-width: 768px) {
+    .boot-container {
+        max-width: 90%;
+        padding: 1.5rem;
+    }
+
+    .boot-logo {
+        font-size: 2.5rem;
+        letter-spacing: 3px;
+    }
+
+    .boot-version {
+        font-size: 0.75rem;
+        margin-bottom: 1.5rem;
+        padding-bottom: 0.875rem;
+    }
+
+    .log-container {
+        height: 120px;
+        font-size: 0.85rem;
+    }
+
+    .log-line {
+        margin-bottom: 0.15rem;
+    }
+
+    .progress-bar-container {
+        height: 3px;
+    }
+}
+
+@media (max-width: 480px) {
+    .boot-container {
+        padding: 1rem;
+    }
+
+    .boot-logo {
+        font-size: 2rem;
+        letter-spacing: 2px;
+        margin-bottom: 0.4rem;
+    }
+
+    .boot-version {
+        font-size: 0.7rem;
+        margin-bottom: 1.25rem;
+        padding-bottom: 0.75rem;
+    }
+
+    .log-container {
+        height: 100px;
+        font-size: 0.8rem;
+        margin-bottom: 1.25rem;
+    }
+
+    .log-line {
+        margin-bottom: 0.1rem;
+    }
+
+    .progress-bar-container {
+        height: 2px;
+    }
+}
