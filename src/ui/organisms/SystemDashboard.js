@@ -1,4 +1,5 @@
-import { on } from "../../core/events/bus.js";
+import { on, emit } from "../../core/events/bus.js";
+import { EVENTS } from "../../core/events/types.js";
 import { getMyAge } from "../../core/utils/profile.js";
 import { t, onLanguageChange } from "../../core/i18n/i18n.js";
 import { getAchievementStats } from "../../core/system/achievements.js";
@@ -83,6 +84,9 @@ export class SystemDashboard extends HTMLElement {
               </div>
               <small>${t("dashboard.keep_exploring")}</small>
             </div>
+            <small class="hint-note dash-hint">${t(
+              "achievementHints.avatar"
+            )}</small>
           </div>
           
           <div class="welcome-section">
@@ -104,6 +108,11 @@ export class SystemDashboard extends HTMLElement {
                   <span class="cmd-chip">cd projects</span>
                   <span class="cmd-chip">theme matrix</span>
                 </div>
+                <small class="hint-note dash-hint-secondary">${t(
+                  "achievementHints.cli"
+                )} · ${t("achievementHints.clear")}
+                  · ${t("achievementHints.coffee")}
+                  · ${t("achievementHints.sudo")}</small>
               </div>
             </div>
           </div>
@@ -130,6 +139,9 @@ export class SystemDashboard extends HTMLElement {
         "jojo-avatar-state",
         this.isPixelArt ? "pixel" : "normal"
       );
+      emit(EVENTS.AVATAR_TOGGLE, {
+        state: this.isPixelArt ? "pixel" : "normal",
+      });
 
       const avatarImg = avatarFrame.querySelector(".avatar-img");
       if (avatarImg) {

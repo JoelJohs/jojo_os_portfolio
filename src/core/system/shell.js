@@ -4,6 +4,7 @@ import { parseInput } from "./commandParser.js";
 import { fetchProjects } from "../repositories/projectRepository.js";
 import { setTheme } from "./theme.js";
 import { t } from "../i18n/i18n.js";
+import { listAchievementsPrintable } from "./achievements.js";
 
 // Mapa del sistema de archivos virtual para validación
 const FILE_SYSTEM = {
@@ -74,7 +75,7 @@ const REGISTRY = {
 <span style="color: #e0e0e0">README.md</span>`;
 
     // Si el usuario escribe 'ls -a', mostramos el secreto
-    if (args[0] === '-a') {
+    if (args[0] === "-a") {
       output += `&nbsp;&nbsp;<span style="color: #ff1f1f">.about.secret</span>`;
     }
 
@@ -88,18 +89,18 @@ const REGISTRY = {
   // --- LEER (CAT) ---
   cat: (args) => {
     const file = args[0];
-    
+
     // MODO PÚBLICO
     if (file === "about.txt" || file === "about") {
       // Emitimos un evento de navegación especial con 'params'
-      emit(EVENTS.NAV_NAVIGATE, { view: 'about', mode: 'public' });
+      emit(EVENTS.NAV_NAVIGATE, { view: "about", mode: "public" });
       return null;
     }
-    
+
     // MODO SECRETO
     if (file === ".about.secret") {
-      emit(EVENTS.NAV_NAVIGATE, { view: 'about', mode: 'secret' });
-      return t('about.public.decrypting');
+      emit(EVENTS.NAV_NAVIGATE, { view: "about", mode: "secret" });
+      return t("about.public.decrypting");
     }
 
     if (file === "README.md") {
@@ -128,7 +129,13 @@ const REGISTRY = {
 
   date: () => new Date().toString(),
 
-help: () => ({
+  achievements: () => {
+    emit(EVENTS.ACHIEVEMENTS_VIEWED);
+    const output = listAchievementsPrintable();
+    return { type: "text", value: output };
+  },
+
+  help: () => ({
     type: "text",
     value:
       "Commands:\n" +
@@ -139,14 +146,15 @@ help: () => ({
       " - clear | cls\n" +
       " - whoami\n" +
       " - date\n" +
+      " - achievements\n" +
       " - theme <default|matrix|cyberpunk>",
   }),
 
-// --- TEMAS ---
+  // --- TEMAS ---
   theme: (args) => {
     const name = args[0];
     if (!name) return "Usage: theme <default|matrix|cyberpunk>";
-    
+
     if (setTheme(name)) {
       return `Theme loaded: [${name.toUpperCase()}]`;
     }
@@ -156,8 +164,9 @@ help: () => ({
   // --- COMANDOS SECRETOS ---
   sudo: () => {
     return {
-      type: 'text',
-      value: "<span style='color:red'>PERMISSION DENIED:</span> You didn't say the magic word."
+      type: "text",
+      value:
+        "<span style='color:red'>PERMISSION DENIED:</span> You didn't say the magic word.",
     };
   },
 
@@ -165,7 +174,7 @@ help: () => ({
     return "Brewing... ☕ [██████████] 100% - Done. Here is your Java.";
   },
 
-  '42': () => "The answer to life, the universe, and everything.",
+  42: () => "The answer to life, the universe, and everything.",
 
   // --- SOPORTE LEGACY (Para que funcione el click en botones viejos si quedan) ---
   projects: () => ({ type: "text", value: "Use cd projects" }),

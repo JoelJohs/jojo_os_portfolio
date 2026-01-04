@@ -6,6 +6,20 @@
     padding-bottom: 2rem;
 }
 
+.project-grid-hint {
+    grid-column: 1 / -1;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.35rem 0;
+    color: var(--text-muted);
+    font-size: 0.9rem;
+}
+
+.project-grid-hint .hint-icon {
+    font-size: 1.1rem;
+}
+
 /* Card Base */
 .project-card {
     background: rgba(10, 10, 22, 0.6);

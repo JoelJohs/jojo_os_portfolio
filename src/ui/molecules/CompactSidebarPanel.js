@@ -3,11 +3,11 @@
  * Cyberpunk themed compact sidebar with avatar, achievements, and clock
  */
 
-import { on } from '../../core/events/bus.js';
-import { EVENTS } from '../../core/events/types.js';
-import { getMyAge } from '../../core/utils/profile.js';
-import { getAchievementStats } from '../../core/system/achievements.js';
-import { t, onLanguageChange } from '../../core/i18n/i18n.js';
+import { on, emit } from "../../core/events/bus.js";
+import { EVENTS } from "../../core/events/types.js";
+import { getMyAge } from "../../core/utils/profile.js";
+import { getAchievementStats } from "../../core/system/achievements.js";
+import { t, onLanguageChange } from "../../core/i18n/i18n.js";
 
 export class CompactSidebarPanel extends HTMLElement {
   constructor(container) {
@@ -30,29 +30,27 @@ export class CompactSidebarPanel extends HTMLElement {
   disconnectedCallback() {
     if (this.clockInterval) clearInterval(this.clockInterval);
     if (typeof this._unsubscribeLang === "function") this._unsubscribeLang();
-    if (typeof this._unsubscribeAchievement === "function") this._unsubscribeAchievement();
-  }
-
-  disconnectedCallback() {
-    if (this.clockInterval) clearInterval(this.clockInterval);
-    if (this._unsubscribeAchievement) {
-      document.removeEventListener('sys:achievement_progress', this._unsubscribeAchievement);
-    }
+    if (typeof this._unsubscribeAchievement === "function")
+      this._unsubscribeAchievement();
   }
 
   render() {
-    const currentLang = localStorage.getItem('jojo-avatar-state') || 'normal';
-    
+    const currentLang = localStorage.getItem("jojo-avatar-state") || "normal";
+
     this.innerHTML = `
       <!-- Avatar + Profile Section -->
       <div class="sidebar-section">
         <div class="section-title">
           <span class="icon">👤</span>
-          ${t('dashboard.profile') || 'PROFILE'}
+          ${t("dashboard.profile") || "PROFILE"}
         </div>
         <div class="avatar-profile-section">
-          <div class="compact-avatar-frame" onclick="this.parentElement.parentElement.parentElement.parentElement.parentElement.toggleAvatar()">
-            <img src="${currentLang === 'pixel' ? 'assets/img/avatar_pa.jpg' : 'assets/img/avatar.jpg'}" 
+          <div class="compact-avatar-frame" id="compact-avatar-toggle">
+            <img src="${
+              currentLang === "pixel"
+                ? "assets/img/avatar_pa.jpg"
+                : "assets/img/avatar.jpg"
+            }" 
                  alt="Joel Avatar" class="compact-avatar-img">
           </div>
           <div class="profile-info">
@@ -64,9 +62,13 @@ export class CompactSidebarPanel extends HTMLElement {
                 <span>${this.stats.currentXP} / ${this.stats.neededXP} XP</span>
               </div>
               <div class="xp-bar-compact">
-                <div class="xp-fill-compact" style="width: ${this.stats.xpPercent.toFixed(2)}%"></div>
+                <div class="xp-fill-compact" style="width: ${this.stats.xpPercent.toFixed(
+                  2
+                )}%"></div>
               </div>
-              <small class="xp-text">${t("dashboard.next_level")} ${this.stats.neededXP - this.stats.currentXP} ${t("dashboard.days")}</small>
+              <small class="xp-text">${t("dashboard.next_level")} ${
+      this.stats.neededXP - this.stats.currentXP
+    } ${t("dashboard.days")}</small>
             </div>
           </div>
         </div>
@@ -76,7 +78,7 @@ export class CompactSidebarPanel extends HTMLElement {
       <div class="sidebar-section">
         <div class="section-title">
           <span class="icon">🏆</span>
-          ${t('dashboard.achievements') || 'ACHIEVEMENTS'}
+          ${t("dashboard.achievements") || "ACHIEVEMENTS"}
         </div>
         <div class="achievements-compact-section">
           <div class="achievement-stats">
@@ -85,9 +87,11 @@ export class CompactSidebarPanel extends HTMLElement {
               <span class="total">/ ${this.achievements.total}</span>
             </div>
             <div class="progress-compact">
-              <div class="progress-fill-compact" style="width: ${(this.achievements.unlocked / this.achievements.total) * 100}%"></div>
+              <div class="progress-fill-compact" style="width: ${
+                (this.achievements.unlocked / this.achievements.total) * 100
+              }%"></div>
             </div>
-            <small>${t('dashboard.keep_exploring')}</small>
+            <small>${t("dashboard.keep_exploring")}</small>
           </div>
         </div>
       </div>
@@ -96,7 +100,7 @@ export class CompactSidebarPanel extends HTMLElement {
       <div class="sidebar-section">
         <div class="section-title">
           <span class="icon">🕐</span>
-          ${t('dashboard.time') || 'SYSTEM TIME'}
+          ${t("dashboard.time") || "SYSTEM TIME"}
         </div>
         <div class="clock-compact-section">
           <div class="digital-clock-compact" id="compact-clock">00:00</div>
@@ -107,45 +111,49 @@ export class CompactSidebarPanel extends HTMLElement {
   }
 
   setupEventListeners() {
-    // Avatar toggle is now handled by onclick in render()
-    this.avatarFrame = this.querySelector('.compact-avatar-frame');
+    this.avatarFrame = this.querySelector("#compact-avatar-toggle");
     if (this.avatarFrame) {
-      this.avatarFrame.addEventListener('click', () => this.toggleAvatar());
+      this.avatarFrame.addEventListener("click", () => this.toggleAvatar());
     }
   }
 
   toggleAvatar() {
-    const current = localStorage.getItem('jojo-avatar-state') || 'normal';
-    const next = current === 'normal' ? 'pixel' : 'normal';
-    localStorage.setItem('jojo-avatar-state', next);
-    
-    const avatarImg = this.querySelector('.compact-avatar-img');
+    const current = localStorage.getItem("jojo-avatar-state") || "normal";
+    const next = current === "normal" ? "pixel" : "normal";
+    localStorage.setItem("jojo-avatar-state", next);
+
+    const avatarImg = this.querySelector(".compact-avatar-img");
     if (avatarImg) {
-      avatarImg.src = next === 'pixel' ? 'assets/img/avatar_pa.jpg' : 'assets/img/avatar.jpg';
-      
-       // Emit achievement for first pixel art toggle
-      if (next === 'pixel' && !this.avatarAchievementUnlocked) {
+      avatarImg.src =
+        next === "pixel" ? "assets/img/avatar_pa.jpg" : "assets/img/avatar.jpg";
+
+      // Emit achievement for first pixel art toggle
+      if (next === "pixel" && !this.avatarAchievementUnlocked) {
         this.avatarAchievementUnlocked = true;
-        emit('sys:avatar_toggle', { firstTime: true });
+        emit(EVENTS.AVATAR_TOGGLE, { firstTime: true });
+      } else {
+        emit(EVENTS.AVATAR_TOGGLE, { firstTime: false });
       }
     }
   }
 
   updateAchievementsDisplay() {
-    const achievementsSection = this.querySelector('.achievements-section');
+    const achievementsSection = this.querySelector(".achievements-section");
     if (!achievementsSection) return;
-    
-    const countEl = achievementsSection.querySelector('.achievement-count');
-    const totalEl = achievementsSection.querySelector('.achievement-total');
-    const progressFill = achievementsSection.querySelector('.progress-fill-compact');
-    
+
+    const countEl = achievementsSection.querySelector(".achievement-count");
+    const totalEl = achievementsSection.querySelector(".achievement-total");
+    const progressFill = achievementsSection.querySelector(
+      ".progress-fill-compact"
+    );
+
     if (countEl) countEl.textContent = this.achievements.unlocked;
     if (totalEl) totalEl.textContent = this.achievements.total;
     if (progressFill) {
-      const percentage = (this.achievements.unlocked / this.achievements.total) * 100;
+      const percentage =
+        (this.achievements.unlocked / this.achievements.total) * 100;
       progressFill.style.width = `${percentage}%`;
     }
-  }
   }
 
   startClock() {
@@ -169,6 +177,6 @@ export class CompactSidebarPanel extends HTMLElement {
   }
 }
 
-customElements.define('compact-sidebar-panel', CompactSidebarPanel);
+customElements.define("compact-sidebar-panel", CompactSidebarPanel);
 
 export default CompactSidebarPanel;

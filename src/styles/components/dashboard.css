@@ -179,6 +179,15 @@
   border: 1px solid var(--border-primary);
 }
 
+.dash-hint {
+  margin-top: 0.35rem;
+}
+
+.dash-hint-secondary {
+  display: block;
+  margin-top: 0.25rem;
+}
+
 .welcome-section {
   background: var(--bg-secondary-translucent);
   border: 1px solid var(--border-primary);

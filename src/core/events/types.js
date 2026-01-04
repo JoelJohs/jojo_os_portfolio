@@ -14,6 +14,12 @@ export const EVENTS = {
   // NAVEGACIÓN (Nuevo)
   NAV_NAVIGATE: "nav:navigate",
 
+  // Perfil / Avatar
+  AVATAR_TOGGLE: "sys:avatar_toggle",
+
+  // Logros
+  ACHIEVEMENTS_VIEWED: "sys:achievements_viewed",
+
   // Terminal (CLI)
   CLI_INPUT: "cli:input", // El usuario presionó Enter
   CLI_OUTPUT: "cli:output", // El sistema responde texto

@@ -1,3 +1,5 @@
+import { t, getLanguage } from "../../core/i18n/i18n.js";
+
 export class ProjectCard extends HTMLElement {
   set data(project) {
     this._p = project;
@@ -5,14 +7,24 @@ export class ProjectCard extends HTMLElement {
   }
 
   render() {
-    const { title, description, status, tech_stack, urls, media } = this._p;
+    const { title, description, status, tech_stack, urls, media, i18n } =
+      this._p;
+    const lang = typeof getLanguage === "function" ? getLanguage() : "en";
+
+    const localizedTitle = i18n?.[lang]?.title || title;
+    const localizedDesc = i18n?.[lang]?.description || description;
+    const statusLabel = t(`projects.status.${status}`) || status;
 
     // Lógica de Renderizado de Links
     let linksHTML = "";
 
     // 1. Demo
     if (urls.demo) {
-      linksHTML += `<a href="${urls.demo}" target="_blank" class="btn-link demo">[ LIVE DEMO ]</a>`;
+      linksHTML += `<a href="${
+        urls.demo
+      }" target="_blank" class="btn-link demo">[ ${t(
+        "projects.actions.demo"
+      )} ]</a>`;
     }
 
     // 2. Repo Principal
@@ -42,17 +54,17 @@ export class ProjectCard extends HTMLElement {
                         ? `<img src="${media.thumbnail}" alt="${title}" loading="lazy">`
                         : `<div class="no-img">IMG_NOT_FOUND</div>`
                     }
-                    <div class="status-badge status-${status}">${status}</div>
+                    <div class="status-badge status-${status}">${statusLabel}</div>
                 </div>
                 
                 <div class="card-content">
-                    <h3 class="title">${title}</h3>
+                  <h3 class="title">${localizedTitle}</h3>
                     <div class="tech-row">
                         ${tech_stack
                           .map((t) => `<span class="pill">${t}</span>`)
                           .join("")}
                     </div>
-                    <p class="desc">${description}</p>
+                  <p class="desc">${localizedDesc}</p>
                     
                     <div class="actions">
                         ${linksHTML}
