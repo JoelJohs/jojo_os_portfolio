@@ -14,12 +14,13 @@ export class ContactForm extends HTMLElement {
     if (typeof this._unsubscribe === "function") this._unsubscribe();
   }
 
-  render() {
+render() {
     this.innerHTML = `
       <section class="contact-card">
         <h2 class="contact-title">${t("contactForm.title")}</h2>
         <p class="contact-subtitle">${t("contactForm.subtitle")}</p>
-        <form class="contact-form">
+        <form class="contact-form" action="https://api.web3forms.com/submit" method="POST">
+          <input type="hidden" name="access_key" value="a1638a16-79f0-405b-bff8-551a46d4ed24">
           <label class="contact-label">
             ${t("contactForm.name")}
             <input class="contact-input" name="name" type="text" placeholder="${t(
@@ -47,31 +48,51 @@ export class ContactForm extends HTMLElement {
     `;
   }
 
-  bindEvents() {
+bindEvents() {
     const form = this.querySelector(".contact-form");
     const status = this.querySelector(".contact-status");
 
     if (!form) return;
 
-    form.addEventListener("submit", (event) => {
+    form.addEventListener("submit", async (event) => {
       event.preventDefault();
 
       const data = new FormData(form);
-      const payload = {
-        name: data.get("name")?.toString().trim(),
-        email: data.get("email")?.toString().trim(),
-        message: data.get("message")?.toString().trim(),
-      };
 
-      status.textContent = t("contactForm.status_sent");
-      this.dispatchEvent(
-        new CustomEvent("contact:submit", {
-          detail: payload,
-          bubbles: true,
-        })
-      );
+      // Show loading status
+      status.textContent = "Sending...";
+      status.style.color = "var(--accent-cyan)";
 
-      form.reset();
+      try {
+        const response = await fetch('https://api.web3forms.com/submit', {
+          method: 'POST',
+          body: data,
+        });
+
+        const result = await response.json();
+
+        if (response.ok && result.success) {
+          status.textContent = t("contactForm.status_sent");
+          status.style.color = "#00ff41";
+          form.reset();
+          
+          // Play success sound
+          const audio = new Audio('assets/sounds/success_chime.mp3');
+          audio.volume = 0.3;
+          audio.play().catch(() => {});
+        } else {
+          throw new Error(result.message || 'Form submission failed');
+        }
+      } catch (error) {
+        status.textContent = "Error: Failed to send message";
+        status.style.color = "var(--danger-scarlet)";
+        console.error('Error submitting form:', error);
+      }
+
+      // Clear status after 5 seconds
+      setTimeout(() => {
+        status.textContent = "";
+      }, 5000);
     });
   }
 }

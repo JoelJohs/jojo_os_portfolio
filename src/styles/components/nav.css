@@ -6,7 +6,7 @@
     font-family: var(--font-mono);
     height: 50px;
     padding: 0;
-    overflow-x: auto;
+    overflow: hidden;
     width: 100%;
 }
 

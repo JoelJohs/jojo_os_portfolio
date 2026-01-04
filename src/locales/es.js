@@ -12,16 +12,17 @@ export default {
     contact: "Contacto",
     or: "o",
   },
-  dashboard: {
+dashboard: {
     role: "Desarrollador Backend / Fullstack",
     stack: ">> STACK ACTIVO",
-    time: ">> HORA DEL SISTEMA",
-    welcome_title: "LISTO JUGADOR UNO",
+    welcome_title: "BIENVENIDO A JOJO-OS",
     welcome_body:
       "Sistema en línea. Accediendo a la base de datos del portafolio...",
     hint: "Prueba con:",
     next_level: "Próximo nivel en:",
     days: "días",
+    achievements: "Logros",
+    keep_exploring: "¡Sigue explorando!",
   },
   contactForm: {
     title: "ABRIR CANAL SEGURO",
@@ -54,5 +55,15 @@ export default {
     profile: "DESENCRIPTANDO PERFIL DE USUARIO...",
     connection: "ESTABLECIENDO CONEXIÓN SEGURA...",
     ready: "SISTEMA LISTO.",
+  },
+  tech_stack: {
+    title: "Tecnologías Principales",
+    subtitle: "Mis tecnologías principales y favoritas.",
+    tabs: {
+      languages: "Lenguajes",
+      frameworks: "Frameworks",
+      tools: "Herramientas",
+      databases: "Bases de Datos",
+    },
   },
 };

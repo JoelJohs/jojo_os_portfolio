@@ -22,6 +22,8 @@
     /* Texto */
     --text-main: #e0e0e0;      
     --text-muted: #6e6e8e;     
+    --text-primary: var(--text-main);
+    --text-secondary: var(--text-muted);
     
     /* --- TIPOGRAFÍA --- */
     --font-mono: 'Fira Code', 'Courier New', monospace;
@@ -37,8 +39,23 @@
     /* Bordes */
     --border-thin: 1px solid var(--primary-dim);
     --border-neon: 1px solid var(--primary-neon);
+    --border-primary: var(--border-thin);
     
     /* UI */
     --radius-sm: 2px; 
+    --radius-md: 4px;
     --spacing-md: 1rem;
+    
+    /* Translucent backgrounds */
+    --bg-primary-translucent: rgba(2, 2, 10, 0.8);
+    --bg-secondary-translucent: rgba(17, 17, 37, 0.6);
+    --bg-tertiary: rgba(110, 110, 142, 0.1);
+    --bg-secondary: var(--bg-navy);
+    
+    /* Accent colors for consistency */
+    --accent-primary: var(--primary-neon);
+    --accent-secondary: var(--accent-cyan);
+    --accent-favorite: var(--accent-cyan);
+    --accent-primary-glow: var(--glow-violet);
+    --accent-favorite-glow: var(--glow-text);
 }

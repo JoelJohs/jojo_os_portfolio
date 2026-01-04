@@ -1,111 +1,164 @@
-import { emit } from "../../core/events/bus.js";
-import { EVENTS } from "../../core/events/types.js";
 import { getMyAge } from "../../core/utils/profile.js";
 import { t, onLanguageChange, getLanguage } from "../../core/i18n/i18n.js";
+import { getAchievementStats } from "../../core/system/achievements.js";
+import "./TechStack.js";
 
 export class SystemDashboard extends HTMLElement {
   connectedCallback() {
-    this.stats = getMyAge();
+    this.isPixelArt = localStorage.getItem("jojo-avatar-state") === "pixel";
+    this.loadData();
     this.render();
-    this.startClock();
-    this._unsubscribe = onLanguageChange(() => {
-      this.stats = getMyAge();
+    this.setupAvatarToggle();
+
+    this._unsubscribeLang = onLanguageChange(() => {
+      this.loadData();
       this.render();
-      this.startClock(true);
+      this.setupAvatarToggle();
     });
   }
 
   disconnectedCallback() {
-    if (this.clockInterval) clearInterval(this.clockInterval);
-    if (typeof this._unsubscribe === "function") this._unsubscribe();
+    if (typeof this._unsubscribeLang === "function") this._unsubscribeLang();
+    if (typeof this._unsubscribeAchievements === "function") this._unsubscribeAchievements();
+  }
+
+  loadData() {
+    this.stats = getMyAge();
+    this.achievements = getAchievementStats();
   }
 
   render() {
     this.innerHTML = `
-            <div class="dashboard-grid">
-                
-                <div class="dash-panel profile-panel">
-                  <div class="profile-header">
-                    <div class="avatar-frame">
-                      <img src="assets/img/avatar.jpg" alt="Joel Avatar" class="avatar-img">
-                    </div>
-                    <div class="profile-info">
-                      <h2>Joel Josafat Hernández Saucedo</h2>
-                      <p class="role">${t("dashboard.role")}</p>
-                      <div class="xp-container">
-                        <div class="xp-labels">
-                          <span>Lvl ${this.stats.level}</span>
-                          <span>${this.stats.currentXP} / ${
-      this.stats.neededXP
-    } XP</span>
-                        </div>
-                        <div class="xp-bar-bg">
-                          <div class="xp-bar-fill" style="width: ${this.stats.xpPercent.toFixed(
-                            2
-                          )}%"></div>
-                        </div>
-                        <small class="xp-sub">${t("dashboard.next_level")} ${
-      this.stats.neededXP - this.stats.currentXP
-    } ${t("dashboard.days")}</small>
-                      </div>
-                    </div>
+      <div class="dashboard-grid">
+        <div class="dash-panel main-profile-panel">
+          <div class="profile-section">
+            <div class="profile-header">
+              <div class="avatar-frame avatar-toggle" id="avatar-toggle">
+                <img src="${
+                  this.isPixelArt
+                    ? "assets/img/avatar_pa.jpg"
+                    : "assets/img/avatar.jpg"
+                }" alt="Joel Avatar" class="avatar-img">
+              </div>
+              <div class="profile-info">
+                <h2>Joel Josafat Hernández Saucedo</h2>
+                <p class="role">${t("dashboard.role")}</p>
+                <div class="xp-container">
+                  <div class="xp-labels">
+                    <span>Lvl ${this.stats.level}</span>
+                    <span>${this.stats.currentXP} / ${
+        this.stats.neededXP
+      } XP</span>
                   </div>
+                  <div class="xp-bar-bg">
+                    <div class="xp-bar-fill" style="width: ${this.stats.xpPercent.toFixed(
+                      2
+                    )}%"></div>
+                  </div>
+                  <small class="xp-sub">${t("dashboard.next_level")}
+                    ${this.stats.neededXP - this.stats.currentXP} ${t(
+        "dashboard.days"
+      )}
+                  </small>
                 </div>
-
-                <div class="dash-panel stack-panel">
-                    <h3 class="panel-header">${t("dashboard.stack")}</h3>
-                    <div class="tech-tags">
-                        <span class="tag">NodeJS</span>
-                        <span class="tag">NestJS</span>
-                        <span class="tag">TypeScript</span>
-                        <span class="tag">Docker</span>
-                        <span class="tag">PostgreSQL</span>
-                        <span class="tag">Astro</span>
-                    </div>
-                </div>
-
-                <div class="dash-panel time-panel">
-                    <h3 class="panel-header">${t("dashboard.time")}</h3>
-                    <div class="digital-clock" id="clock">00:00</div>
-                    <div class="date" id="date">YYYY-MM-DD</div>
-                </div>
-
-                <div class="dash-panel welcome-panel">
-                    <h2 class="glitch-text" data-text="${t(
-                      "dashboard.welcome_title"
-                    )}">${t("dashboard.welcome_title")}</h2>
-                    <p>${t("dashboard.welcome_body")}</p>
-                    <p class="instruction">${t("dashboard.hint")}
-                      <span class="cmd">ls</span> ${
-                        t("ui.or") || "or"
-                      } <span class="cmd">cd projects</span>
-                    </p>
-                </div>
+              </div>
             </div>
-        `;
+          </div>
+          
+          <div class="achievements-section">
+            <h3 class="panel-header">🏆 ${t("dashboard.achievements")}</h3>
+            <div class="achievements-stats">
+              <div class="achievement-count">
+                <span class="count">${this.achievements.unlocked}</span>
+                <span class="total">/ ${this.achievements.total}</span>
+              </div>
+              <div class="progress-bar">
+                <div class="progress-fill" style="width: ${
+                  (this.achievements.unlocked / this.achievements.total) * 100
+                }%" data-progress="${(this.achievements.unlocked / this.achievements.total) * 100}"></div>
+              </div>
+              <small>${t("dashboard.keep_exploring")}</small>
+            </div>
+          </div>
+          
+          <div class="welcome-section">
+            <div class="welcome-header">
+              <div class="status-indicator online"></div>
+              <h2 class="system-title" data-text="${t("dashboard.welcome_title")}">${t("dashboard.welcome_title")}</h2>
+            </div>
+            <div class="system-info">
+              <p class="welcome-message">${t("dashboard.welcome_body")}</p>
+              <div class="quick-start">
+                <div class="instruction-line">
+                  <span class="prompt">$</span>
+                  <span class="command hint">${t("dashboard.hint")}</span>
+                </div>
+                <div class="command-suggestions">
+                  <span class="cmd-chip">ls</span>
+                  <span class="cmd-chip">cd projects</span>
+                  <span class="cmd-chip">theme matrix</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="dash-panel stack-panel">
+          <x-tech-stack></x-tech-stack>
+        </div>
+      </div>
+    `;
+    this.setupAchievementListener();
   }
 
-  startClock(reset = false) {
-    if (reset && this.clockInterval) clearInterval(this.clockInterval);
-    const update = () => {
-      const now = new Date();
-      const locale = getLanguage() === "es" ? "es-MX" : "en-US";
-      const time = now.toLocaleTimeString(locale, { hour12: false });
-      const date = now.toLocaleDateString(locale, {
-        weekday: "long",
-        year: "numeric",
-        month: "long",
-        day: "numeric",
-      });
+  setupAvatarToggle() {
+    const avatarFrame = this.querySelector("#avatar-toggle");
+    if (!avatarFrame) return;
 
-      const clockEl = this.querySelector("#clock");
-      if (clockEl) {
-        clockEl.innerText = time;
-        this.querySelector("#date").innerText = date;
+    avatarFrame.addEventListener("click", (e) => {
+      e.preventDefault();
+      e.stopPropagation();
+      
+      this.isPixelArt = !this.isPixelArt;
+      localStorage.setItem(
+        "jojo-avatar-state",
+        this.isPixelArt ? "pixel" : "normal"
+      );
+
+      const avatarImg = avatarFrame.querySelector(".avatar-img");
+      if (avatarImg) {
+        avatarImg.src = this.isPixelArt
+          ? "assets/img/avatar_pa.jpg"
+          : "assets/img/avatar.jpg";
       }
-    };
-    update();
-    this.clockInterval = setInterval(update, 1000);
+
+      // Add visual feedback
+      avatarFrame.style.transform = "scale(0.95)";
+      setTimeout(() => {
+        avatarFrame.style.transform = "";
+      }, 150);
+    });
+  }
+
+  setupAchievementListener() {
+    this._unsubscribeAchievements = on('sys:achievement', () => {
+      // Update achievements data
+      this.loadData();
+      
+      // Update the UI
+      const countEl = this.querySelector('.achievement-count .count');
+      const progressEl = this.querySelector('.progress-fill');
+      
+      if (countEl) {
+        countEl.textContent = this.achievements.unlocked;
+      }
+      
+      if (progressEl) {
+        const percentage = (this.achievements.unlocked / this.achievements.total) * 100;
+        progressEl.style.width = `${percentage}%`;
+        progressEl.setAttribute('data-progress', percentage);
+      }
+    });
   }
 }
 

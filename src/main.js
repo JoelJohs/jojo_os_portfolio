@@ -8,6 +8,8 @@ import "./ui/organisms/ProjectGrid.js";
 import "./ui/organisms/Terminal.js";
 import "./ui/organisms/BootScreen.js";
 import "./ui/organisms/SystemDashboard.js";
+import "./ui/organisms/TechStack.js";
+import "./ui/molecules/Toast.js";
 
 // -- Core Systems --
 import { updateLocalizedText } from "./core/utils/dom.js";
@@ -16,31 +18,28 @@ import { EVENTS } from "./core/events/types.js";
 import { initShell } from "./core/system/shell.js";
 import { initViewport } from "./core/system/viewport.js";
 import { initAudio } from "./core/system/audio.js";
-
-// -- System Lifecycle --
+import { initTheme } from "./core/system/theme.js";
+import { initAchievements } from "./core/system/achievements.js";
 
 on(EVENTS.SYS_BOOT, () => {
   console.log("%c [SYS] KERNEL ONLINE ", "background: #bc13fe; color: #fff;");
-  // Aquí el BootScreen ya desapareció visualmente
 });
 
 document.addEventListener("DOMContentLoaded", () => {
   try {
-    // 1. Inicializar sistemas (sin hacer ruido visual aún)
     updateLocalizedText();
     initShell();
     initViewport();
     initAudio();
+    initTheme();
+    initAchievements();
 
-    // 2. Inyectar la Secuencia de Arranque
+    document.body.appendChild(document.createElement("x-toast-manager"));
+
     const app = document.getElementById("app");
     const bootScreen = document.createElement("x-boot-screen");
 
-    // Lo agregamos al body para que cubra absolutamente todo
     document.body.appendChild(bootScreen);
-
-    // NOTA: Ya no hacemos emit(EVENTS.SYS_BOOT) aquí manualmente.
-    // El componente x-boot-screen lo hará cuando termine su animación.
   } catch (error) {
     console.error("CRITICAL FAILURE:", error);
   }

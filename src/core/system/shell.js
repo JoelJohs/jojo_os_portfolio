@@ -2,6 +2,7 @@ import { on, emit } from "../events/bus.js";
 import { EVENTS } from "../events/types.js";
 import { parseInput } from "./commandParser.js";
 import { fetchProjects } from "../repositories/projectRepository.js";
+import { setTheme } from "./theme.js";
 
 // Mapa del sistema de archivos virtual para validación
 const FILE_SYSTEM = {
@@ -110,7 +111,7 @@ const REGISTRY = {
 
   date: () => new Date().toString(),
 
-  help: () => ({
+help: () => ({
     type: "text",
     value:
       "Commands:\n" +
@@ -120,8 +121,34 @@ const REGISTRY = {
       " - ping contact\n" +
       " - clear | cls\n" +
       " - whoami\n" +
-      " - date",
+      " - date\n" +
+      " - theme <default|matrix|cyberpunk>",
   }),
+
+// --- TEMAS ---
+  theme: (args) => {
+    const name = args[0];
+    if (!name) return "Usage: theme <default|matrix|cyberpunk>";
+    
+    if (setTheme(name)) {
+      return `Theme loaded: [${name.toUpperCase()}]`;
+    }
+    return `Error: Theme "${name}" not found.`;
+  },
+
+  // --- COMANDOS SECRETOS ---
+  sudo: () => {
+    return {
+      type: 'text',
+      value: "<span style='color:red'>PERMISSION DENIED:</span> You didn't say the magic word."
+    };
+  },
+
+  coffee: () => {
+    return "Brewing... ☕ [██████████] 100% - Done. Here is your Java.";
+  },
+
+  '42': () => "The answer to life, the universe, and everything.",
 
   // --- SOPORTE LEGACY (Para que funcione el click en botones viejos si quedan) ---
   projects: () => ({ type: "text", value: "Use cd projects" }),

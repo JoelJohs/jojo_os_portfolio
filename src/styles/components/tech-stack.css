@@ -1,0 +1,176 @@
+/* Tech Stack Panel - Cyberpunk Terminal Styles */
+
+.tech-stack-panel {
+  background: var(--bg-primary-translucent);
+  border: 1px solid var(--border-primary);
+  border-radius: var(--border-radius-md);
+  padding: 1rem;
+  font-family: var(--font-mono);
+  position: relative;
+  overflow: hidden;
+  backdrop-filter: blur(10px);
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  transition: border-color 0.3s ease;
+}
+
+.tech-stack-header {
+  text-align: center;
+  margin-bottom: 1rem;
+  border-bottom: 1px solid var(--border-primary);
+  padding-bottom: 0.75rem;
+}
+
+.tech-stack-title {
+  color: var(--primary-neon);
+  font-size: 1.25rem;
+  font-weight: bold;
+  text-shadow: 0 0 8px var(--primary-neon);
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  margin: 0;
+  transition: color 0.3s ease, text-shadow 0.3s ease;
+}
+
+.tech-stack-subtitle {
+  color: var(--text-secondary);
+  font-size: 0.8rem;
+  opacity: 0.8;
+}
+
+.tech-stack-tabs {
+  display: flex;
+  gap: 0.5rem;
+  margin-bottom: 1rem;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.tech-stack-tab {
+  background: var(--bg-secondary);
+  border: 1px solid var(--border-primary);
+  color: var(--text-secondary);
+  padding: 0.4rem 0.8rem;
+  font-size: 0.75rem;
+  font-family: inherit;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  text-transform: uppercase;
+}
+
+.tech-stack-tab:hover {
+  color: var(--primary-neon);
+  border-color: var(--primary-neon);
+  transform: translateY(-2px);
+}
+
+.tech-stack-tab.active {
+  background: var(--primary-neon);
+  color: var(--bg-primary);
+  border-color: var(--primary-neon);
+  font-weight: bold;
+  box-shadow: 0 0 12px var(--primary-neon);
+  transition: background 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.tech-stack-content {
+  flex-grow: 1;
+  overflow-y: auto;
+  padding-right: 0.5rem; /* for scrollbar */
+}
+
+.tech-stack-items {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.tech-stack-item {
+  background: var(--bg-secondary-translucent);
+  border: 1px solid var(--border-primary);
+  border-radius: var(--border-radius-sm);
+  padding: 0.75rem 1rem;
+  display: grid;
+  grid-template-columns: 1fr 1fr auto;
+  align-items: center;
+  gap: 1rem;
+  transition: all 0.3s ease;
+}
+
+.tech-stack-item:hover {
+  border-color: var(--primary-neon);
+  transform: translateX(4px);
+  transition: border-color 0.3s ease;
+}
+
+.tech-stack-item.favorite {
+  border-color: var(--accent-cyan);
+  background: var(--bg-primary-translucent);
+}
+
+.tech-stack-name {
+  color: var(--text-primary);
+  font-size: 0.9rem;
+  font-weight: bold;
+  white-space: nowrap;
+}
+
+.favorite-indicator {
+  color: var(--accent-cyan);
+  margin-left: 0.5rem;
+  text-shadow: 0 0 6px var(--accent-cyan);
+  display: inline-block;
+  animation: sparkle 1.5s ease-in-out infinite;
+}
+
+.tech-stack-progress-bar {
+  display: flex;
+  gap: 0.25rem;
+  width: 100%;
+  height: 10px;
+}
+
+.progress-segment {
+  flex-grow: 1;
+  background: var(--bg-tertiary);
+  border: 1px solid var(--border-primary);
+  border-radius: 2px;
+  transition: background 0.3s ease;
+}
+
+.progress-segment.filled {
+  background: var(--primary-neon);
+  box-shadow: 0 0 8px var(--primary-neon);
+  transition: background 0.3s ease, box-shadow 0.3s ease;
+}
+
+.progress-segment.favorite-progress {
+  background: var(--accent-cyan);
+  box-shadow: 0 0 8px var(--accent-cyan);
+  transition: background 0.3s ease, box-shadow 0.3s ease;
+}
+
+.tech-stack-level {
+  color: var(--text-secondary);
+  font-size: 0.8rem;
+  font-weight: bold;
+  min-width: 80px;
+  text-align: right;
+}
+
+.tech-stack-level.favorite-level {
+    color: var(--accent-cyan);
+}
+
+@keyframes sparkle {
+  0%,
+  100% {
+    opacity: 0.7;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 1;
+    transform: scale(1.2);
+  }
+}

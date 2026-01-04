@@ -42,3 +42,6 @@ h1 {
     padding: 0.5rem 1rem;
     background: rgba(138, 0, 0, 0.1);
 }
+
+/* Import toast styles */
+@import url('./components/toast.css');
