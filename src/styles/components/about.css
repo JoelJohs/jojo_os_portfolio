@@ -37,195 +37,479 @@
     text-shadow: var(--glow-red);
 }
 
-/* --- MODO PÚBLICO (Documento Limpio) --- */
-.doc-paper {
-    background: var(--bg-panel);
-    border: 1px solid var(--primary-dim);
-    padding: 2rem;
-    overflow-y: auto;
-    max-height: 65vh;
+/* --- CYBERPUNK TERMINAL STYLES --- */
+.cyber-terminal {
+    background: #0a0a0a;
+    border: 2px solid #00ff41;
+    border-radius: 8px;
+    overflow: hidden;
+    max-height: 70vh;
+    font-family: 'Fira Code', 'Courier New', monospace;
+    box-shadow: 0 0 30px rgba(0, 255, 65, 0.3);
+    position: relative;
 }
 
-.doc-header {
+.terminal-header {
+    background: linear-gradient(135deg, #1a1a1a, #0f0f0f);
+    padding: 12px 20px;
     display: flex;
-    gap: 1.5rem;
     align-items: center;
+    justify-content: space-between;
+    border-bottom: 1px solid #00ff41;
 }
 
-.doc-photo img {
-    width: 80px; 
-    height: 80px;
+.terminal-buttons {
+    display: flex;
+    gap: 8px;
+}
+
+.terminal-buttons span {
+    width: 12px;
+    height: 12px;
     border-radius: 50%;
-    border: 2px solid var(--primary-violet);
-}
-
-.doc-info h2 { 
-    font-size: 1.5rem; 
-    color: var(--text-main); 
-    margin-bottom: 0.2rem; 
-}
-
-.doc-info .role { 
-    color: var(--primary-neon); 
-    font-size: 1rem; 
-    margin-bottom: 0.5rem; 
-}
-
-.doc-info .meta { 
-    font-size: 0.8rem; 
-    color: var(--text-muted); 
-}
-
-.level-badge {
-    display: inline-flex;
-    align-items: center;
-    gap: 10px;
-    background: rgba(0,0,0,0.3);
-    padding: 4px 10px;
-    border-radius: 4px;
-    font-size: 0.7rem;
-    margin-top: 5px;
-}
-
-.mini-bar { 
-    width: 50px; 
-    height: 4px; 
-    background: #333; 
-}
-
-.mini-bar div { 
-    height: 100%; 
-    background: var(--accent-cyan); 
-}
-
-.doc-divider { 
-    border: 0; 
-    border-bottom: 1px dashed var(--text-muted); 
-    margin: 1.5rem 0; 
-    opacity: 0.3; 
-}
-
-.doc-section { 
-    margin-bottom: 2rem; 
-}
-
-.doc-section h4 { 
-    color: var(--accent-blue); 
-    font-size: 0.9rem; 
-    margin-bottom: 1rem; 
-    letter-spacing: 1px; 
-}
-
-.job-item { 
-    margin-bottom: 1.5rem; 
-    padding-left: 1rem; 
-    border-left: 2px solid var(--primary-dim); 
-}
-
-.job-head { 
-    display: flex; 
-    justify-content: space-between; 
-    font-weight: bold; 
-    color: var(--text-main); 
-}
-
-.job-company { 
-    color: var(--primary-violet); 
-    font-size: 0.9rem; 
-    margin-bottom: 0.5rem; 
-}
-
-.job-desc { 
-    font-size: 0.9rem; 
-    color: var(--text-muted); 
-    line-height: 1.4; 
-}
-
-.stack-chip {
     display: inline-block;
-    background: rgba(46, 89, 255, 0.1);
-    border: 1px solid var(--accent-blue);
-    padding: 4px 8px;
-    margin: 0 5px 5px 0;
-    font-size: 0.8rem;
-    border-radius: 4px;
 }
 
-/* --- MODO SECRETO (Hacker Style) --- */
-.secret-terminal {
-    background: #05000a;
-    border: 1px solid var(--danger-scarlet);
-    padding: 2rem;
-    overflow-y: auto;
-    max-height: 65vh;
-    font-family: 'Fira Code', monospace;
-    background-image: radial-gradient(#220000 1px, transparent 1px);
-    background-size: 20px 20px;
-}
+.btn-red { background: #ff5f56; }
+.btn-yellow { background: #ffbd2e; }
+.btn-green { background: #27c93f; }
 
-.secret-header {
-    color: var(--danger-scarlet);
+.terminal-title {
+    color: #00ff41;
+    font-size: 0.85rem;
     font-weight: bold;
-    border-bottom: 1px solid var(--danger-scarlet);
-    padding-bottom: 1rem;
-    margin-bottom: 1.5rem;
-    animation: pulseRed 2s infinite;
+    letter-spacing: 2px;
+    text-transform: uppercase;
 }
 
-.console-text { 
-    color: var(--text-main); 
-    margin-bottom: 2rem; 
-    border-left: 3px solid var(--primary-neon); 
-    padding-left: 1rem; 
+.terminal-body {
+    padding: 20px;
+    background: #0a0a0a;
+    position: relative;
+    overflow-y: auto;
+    max-height: calc(70vh - 50px);
+}
+
+.scanline {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 2px;
+    background: linear-gradient(90deg, transparent, #00ff41, transparent);
+    animation: scanline 8s linear infinite;
+    pointer-events: none;
+    z-index: 1;
+}
+
+@keyframes scanline {
+    0% { transform: translateY(0); }
+    100% { transform: translateY(100%); }
+}
+
+.terminal-section {
+    margin-bottom: 25px;
+    position: relative;
+    z-index: 2;
+}
+
+.section-header {
+    display: flex;
+    align-items: center;
+    margin-bottom: 12px;
+}
+
+.prompt {
+    color: #00ff41;
+    font-weight: bold;
+    margin-right: 8px;
+    text-shadow: 0 0 8px #00ff41;
+}
+
+.command {
+    color: #00ccff;
+    font-weight: bold;
+    text-shadow: 0 0 5px #00ccff;
+}
+
+.agent-info .info-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 12px;
+    background: rgba(0, 255, 65, 0.05);
+    border: 1px solid rgba(0, 255, 65, 0.3);
+    border-radius: 4px;
+    padding: 15px;
+}
+
+.info-field {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 8px 0;
+    border-bottom: 1px solid rgba(0, 255, 65, 0.1);
+}
+
+.field-label {
+    color: #00ccff;
+    font-weight: bold;
+    text-transform: uppercase;
+    font-size: 0.85rem;
+}
+
+.field-value {
+    color: #ffffff;
+    font-size: 0.9rem;
+}
+
+.field-value.clearance-high {
+    color: #ffff00;
+    font-weight: bold;
+    text-shadow: 0 0 5px #ffff00;
+}
+
+.terminal-separator {
+    height: 1px;
+    background: linear-gradient(90deg, transparent, #00ff41, transparent);
+    margin: 20px 0;
+    opacity: 0.5;
+}
+
+.terminal-text {
+    color: #b0b0b0;
+    line-height: 1.6;
+    font-size: 0.9rem;
+    margin-left: 20px;
+}
+
+.experience-item {
+    margin-bottom: 20px;
+    padding-left: 20px;
+    border-left: 2px solid #00ff41;
+    background: rgba(0, 255, 65, 0.05);
+    padding: 15px;
+    margin-left: 10px;
+}
+
+.exp-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 8px;
+}
+
+.exp-role {
+    color: #00ccff;
+    font-weight: bold;
+    text-shadow: 0 0 5px #00ccff;
+}
+
+.exp-period {
+    color: #00ff41;
+    font-size: 0.85rem;
+    padding: 2px 8px;
+    border: 1px solid #00ff41;
+    border-radius: 3px;
+}
+
+.exp-period.current {
+    background: rgba(0, 255, 65, 0.2);
+    animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.6; }
+}
+
+.exp-company {
+    color: #ffff00;
+    margin-bottom: 8px;
+    font-weight: bold;
+}
+
+.exp-desc {
+    color: #b0b0b0;
+    font-size: 0.85rem;
+    line-height: 1.4;
+}
+
+.stack-list {
+    margin-left: 20px;
+}
+
+.stack-item {
+    display: flex;
+    align-items: center;
+    padding: 8px 0;
+    opacity: 0;
+    animation: fadeInUp 0.5s forwards;
+    border-bottom: 1px solid rgba(0, 255, 65, 0.1);
+}
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.stack-index {
+    color: #00ff41;
+    font-weight: bold;
+    width: 30px;
+    margin-right: 15px;
+    text-shadow: 0 0 5px #00ff41;
+}
+
+.stack-name {
+    color: #ffffff;
+    flex: 1;
+    font-weight: 500;
+}
+
+.stack-status {
+    color: #00ff41;
+    font-size: 0.8rem;
+    font-weight: bold;
+    text-shadow: 0 0 3px #00ff41;
+}
+
+/* --- MODO SECRETO (Hacker Terminal) --- */
+.secret-terminal {
+    background: #0a0000;
+    border: 2px solid #ff1f1f;
+    border-radius: 8px;
+    overflow: hidden;
+    max-height: 70vh;
+    font-family: 'Fira Code', 'Courier New', monospace;
+    box-shadow: 0 0 30px rgba(255, 31, 31, 0.3);
+    position: relative;
+}
+
+.secret-body {
+    padding: 20px;
+    background: #0a0000;
+    position: relative;
+    overflow-y: auto;
+    max-height: calc(70vh - 50px);
+}
+
+.glitch-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(
+        45deg,
+        transparent 30%,
+        rgba(255, 0, 0, 0.1) 50%,
+        transparent 70%
+    );
+    animation: glitch 3s linear infinite;
+    pointer-events: none;
+    z-index: 1;
+}
+
+@keyframes glitch {
+    0%, 100% { transform: translateX(-100%); }
+    50% { transform: translateX(100%); }
+}
+
+.decrypt-header {
+    color: #ff1f1f;
+    font-weight: bold;
+    font-size: 1.2rem;
+    margin-bottom: 20px;
+    text-align: center;
+    text-shadow: 0 0 10px #ff1f1f;
+    position: relative;
+    z-index: 2;
+}
+
+.decrypt-progress {
+    width: 100%;
+    height: 4px;
+    background: rgba(255, 31, 31, 0.2);
+    border-radius: 2px;
+    margin-top: 10px;
+    overflow: hidden;
+}
+
+.progress-bar {
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, #ff1f1f, #ff6666, #ff1f1f);
+    animation: progressComplete 2s ease-out;
+}
+
+@keyframes progressComplete {
+    from { width: 0%; }
+    to { width: 100%; }
+}
+
+.console-text {
+    display: flex;
+    align-items: flex-start;
+    margin-bottom: 20px;
+    color: #ffffff;
+    font-size: 0.9rem;
+    line-height: 1.6;
+    position: relative;
+    z-index: 2;
+}
+
+.console-text .prompt {
+    color: #ff1f1f;
+    margin-right: 10px;
+    text-shadow: 0 0 8px #ff1f1f;
+}
+
+.console-text .comment {
+    color: #666666;
+    margin-right: 8px;
 }
 
 .meme-container {
     text-align: center;
-    margin: 2rem 0;
-    border: 1px dashed var(--text-muted);
-    padding: 1rem;
+    margin: 25px 0;
+    border: 2px dashed rgba(255, 31, 31, 0.5);
+    padding: 20px;
+    background: rgba(255, 31, 31, 0.05);
+    position: relative;
+    z-index: 2;
+    border-radius: 8px;
 }
 
 .meme-img { 
     max-width: 100%; 
+    max-height: 200px;
     border-radius: 4px; 
-    opacity: 0.9; 
+    opacity: 0.9;
+    filter: sepia(0.3) hue-rotate(-10deg);
 }
 
 .meme-caption { 
     display: block; 
-    margin-top: 5px; 
-    color: var(--accent-cyan); 
-    font-size: 0.8rem; 
-    font-style: italic; 
+    margin-top: 12px; 
+    color: #ff6666; 
+    font-size: 0.85rem; 
+    font-weight: bold;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    text-shadow: 0 0 5px #ff6666;
 }
 
 .code-block {
     background: #000;
-    padding: 1rem;
-    border-left: 3px solid var(--primary-violet);
+    border: 1px solid #ff1f1f;
+    border-radius: 4px;
+    margin: 25px 0;
+    position: relative;
+    z-index: 2;
+    overflow: hidden;
+}
+
+.code-header {
+    padding: 10px 15px;
+    background: rgba(255, 31, 31, 0.1);
+    border-bottom: 1px solid #ff1f1f;
+}
+
+.code-block pre {
+    margin: 0;
+    padding: 15px;
+    overflow-x: auto;
+}
+
+.code-block code {
     color: #aaffaa;
     font-size: 0.85rem;
-    overflow-x: auto;
-    margin-bottom: 2rem;
+    line-height: 1.5;
 }
 
-.quote {
-    color: var(--text-muted);
+.terminal-quote {
+    margin: 25px 0;
+    position: relative;
+    z-index: 2;
+}
+
+.quote-header {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.quote-tag {
+    color: #ff1f1f;
+    font-weight: bold;
+    margin-left: 8px;
+    text-shadow: 0 0 5px #ff1f1f;
+}
+
+.quote-text {
+    color: #ffffff;
     font-style: italic;
+    font-size: 1rem;
+    line-height: 1.6;
+    margin-left: 20px;
+    padding: 15px;
+    background: rgba(255, 31, 31, 0.05);
+    border-left: 3px solid #ff1f1f;
+    border-radius: 0 4px 4px 0;
+}
+
+.quote-author {
+    color: #ff6666;
     text-align: right;
-    border-right: 3px solid var(--text-muted);
-    padding-right: 1rem;
+    margin-top: 8px;
+    font-weight: bold;
+    text-shadow: 0 0 3px #ff6666;
 }
 
-.quote footer { 
-    color: var(--primary-neon); 
-    margin-top: 5px; 
-    font-style: normal; 
+.terminal-footer {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-top: 30px;
+    padding-top: 20px;
+    border-top: 1px solid rgba(255, 31, 31, 0.3);
+    position: relative;
+    z-index: 2;
 }
 
-@keyframes pulseRed { 
-    0% { opacity: 0.8; } 
-    50% { opacity: 1; text-shadow: 0 0 10px red; } 
-    100% { opacity: 0.8; } 
+.status-indicator {
+    color: #ff1f1f;
+    font-size: 1.2rem;
+    animation: blink 1s infinite;
+}
+
+@keyframes blink {
+    0%, 50%, 100% { opacity: 1; }
+    25%, 75% { opacity: 0.3; }
+}
+
+.status-text {
+    color: #666666;
+    font-size: 0.8rem;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+}
+
+.matrix-rain {
+    width: 20px;
+    height: 20px;
+    background: linear-gradient(180deg, #00ff00, transparent);
+    opacity: 0.3;
+    animation: matrixDrop 2s linear infinite;
+}
+
+@keyframes matrixDrop {
+    from { transform: translateY(-100%); }
+    to { transform: translateY(100%); }
 }

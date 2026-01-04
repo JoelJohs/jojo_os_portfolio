@@ -3,6 +3,7 @@ import { EVENTS } from "../events/types.js";
 import { parseInput } from "./commandParser.js";
 import { fetchProjects } from "../repositories/projectRepository.js";
 import { setTheme } from "./theme.js";
+import { t } from "../i18n/i18n.js";
 
 // Mapa del sistema de archivos virtual para validación
 const FILE_SYSTEM = {
@@ -98,7 +99,7 @@ const REGISTRY = {
     // MODO SECRETO
     if (file === ".about.secret") {
       emit(EVENTS.NAV_NAVIGATE, { view: 'about', mode: 'secret' });
-      return "Decrypting secure file...";
+      return t('about.public.decrypting');
     }
 
     if (file === "README.md") {

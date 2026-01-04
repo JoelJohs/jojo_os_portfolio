@@ -6,7 +6,14 @@ export function initViewport() {
   const stage = document.getElementById("content-stage");
   if (!stage) return;
 
+  // Track current view to preserve it during language changes
+  let currentView = "home";
+  let currentData = null;
+
   const renderView = (viewName, viewData) => {
+    // Update current view tracking
+    currentView = viewName;
+    currentData = viewData;
     stage.innerHTML = "";
 
     switch (viewName) {
@@ -61,7 +68,7 @@ export function initViewport() {
   renderView("home");
 
   onLanguageChange(() => {
-    renderView("home");
+    renderView(currentView, currentData);
   });
 
   on(EVENTS.NAV_NAVIGATE, (payload) => {

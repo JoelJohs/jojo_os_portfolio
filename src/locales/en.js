@@ -65,4 +65,38 @@ dashboard: {
       databases: "Databases",
     },
   },
+  about: {
+    public_record: "PUBLIC_RECORD.txt",
+    secret_data: ".SECRET_DATA",
+    public: {
+      title: "AGENT FILE",
+      subtitle: "CLASSIFIED INFORMATION - PUBLIC ACCESS LEVEL",
+      personal_info: "PERSONAL DATA",
+      executive_summary: ">>> EXECUTIVE SUMMARY",
+      experience: ">>> OPERATIONAL EXPERIENCE",
+      knowledge_base: ">>> KNOWLEDGE BASE (STACK)",
+      current_period: "Present",
+      decrypting: "Decrypting secure file...",
+    },
+    secret: {
+      title: "DECRYPTED SUCCESSFULLY",
+      intro: "I don't really know how to talk about myself, I just know I like programming and feeling the dopamine of fixing a bug. I'm someone simple who enjoys seeing the result of my effort.",
+      meme_caption: "STATUS: ADAPTING TO ANY SITUATION...",
+      json_comment: "// A more technical \"About me\"",
+      philosophy: "Today I have more questions than answers... My story is but one of thousands.",
+      json_block: {
+        pronouns: "he/him",
+        nickname: "Jojo",
+        stand: "Mahoraga (Adaptability)",
+        traits: ["Slightly sarcastic", "Coffee Powered", "Bug Fixer"],
+        hobbies: [
+          "Living for my daughter", 
+          "Video games (since SNES)", 
+          "Gym (strength)", 
+          "Trying to tire out my dog"
+        ],
+        philosophy: "Today I have more questions than answers... My story is but one of thousands."
+      }
+    }
+  },
 };
