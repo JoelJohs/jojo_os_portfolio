@@ -7,7 +7,11 @@ export const PROFESSIONAL_DATA = {
         location: "Morelia, Michoacán, México",
         email: "jojohersa21@gmail.com",
         phone: "438 100 4177",
-        summary: "Desarrollador Fullstack mayormente enfocado en el backend, con más de 3 años de experiencia en aplicaciones web y APIs escalables. Priorizo el código limpio, la mejora continua y la comprensión profunda de los sistemas."
+        summary: "Desarrollador Fullstack mayormente enfocado en el backend, con más de 3 años de experiencia en aplicaciones web y APIs escalables. Priorizo el código limpio, la mejora continua y la comprensión profunda de los sistemas.",
+        cv_paths: {
+            es: "assets/docs/Joel_Josafat_Hernández_Saucedo_CV_es.pdf",
+            en: "assets/docs/Joel_Josafat_Hernández_Saucedo_CV_en.pdf"
+        }
     },
     experience: [
         {

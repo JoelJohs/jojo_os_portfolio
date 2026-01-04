@@ -267,6 +267,40 @@
   box-shadow: 0 4px 12px rgba(188, 19, 254, 0.3);
 }
 
+/* CV Download Button */
+.cv-download-section {
+  margin-top: 1rem;
+  text-align: left;
+}
+
+.btn-cv {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  text-decoration: none;
+  background: var(--bg-secondary-translucent);
+  color: var(--accent-cyan);
+  border: 1px solid var(--accent-cyan);
+  padding: 0.5rem 1rem;
+  font-size: 0.8rem;
+  font-family: var(--font-mono);
+  border-radius: var(--border-radius-md);
+  transition: all 0.3s ease;
+  cursor: pointer;
+}
+
+.btn-cv:hover {
+  background: var(--accent-cyan);
+  color: var(--bg-primary);
+  box-shadow: 0 0 15px rgba(0, 243, 255, 0.4);
+  transform: translateY(-2px);
+  text-decoration: none;
+}
+
+.btn-cv .icon {
+  font-size: 0.9rem;
+}
+
 /* Global Cyberpunk Scrollbar - All scrollbars */
 ::-webkit-scrollbar {
   width: 8px;
@@ -367,6 +401,16 @@ html[data-theme="cyberpunk"] ::-webkit-scrollbar-thumb:hover {
     font-size: 0.75rem;
     padding: 0.25rem 0.5rem;
   }
+
+  .cv-download-section {
+    margin-top: 0.875rem;
+    text-align: center;
+  }
+
+  .btn-cv {
+    font-size: 0.75rem;
+    padding: 0.4rem 0.875rem;
+  }
 }
 
 @media (max-width: 480px) {
@@ -433,5 +477,21 @@ html[data-theme="cyberpunk"] ::-webkit-scrollbar-thumb:hover {
   .cmd-chip {
     text-align: center;
     width: 100%;
+  }
+
+  .cv-download-section {
+    margin-top: 0.75rem;
+    text-align: center;
+  }
+
+  .btn-cv {
+    font-size: 0.7rem;
+    padding: 0.35rem 0.75rem;
+    width: 100%;
+    justify-content: center;
+  }
+
+  .btn-cv .icon {
+    font-size: 0.8rem;
   }
 }
