@@ -44,3 +44,8 @@ export function getMyAge() {
     birthDate: birthDate.toDateString(),
   };
 }
+
+// Backward compatibility for components expecting getPlayerStats
+export function getPlayerStats() {
+  return getMyAge();
+}

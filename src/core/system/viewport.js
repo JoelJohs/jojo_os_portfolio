@@ -16,13 +16,13 @@ export function initViewport() {
         break;
       }
       case "about": {
-        const card = document.createElement("x-profile-card");
-        card.data = {
-          name: "Joel Johs",
-          role: "SysAdmin",
-          stats: { str: "MAX", int: "MAX" },
-        };
-        stage.appendChild(card);
+        stage.innerHTML = '<x-about-viewer></x-about-viewer>';
+        const aboutEl = stage.querySelector('x-about-viewer');
+        
+        // Si viene información de modo en el payload (ej: { view: 'about', mode: 'secret' })
+        if (viewData && viewData.mode) {
+          aboutEl.initialMode = viewData.mode;
+        }
         break;
       }
       case "loading": {

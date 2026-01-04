@@ -5,7 +5,7 @@ const SOUNDS = {
   TYPE: new Audio("assets/sounds/key-press.mp3"),
   BOOT: new Audio("assets/sounds/boot-sequence.mp3"),
   ERROR: new Audio("assets/sounds/error_buzzer.mp3"),
-  SUCCESS: new Audio("assets/sounds/success_chime.mp3"),
+  SUCCESS: new Audio("assets/sounds/success_chime.wav"),
 };
 
 // Ajustar volumen para que el sonido no sea invasivo

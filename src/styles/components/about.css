@@ -1,0 +1,231 @@
+/* CONTAINER & TABS */
+.about-container {
+    max-width: 800px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+}
+
+.about-tabs {
+    display: flex;
+    gap: 2px;
+    margin-bottom: -1px;
+    z-index: 2;
+}
+
+.tab-btn {
+    padding: 10px 20px;
+    background: rgba(0,0,0,0.5);
+    border: 1px solid var(--primary-dim);
+    border-bottom: none;
+    color: var(--text-muted);
+    cursor: pointer;
+    font-family: var(--font-mono);
+}
+
+.tab-btn.active {
+    background: var(--bg-panel);
+    border-top: 2px solid var(--primary-violet);
+    color: var(--text-main);
+    font-weight: bold;
+}
+
+.tab-btn.secret-glitch.active {
+    border-top-color: var(--danger-scarlet);
+    color: var(--danger-scarlet);
+    text-shadow: var(--glow-red);
+}
+
+/* --- MODO PÚBLICO (Documento Limpio) --- */
+.doc-paper {
+    background: var(--bg-panel);
+    border: 1px solid var(--primary-dim);
+    padding: 2rem;
+    overflow-y: auto;
+    max-height: 65vh;
+}
+
+.doc-header {
+    display: flex;
+    gap: 1.5rem;
+    align-items: center;
+}
+
+.doc-photo img {
+    width: 80px; 
+    height: 80px;
+    border-radius: 50%;
+    border: 2px solid var(--primary-violet);
+}
+
+.doc-info h2 { 
+    font-size: 1.5rem; 
+    color: var(--text-main); 
+    margin-bottom: 0.2rem; 
+}
+
+.doc-info .role { 
+    color: var(--primary-neon); 
+    font-size: 1rem; 
+    margin-bottom: 0.5rem; 
+}
+
+.doc-info .meta { 
+    font-size: 0.8rem; 
+    color: var(--text-muted); 
+}
+
+.level-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    background: rgba(0,0,0,0.3);
+    padding: 4px 10px;
+    border-radius: 4px;
+    font-size: 0.7rem;
+    margin-top: 5px;
+}
+
+.mini-bar { 
+    width: 50px; 
+    height: 4px; 
+    background: #333; 
+}
+
+.mini-bar div { 
+    height: 100%; 
+    background: var(--accent-cyan); 
+}
+
+.doc-divider { 
+    border: 0; 
+    border-bottom: 1px dashed var(--text-muted); 
+    margin: 1.5rem 0; 
+    opacity: 0.3; 
+}
+
+.doc-section { 
+    margin-bottom: 2rem; 
+}
+
+.doc-section h4 { 
+    color: var(--accent-blue); 
+    font-size: 0.9rem; 
+    margin-bottom: 1rem; 
+    letter-spacing: 1px; 
+}
+
+.job-item { 
+    margin-bottom: 1.5rem; 
+    padding-left: 1rem; 
+    border-left: 2px solid var(--primary-dim); 
+}
+
+.job-head { 
+    display: flex; 
+    justify-content: space-between; 
+    font-weight: bold; 
+    color: var(--text-main); 
+}
+
+.job-company { 
+    color: var(--primary-violet); 
+    font-size: 0.9rem; 
+    margin-bottom: 0.5rem; 
+}
+
+.job-desc { 
+    font-size: 0.9rem; 
+    color: var(--text-muted); 
+    line-height: 1.4; 
+}
+
+.stack-chip {
+    display: inline-block;
+    background: rgba(46, 89, 255, 0.1);
+    border: 1px solid var(--accent-blue);
+    padding: 4px 8px;
+    margin: 0 5px 5px 0;
+    font-size: 0.8rem;
+    border-radius: 4px;
+}
+
+/* --- MODO SECRETO (Hacker Style) --- */
+.secret-terminal {
+    background: #05000a;
+    border: 1px solid var(--danger-scarlet);
+    padding: 2rem;
+    overflow-y: auto;
+    max-height: 65vh;
+    font-family: 'Fira Code', monospace;
+    background-image: radial-gradient(#220000 1px, transparent 1px);
+    background-size: 20px 20px;
+}
+
+.secret-header {
+    color: var(--danger-scarlet);
+    font-weight: bold;
+    border-bottom: 1px solid var(--danger-scarlet);
+    padding-bottom: 1rem;
+    margin-bottom: 1.5rem;
+    animation: pulseRed 2s infinite;
+}
+
+.console-text { 
+    color: var(--text-main); 
+    margin-bottom: 2rem; 
+    border-left: 3px solid var(--primary-neon); 
+    padding-left: 1rem; 
+}
+
+.meme-container {
+    text-align: center;
+    margin: 2rem 0;
+    border: 1px dashed var(--text-muted);
+    padding: 1rem;
+}
+
+.meme-img { 
+    max-width: 100%; 
+    border-radius: 4px; 
+    opacity: 0.9; 
+}
+
+.meme-caption { 
+    display: block; 
+    margin-top: 5px; 
+    color: var(--accent-cyan); 
+    font-size: 0.8rem; 
+    font-style: italic; 
+}
+
+.code-block {
+    background: #000;
+    padding: 1rem;
+    border-left: 3px solid var(--primary-violet);
+    color: #aaffaa;
+    font-size: 0.85rem;
+    overflow-x: auto;
+    margin-bottom: 2rem;
+}
+
+.quote {
+    color: var(--text-muted);
+    font-style: italic;
+    text-align: right;
+    border-right: 3px solid var(--text-muted);
+    padding-right: 1rem;
+}
+
+.quote footer { 
+    color: var(--primary-neon); 
+    margin-top: 5px; 
+    font-style: normal; 
+}
+
+@keyframes pulseRed { 
+    0% { opacity: 0.8; } 
+    50% { opacity: 1; text-shadow: 0 0 10px red; } 
+    100% { opacity: 0.8; } 
+}

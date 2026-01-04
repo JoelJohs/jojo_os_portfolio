@@ -8,6 +8,7 @@ import "./ui/organisms/ProjectGrid.js";
 import "./ui/organisms/Terminal.js";
 import "./ui/organisms/BootScreen.js";
 import "./ui/organisms/SystemDashboard.js";
+import "./ui/organisms/AboutViewer.js";
 import "./ui/organisms/TechStack.js";
 import "./ui/molecules/Toast.js";
 

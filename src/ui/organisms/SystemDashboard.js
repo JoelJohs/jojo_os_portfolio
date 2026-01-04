@@ -1,5 +1,6 @@
+import { on } from "../../core/events/bus.js";
 import { getMyAge } from "../../core/utils/profile.js";
-import { t, onLanguageChange, getLanguage } from "../../core/i18n/i18n.js";
+import { t, onLanguageChange } from "../../core/i18n/i18n.js";
 import { getAchievementStats } from "../../core/system/achievements.js";
 import "./TechStack.js";
 
@@ -19,7 +20,8 @@ export class SystemDashboard extends HTMLElement {
 
   disconnectedCallback() {
     if (typeof this._unsubscribeLang === "function") this._unsubscribeLang();
-    if (typeof this._unsubscribeAchievements === "function") this._unsubscribeAchievements();
+    if (typeof this._unsubscribeAchievements === "function")
+      this._unsubscribeAchievements();
   }
 
   loadData() {
@@ -47,8 +49,8 @@ export class SystemDashboard extends HTMLElement {
                   <div class="xp-labels">
                     <span>Lvl ${this.stats.level}</span>
                     <span>${this.stats.currentXP} / ${
-        this.stats.neededXP
-      } XP</span>
+      this.stats.neededXP
+    } XP</span>
                   </div>
                   <div class="xp-bar-bg">
                     <div class="xp-bar-fill" style="width: ${this.stats.xpPercent.toFixed(
@@ -57,8 +59,8 @@ export class SystemDashboard extends HTMLElement {
                   </div>
                   <small class="xp-sub">${t("dashboard.next_level")}
                     ${this.stats.neededXP - this.stats.currentXP} ${t(
-        "dashboard.days"
-      )}
+      "dashboard.days"
+    )}
                   </small>
                 </div>
               </div>
@@ -75,7 +77,9 @@ export class SystemDashboard extends HTMLElement {
               <div class="progress-bar">
                 <div class="progress-fill" style="width: ${
                   (this.achievements.unlocked / this.achievements.total) * 100
-                }%" data-progress="${(this.achievements.unlocked / this.achievements.total) * 100}"></div>
+                }%" data-progress="${
+      (this.achievements.unlocked / this.achievements.total) * 100
+    }"></div>
               </div>
               <small>${t("dashboard.keep_exploring")}</small>
             </div>
@@ -84,7 +88,9 @@ export class SystemDashboard extends HTMLElement {
           <div class="welcome-section">
             <div class="welcome-header">
               <div class="status-indicator online"></div>
-              <h2 class="system-title" data-text="${t("dashboard.welcome_title")}">${t("dashboard.welcome_title")}</h2>
+              <h2 class="system-title" data-text="${t(
+                "dashboard.welcome_title"
+              )}">${t("dashboard.welcome_title")}</h2>
             </div>
             <div class="system-info">
               <p class="welcome-message">${t("dashboard.welcome_body")}</p>
@@ -118,7 +124,7 @@ export class SystemDashboard extends HTMLElement {
     avatarFrame.addEventListener("click", (e) => {
       e.preventDefault();
       e.stopPropagation();
-      
+
       this.isPixelArt = !this.isPixelArt;
       localStorage.setItem(
         "jojo-avatar-state",
@@ -141,22 +147,23 @@ export class SystemDashboard extends HTMLElement {
   }
 
   setupAchievementListener() {
-    this._unsubscribeAchievements = on('sys:achievement', () => {
+    this._unsubscribeAchievements = on("sys:achievement", () => {
       // Update achievements data
       this.loadData();
-      
+
       // Update the UI
-      const countEl = this.querySelector('.achievement-count .count');
-      const progressEl = this.querySelector('.progress-fill');
-      
+      const countEl = this.querySelector(".achievement-count .count");
+      const progressEl = this.querySelector(".progress-fill");
+
       if (countEl) {
         countEl.textContent = this.achievements.unlocked;
       }
-      
+
       if (progressEl) {
-        const percentage = (this.achievements.unlocked / this.achievements.total) * 100;
+        const percentage =
+          (this.achievements.unlocked / this.achievements.total) * 100;
         progressEl.style.width = `${percentage}%`;
-        progressEl.setAttribute('data-progress', percentage);
+        progressEl.setAttribute("data-progress", percentage);
       }
     });
   }

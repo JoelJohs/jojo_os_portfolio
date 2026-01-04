@@ -66,27 +66,43 @@ const REGISTRY = {
       });
     }
 
-    // Devuelve HTML formateado como columnas de linux
-    return {
-      type: "html",
-      value: `
+    let output = `
 <span style="color: #2e59ff">projects/</span>&nbsp;&nbsp;
 <span style="color: #e0e0e0">about.txt</span>&nbsp;&nbsp;
 <span style="color: #bc13fe">contact*</span>&nbsp;&nbsp;
-<span style="color: #e0e0e0">README.md</span>
-      `,
+<span style="color: #e0e0e0">README.md</span>`;
+
+    // Si el usuario escribe 'ls -a', mostramos el secreto
+    if (args[0] === '-a') {
+      output += `&nbsp;&nbsp;<span style="color: #ff1f1f">.about.secret</span>`;
+    }
+
+    // Devuelve HTML formateado como columnas de linux
+    return {
+      type: "html",
+      value: output,
     };
   },
 
   // --- LEER (CAT) ---
   cat: (args) => {
     const file = args[0];
+    
+    // MODO PÚBLICO
     if (file === "about.txt" || file === "about") {
-      emit(EVENTS.NAV_NAVIGATE, "about");
+      // Emitimos un evento de navegación especial con 'params'
+      emit(EVENTS.NAV_NAVIGATE, { view: 'about', mode: 'public' });
       return null;
     }
+    
+    // MODO SECRETO
+    if (file === ".about.secret") {
+      emit(EVENTS.NAV_NAVIGATE, { view: 'about', mode: 'secret' });
+      return "Decrypting secure file...";
+    }
+
     if (file === "README.md") {
-      return "JojoOS v1.0 - A Cyberpunk Portfolio Environment.";
+      return "JojoOS v1.0 - Based on Clean Architecture.";
     }
     return `cat: ${file}: No such file or directory`;
   },

@@ -43,5 +43,6 @@ h1 {
     background: rgba(138, 0, 0, 0.1);
 }
 
-/* Import toast styles */
+/* Import component styles */
 @import url('./components/toast.css');
+@import url('./components/about.css');
