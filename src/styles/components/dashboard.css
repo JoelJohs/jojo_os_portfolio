@@ -34,7 +34,7 @@
 .profile-header {
   display: flex;
   gap: 1.5rem;
-  align-items: center;
+  align-items: flex-start;
 }
 
 .avatar-frame {
@@ -47,6 +47,10 @@
   box-shadow: 0 0 15px var(--accent-primary-glow);
   cursor: pointer;
   transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.github-widget-container {
+  min-width: 200px;
 }
 
 .avatar-img {
@@ -351,6 +355,10 @@ html[data-theme="cyberpunk"] ::-webkit-scrollbar-thumb:hover {
       "main-profile"
       "stack";
   }
+  
+  .github-widget-container {
+    display: none;
+  }
 }
 
 @media (max-width: 1024px) {
@@ -373,6 +381,10 @@ html[data-theme="cyberpunk"] ::-webkit-scrollbar-thumb:hover {
     flex-direction: column;
     text-align: center;
     gap: 1rem;
+  }
+  
+  .github-widget-container {
+    display: none;
   }
 
   .avatar-frame {

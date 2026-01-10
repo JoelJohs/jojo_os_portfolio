@@ -1,0 +1,266 @@
+/* Contenedor Principal: Parece una pieza de UI sólida */
+.gh-container {
+    background: rgba(2, 2, 10, 0.6);
+    border: 1px solid var(--primary-dim); /* Borde sutil violeta */
+    padding: 1rem;
+    font-family: var(--font-mono);
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    height: 100%;
+    min-width: 250px; /* Ancho mínimo para que no se aplaste */
+    transition: border-color 0.3s ease;
+}
+
+.gh-container:hover {
+    border-color: var(--primary-neon); /* Brilla al pasar el mouse */
+    box-shadow: 0 0 15px rgba(188, 19, 254, 0.1);
+}
+
+/* Cabecera: Título y Estado */
+.gh-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px dashed var(--text-muted);
+    padding-bottom: 0.5rem;
+    font-size: 0.8rem;
+    color: var(--accent-cyan);
+    letter-spacing: 1px;
+}
+
+.gh-title {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    text-transform: uppercase;
+}
+
+.gh-title .icon {
+    font-size: 0.9rem;
+}
+
+.gh-status {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    font-size: 0.7rem;
+    color: var(--primary-neon);
+}
+
+.status-light {
+    width: 6px;
+    height: 6px;
+    background-color: var(--primary-neon);
+    border-radius: 50%;
+    box-shadow: 0 0 5px var(--primary-neon);
+    animation: blink 2s infinite;
+}
+
+/* Grilla de Números */
+.gh-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 0.5rem;
+    text-align: center;
+}
+
+.gh-stat-box {
+    display: flex;
+    flex-direction: column;
+    background: rgba(255, 255, 255, 0.03); /* Fondo muy sutil */
+    padding: 0.5rem;
+    border-radius: 2px;
+}
+
+.gh-value {
+    font-size: 1.4rem;
+    font-weight: bold;
+    color: #fff;
+    text-shadow: 0 0 5px rgba(255,255,255,0.3);
+}
+
+.gh-label {
+    font-size: 0.6rem;
+    color: var(--text-muted);
+    margin-top: 2px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+/* Botón Inferior */
+.gh-footer-btn {
+    display: block;
+    text-align: center;
+    text-decoration: none;
+    font-size: 0.8rem;
+    padding: 0.5rem;
+    background: rgba(46, 89, 255, 0.1);
+    color: var(--accent-blue);
+    border: 1px solid transparent;
+    transition: all 0.2s;
+}
+
+.gh-footer-btn:hover {
+    background: var(--accent-blue);
+    color: #000;
+    box-shadow: 0 0 10px var(--accent-blue);
+    font-weight: bold;
+    text-decoration: none;
+}
+
+/* Estados especiales */
+.loading-state {
+    justify-content: center;
+    align-items: center;
+    color: var(--text-muted);
+    font-size: 0.8rem;
+}
+
+.error-state {
+    justify-content: center;
+    align-items: center;
+    color: var(--danger-scarlet);
+    font-size: 0.8rem;
+    text-align: center;
+}
+
+/* Animaciones */
+@keyframes blink {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.3; }
+}
+
+.blink { animation: blink 1s infinite; }
+
+/* Theme variations */
+
+/* Matrix theme - green neon */
+html[data-theme="matrix"] .gh-container {
+    border-color: #00ff41;
+    background: rgba(0, 20, 0, 0.6);
+}
+
+html[data-theme="matrix"] .gh-container:hover {
+    border-color: #00ff41;
+    box-shadow: 0 0 15px rgba(0, 255, 65, 0.2);
+}
+
+html[data-theme="matrix"] .gh-header {
+    color: #00ff41;
+    border-bottom-color: rgba(0, 255, 65, 0.3);
+}
+
+html[data-theme="matrix"] .gh-status {
+    color: #00ff41;
+}
+
+html[data-theme="matrix"] .status-light {
+    background-color: #00ff41;
+    box-shadow: 0 0 5px #00ff41;
+}
+
+html[data-theme="matrix"] .gh-footer-btn {
+    background: rgba(0, 255, 65, 0.1);
+    color: #00ff41;
+}
+
+html[data-theme="matrix"] .gh-footer-btn:hover {
+    background: #00ff41;
+    color: #000;
+    box-shadow: 0 0 10px #00ff41;
+}
+
+/* Cyberpunk theme - yellow neon */
+html[data-theme="cyberpunk"] .gh-container {
+    border-color: #fcee0a;
+    background: rgba(20, 15, 0, 0.6);
+}
+
+html[data-theme="cyberpunk"] .gh-container:hover {
+    border-color: #fcee0a;
+    box-shadow: 0 0 15px rgba(252, 238, 10, 0.2);
+}
+
+html[data-theme="cyberpunk"] .gh-header {
+    color: #fcee0a;
+    border-bottom-color: rgba(252, 238, 10, 0.3);
+}
+
+html[data-theme="cyberpunk"] .gh-status {
+    color: #fcee0a;
+}
+
+html[data-theme="cyberpunk"] .status-light {
+    background-color: #fcee0a;
+    box-shadow: 0 0 5px #fcee0a;
+}
+
+html[data-theme="cyberpunk"] .gh-footer-btn {
+    background: rgba(252, 238, 10, 0.1);
+    color: #fcee0a;
+}
+
+html[data-theme="cyberpunk"] .gh-footer-btn:hover {
+    background: #fcee0a;
+    color: #000;
+    box-shadow: 0 0 10px #fcee0a;
+}
+
+/* Glitch theme - pink/red glitch */
+html[data-theme="glitch"] .gh-container {
+    border-color: #ff1493;
+    background: rgba(20, 0, 10, 0.6);
+    position: relative;
+}
+
+html[data-theme="glitch"] .gh-container:hover {
+    border-color: #ff1493;
+    box-shadow: 0 0 15px rgba(255, 20, 147, 0.2);
+}
+
+html[data-theme="glitch"] .gh-header {
+    color: #ff1493;
+    border-bottom-color: rgba(255, 20, 147, 0.3);
+}
+
+html[data-theme="glitch"] .gh-status {
+    color: #ff1493;
+}
+
+html[data-theme="glitch"] .status-light {
+    background-color: #ff1493;
+    box-shadow: 0 0 5px #ff1493;
+    animation: glitch-pulse 1.5s infinite;
+}
+
+html[data-theme="glitch"] .gh-footer-btn {
+    background: rgba(255, 20, 147, 0.1);
+    color: #ff1493;
+}
+
+html[data-theme="glitch"] .gh-footer-btn:hover {
+    background: #ff1493;
+    color: #000;
+    box-shadow: 0 0 10px #ff1493;
+}
+
+@keyframes glitch-pulse {
+    0%, 100% { opacity: 1; }
+    25% { opacity: 0.8; transform: translateX(1px); }
+    50% { opacity: 0.3; transform: translateX(-1px); }
+    75% { opacity: 0.8; transform: translateX(2px); }
+}
+
+/* Responsive adjustments for profile header */
+@media (max-width: 1024px) {
+    .github-widget-container {
+        display: none;
+    }
+}
+
+@media (max-width: 768px) {
+    .github-widget-container {
+        display: none;
+    }
+}

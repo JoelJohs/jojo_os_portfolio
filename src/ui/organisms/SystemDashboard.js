@@ -76,6 +76,11 @@ export class SystemDashboard extends HTMLElement {
                   </a>
                 </div>
               </div>
+              
+              <!-- GitHub Widget -->
+              <div class="github-widget-container">
+                <x-github-widget></x-github-widget>
+              </div>
             </div>
           </div>
           
@@ -132,6 +137,8 @@ export class SystemDashboard extends HTMLElement {
         <div class="dash-panel stack-panel">
           <x-tech-stack></x-tech-stack>
         </div>
+
+
       </div>
     `;
     this.setupAchievementListener();

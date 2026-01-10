@@ -122,6 +122,16 @@ export default {
     connection: "ESTABLISHING SECURE CONNECTION...",
     ready: "SYSTEM READY.",
   },
+  github: {
+    establishing: "> ESTABLISHING UPLINK...",
+    title: "GITHUB_UPLINK",
+    online: "ONLINE",
+    offline: "OFFLINE",
+    access_terminal: "[ ACCESS TERMINAL ]",
+    repos: "REPOS",
+    stars: "STARS",
+    nodes: "NODES"
+  },
   tech_stack: {
     title: "Core Technologies",
     subtitle: "My main and favorite technologies.",

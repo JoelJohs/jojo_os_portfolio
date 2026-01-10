@@ -98,3 +98,4 @@ h1 {
 /* Import component styles */
 @import url('./components/toast.css');
 @import url('./components/about.css');
+@import url('./components/github.css');
