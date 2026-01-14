@@ -131,7 +131,7 @@ export default {
     access_terminal: "[ ACCEDER TERMINAL ]",
     repos: "REPOS",
     stars: "ESTRELLAS",
-    nodes: "NODOS"
+    nodes: "NODOS",
   },
   tech_stack: {
     title: "Tecnologías Principales",
@@ -247,7 +247,10 @@ export default {
 		<p class="console-text">No sé muy bien cómo hablar de mí; solo sé que amo programar y sentir la dopamina de arreglar un bug.</p>
 
 		<div class="meme-container">
-			<img src="assets/img/se-adapta.jpg" alt="Mahoraga se adapta" class="meme-img">
+      <picture>
+        <source srcset="assets/img/se-adapta.webp" type="image/webp">
+        <img src="assets/img/se-adapta.png" alt="Mahoraga se adapta" class="meme-img">
+      </picture>
 			<div class="meme-caption">STATUS: ADAPTÁNDOSE A CUALQUIER SITUACIÓN...</div>
 		</div>
 

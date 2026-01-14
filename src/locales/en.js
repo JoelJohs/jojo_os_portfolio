@@ -130,7 +130,7 @@ export default {
     access_terminal: "[ ACCESS TERMINAL ]",
     repos: "REPOS",
     stars: "STARS",
-    nodes: "NODES"
+    nodes: "NODES",
   },
   tech_stack: {
     title: "Core Technologies",
@@ -246,7 +246,10 @@ export default {
     <p class="console-text">I don't really know how to talk about myself; I just know I love coding and the dopamine rush of fixing bugs.</p>
 
     <div class="meme-container">
-      <img src="assets/img/se-adapta.jpg" alt="Mahoraga adapts" class="meme-img">
+    <picture>
+      <source srcset="assets/img/se-adapta.webp" type="image/webp">
+      <img src="assets/img/se-adapta.png" alt="Mahoraga adapts" class="meme-img">
+    </picture>
       <div class="meme-caption">STATUS: ADAPTING TO ANY SITUATION...</div>
     </div>
 
