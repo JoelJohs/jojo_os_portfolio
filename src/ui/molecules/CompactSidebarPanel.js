@@ -46,12 +46,18 @@ export class CompactSidebarPanel extends HTMLElement {
         </div>
         <div class="avatar-profile-section">
           <div class="compact-avatar-frame" id="compact-avatar-toggle">
-            <img src="${
-              currentLang === "pixel"
-                ? "assets/img/avatar_pa.jpg"
-                : "assets/img/avatar.jpg"
-            }" 
-                 alt="Joel Avatar" class="compact-avatar-img">
+            <picture class="compact-avatar-picture">
+              <source type="image/webp" srcset="${
+                currentLang === "pixel"
+                  ? "assets/img/avatar_pa.webp"
+                  : "assets/img/avatar.webp"
+              }">
+              <img src="${
+                currentLang === "pixel"
+                  ? "assets/img/avatar_pa.png"
+                  : "assets/img/avatar.png"
+              }" alt="Joel Avatar" class="compact-avatar-img" width="96" height="96">
+            </picture>
           </div>
           <div class="profile-info">
             <h3>Joel Josafat Hernández Saucedo</h3>
@@ -122,10 +128,17 @@ export class CompactSidebarPanel extends HTMLElement {
     const next = current === "normal" ? "pixel" : "normal";
     localStorage.setItem("jojo-avatar-state", next);
 
+    const sourceEl = this.querySelector("#compact-avatar-toggle source");
     const avatarImg = this.querySelector(".compact-avatar-img");
+    if (sourceEl) {
+      sourceEl.srcset =
+        next === "pixel"
+          ? "assets/img/avatar_pa.webp"
+          : "assets/img/avatar.webp";
+    }
     if (avatarImg) {
       avatarImg.src =
-        next === "pixel" ? "assets/img/avatar_pa.jpg" : "assets/img/avatar.jpg";
+        next === "pixel" ? "assets/img/avatar_pa.png" : "assets/img/avatar.png";
 
       // Emit achievement for first pixel art toggle
       if (next === "pixel" && !this.avatarAchievementUnlocked) {

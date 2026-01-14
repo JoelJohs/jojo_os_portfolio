@@ -30,8 +30,11 @@ export class SystemDashboard extends HTMLElement {
     this.stats = getMyAge();
     this.achievements = getAchievementStats();
     this.currentLang = getLanguage();
-    this.cvPath = PROFESSIONAL_DATA.header.cv_paths[this.currentLang] || PROFESSIONAL_DATA.header.cv_paths['es'];
-    this.cvButtonText = this.currentLang === 'en' ? '[ DOWNLOAD CV ]' : '[ DESCARGAR CV ]';
+    this.cvPath =
+      PROFESSIONAL_DATA.header.cv_paths[this.currentLang] ||
+      PROFESSIONAL_DATA.header.cv_paths["es"];
+    this.cvButtonText =
+      this.currentLang === "en" ? "[ DOWNLOAD CV ]" : "[ DESCARGAR CV ]";
   }
 
   render() {
@@ -41,11 +44,18 @@ export class SystemDashboard extends HTMLElement {
           <div class="profile-section">
             <div class="profile-header">
               <div class="avatar-frame avatar-toggle" id="avatar-toggle">
-                <img src="${
-                  this.isPixelArt
-                    ? "assets/img/avatar_pa.jpg"
-                    : "assets/img/avatar.jpg"
-                }" alt="Joel Avatar" class="avatar-img">
+                <picture class="avatar-picture">
+                  <source type="image/webp" srcset="${
+                    this.isPixelArt
+                      ? "assets/img/avatar_pa.webp"
+                      : "assets/img/avatar.webp"
+                  }">
+                  <img src="${
+                    this.isPixelArt
+                      ? "assets/img/avatar_pa.png"
+                      : "assets/img/avatar.png"
+                  }" alt="Joel Avatar" class="avatar-img" width="140" height="140">
+                </picture>
               </div>
               <div class="profile-info">
                 <h2>Joel Josafat Hernández Saucedo</h2>
@@ -64,14 +74,16 @@ export class SystemDashboard extends HTMLElement {
                   </div>
                   <small class="xp-sub">${t("dashboard.next_level")}
                     ${this.stats.neededXP - this.stats.currentXP} ${t(
-                      "dashboard.days"
-                    )}
+      "dashboard.days"
+    )}
                   </small>
                 </div>
                 
                 <!-- CV Download Button -->
                 <div class="cv-download-section">
-                  <a href="${this.cvPath}" target="_blank" download class="btn-cv">
+                  <a href="${
+                    this.cvPath
+                  }" target="_blank" download class="btn-cv">
                     <span class="icon">💾</span> ${this.cvButtonText}
                   </a>
                 </div>
@@ -161,11 +173,17 @@ export class SystemDashboard extends HTMLElement {
         state: this.isPixelArt ? "pixel" : "normal",
       });
 
+      const sourceEl = avatarFrame.querySelector("source");
       const avatarImg = avatarFrame.querySelector(".avatar-img");
+      if (sourceEl) {
+        sourceEl.srcset = this.isPixelArt
+          ? "assets/img/avatar_pa.webp"
+          : "assets/img/avatar.webp";
+      }
       if (avatarImg) {
         avatarImg.src = this.isPixelArt
-          ? "assets/img/avatar_pa.jpg"
-          : "assets/img/avatar.jpg";
+          ? "assets/img/avatar_pa.png"
+          : "assets/img/avatar.png";
       }
 
       // Add visual feedback

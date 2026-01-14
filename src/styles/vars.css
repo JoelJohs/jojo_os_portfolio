@@ -21,7 +21,7 @@
 
     /* Texto */
     --text-main: #e0e0e0;      
-    --text-muted: #6e6e8e;     
+    --text-muted: #8e8ea8;     
     --text-primary: var(--text-main);
     --text-secondary: var(--text-muted);
     

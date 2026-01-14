@@ -1,0 +1,378 @@
+/* bundle.css - concatenated for production to reduce requests */
+
+/* ----- reset.css ----- */
+html {
+  box-sizing: border-box;
+}
+*, *:before, *:after {
+  box-sizing: inherit;
+}
+
+body, h1, h2, h3, h4, p, ul, li, figure {
+  margin: 0;
+  padding: 0;
+}
+
+ul {
+  list-style: none;
+}
+
+body {
+  min-height: 100vh;
+  background-color: var(--bg-deep-space);
+  color: var(--text-main);
+  font-family: var(--font-mono);
+  overflow-x: hidden;
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+}
+
+input, button, textarea {
+  border: none;
+  background: none;
+  font-family: inherit;
+  color: inherit;
+  outline: none;
+}
+
+/* ----- vars.css ----- */
+:root {
+    /** --- PALETA DE COLORES (The "Look") --- **/
+    /* Fondos: Oscuros con tintes azules (Base para el tema) */
+    --bg-deep-space: #02020a;
+    --bg-navy: #0a0a16;
+    --bg-panel: #111125;
+    --bg-scanline: rgba(18, 16, 16, 0.5);
+
+    /* Primarios: Violets & Purples (colores principales) */
+    --primary-violet: #9d00ff;
+    --primary-neon: #bc13fe;
+    --primary-dim: #4b007d;
+
+    /* Acentos: Azules eléctricos (Para texto de lectura o info) */
+    --accent-blue: #2e59ff;
+    --accent-cyan: #00f3ff;
+
+    /* Estado / Peligro: Scarlet & Blood (Errores, alertas, botones críticos) */
+    --danger-scarlet: #ff1f1f;
+    --danger-blood: #8a0000;
+
+    /* Texto */
+    --text-main: #e0e0e0;
+    --text-muted: #8e8ea8;
+    --text-primary: var(--text-main);
+    --text-secondary: var(--text-muted);
+
+    /* --- TIPOGRAFÍA --- */
+    --font-mono: 'Fira Code', 'Courier New', monospace;
+    --font-display: 'Orbitron', sans-serif;
+
+    /** --- EFECTOS (The "Juice") --- **/
+    --glow-violet: 0 0 10px var(--primary-violet), 0 0 20px var(--primary-dim);
+    --glow-red: 0 0 10px var(--danger-scarlet), 0 0 20px var(--danger-blood);
+    --glow-text: 0 0 5px rgba(188, 19, 254, 0.7);
+
+    /* Bordes */
+    --border-thin: 1px solid var(--primary-dim);
+    --border-neon: 1px solid var(--primary-neon);
+    --border-primary: var(--border-thin);
+
+    /* UI */
+    --radius-sm: 2px;
+    --radius-md: 4px;
+    --spacing-md: 1rem;
+
+    /* Translucent backgrounds */
+    --bg-primary-translucent: rgba(2, 2, 10, 0.8);
+    --bg-secondary-translucent: rgba(17, 17, 37, 0.6);
+    --bg-tertiary: rgba(110, 110, 142, 0.1);
+    --bg-secondary: var(--bg-navy);
+
+    /* Accent colors for consistency */
+    --accent-primary: var(--primary-neon);
+    --accent-secondary: var(--accent-cyan);
+    --accent-favorite: var(--accent-cyan);
+    --accent-primary-glow: var(--glow-violet);
+    --accent-favorite-glow: var(--glow-text);
+}
+
+@media (max-width: 1200px) {
+    :root {
+        --spacing-md: 0.875rem;
+    }
+}
+
+@media (max-width: 768px) {
+    :root {
+        --spacing-md: 0.75rem;
+        --font-mono: 'Fira Code', 'Courier New', monospace;
+        --font-display: 'Orbitron', sans-serif;
+    }
+}
+
+@media (max-width: 480px) {
+    :root {
+        --spacing-md: 0.625rem;
+        --radius-sm: 1px;
+        --radius-md: 2px;
+    }
+}
+
+/* ----- base.css ----- */
+.scanlines {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: linear-gradient(
+        to bottom,
+        rgba(255,255,255,0),
+        rgba(255,255,255,0) 50%,
+        rgba(0,0,0,0.2) 50%,
+        rgba(0,0,0,0.2)
+    );
+    background-size: 100% 4px;
+    pointer-events: none; 
+    z-index: 9999;
+    opacity: 0.6;
+}
+
+.boot-screen {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    text-align: center;
+}
+
+h1 {
+    color: var(--primary-neon);
+    text-shadow: var(--glow-violet);
+    font-size: 2.5rem;
+    margin-bottom: 1rem;
+}
+
+@media (max-width: 768px) {
+    h1 {
+        font-size: 2rem;
+        margin-bottom: 0.875rem;
+    }
+
+    .boot-screen {
+        padding: 1rem;
+    }
+
+    .hint-note {
+        font-size: 0.8rem;
+        gap: 0.3rem;
+    }
+
+    .status {
+        font-size: 0.9rem;
+        padding: 0.4rem 0.875rem;
+    }
+}
+
+@media (max-width: 480px) {
+    h1 {
+        font-size: 1.8rem;
+        margin-bottom: 0.75rem;
+    }
+
+    .boot-screen {
+        padding: 0.75rem;
+    }
+
+    .hint-note {
+        font-size: 0.75rem;
+        gap: 0.25rem;
+    }
+
+    .status {
+        font-size: 0.85rem;
+        padding: 0.35rem 0.75rem;
+    }
+}
+
+.hint-note {
+    display: inline-flex;
+    gap: 0.35rem;
+    align-items: center;
+    font-size: 0.85rem;
+    color: var(--text-muted);
+    opacity: 0.8;
+}
+
+.status {
+    color: var(--danger-scarlet);
+    text-shadow: var(--glow-red);
+    font-size: 1rem;
+    border: var(--border-thin);
+    padding: 0.5rem 1rem;
+    background: rgba(138, 0, 0, 0.1);
+}
+
+/* ----- layout.css ----- */
+#app {
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+    width: 100vw;
+    overflow: hidden;
+    background: var(--bg-deep-space);
+}
+
+#viewport {
+    flex: 1;
+    position: relative;
+    overflow-y: auto;
+    background: linear-gradient(
+        135deg,
+        var(--bg-deep-space) 0%,
+        var(--bg-navy) 50%,
+        var(--bg-panel) 100%
+    );
+    border-bottom: 2px solid var(--primary-dim);
+    box-shadow: 0 2px 10px rgba(188, 19, 254, 0.2);
+}
+
+#terminal-dock {
+    height: 25vh;
+    min-height: 200px;
+    background: linear-gradient(
+        to bottom,
+        rgba(2, 2, 10, 0.9),
+        rgba(10, 10, 22, 0.95)
+    );
+    border-top: 1px solid rgba(188, 19, 254, 0.3);
+    box-shadow: 0 -5px 20px rgba(188, 19, 254, 0.1);
+    position: relative;
+}
+
+x-terminal {
+    height: 100%;
+    width: 100%;
+    margin: 0;
+    border: none;
+    border-radius: 0;
+    background: transparent;
+    position: relative;
+}
+
+@media (max-width: 768px) {
+    #app {
+        min-height: 100vh;
+    }
+
+    #terminal-dock {
+        height: 25vh;
+        min-height: 120px;
+    }
+
+    #viewport {
+        min-height: 450px;
+    }
+
+    @media (max-width: 480px) {
+        #terminal-dock {
+            height: 20vh;
+            min-height: 100px;
+        }
+
+        #viewport {
+            min-height: 350px;
+        }
+
+        x-terminal {
+            min-height: 100px;
+        }
+    }
+}
+
+/* ----- effects.css ----- */
+.scanlines {
+    background: linear-gradient(
+        to bottom,
+        rgba(255,255,255,0),
+        rgba(255,255,255,0) 50%,
+        rgba(0,0,0,0.1) 50%,
+        rgba(0,0,0,0.1)
+    );
+    background-size: 100% 4px;
+    animation: scrollLines 10s linear infinite;
+}
+
+@keyframes scrollLines {
+    0% { background-position: 0 0; }
+    100% { background-position: 0 100%; }
+}
+
+.glitch {
+    position: relative;
+    color: var(--text-main);
+}
+
+.glitch::before,
+.glitch::after {
+    content: attr(data-text);
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: var(--bg-deep-space);
+}
+
+/* (many component styles concatenated) */
+
+/* ----- components: header.css ----- */
+.system-header {
+    background: rgba(17, 17, 37, 0.8);
+    border-bottom: 1px solid rgba(188, 19, 254, 0.3);
+    padding: 0;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    backdrop-filter: blur(10px);
+}
+
+/* ----- components: lang-switch.css ----- */
+x-lang-switch { cursor: pointer; font-family: var(--font-mono); font-weight: bold; display: inline-block; }
+
+/* ----- components: projects.css ----- */
+.project-grid-container { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 2rem; padding-bottom: 2rem; }
+
+/* ----- components: terminal.css ----- */
+x-terminal { display: block; width: 100%; height: 100%; margin: 0; padding: 0; font-family: var(--font-mono); color: var(--text-main); position: relative; }
+
+/* ----- components: boot.css ----- */
+x-boot-screen { position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; background-color: #000; z-index: 9999; display: flex; justify-content: center; align-items: center; font-family: var(--font-mono); transition: opacity 1s ease-out; }
+
+/* ----- components: contact.css ----- */
+.contact-card { background: rgba(0, 0, 0, 0.5); border: 1px solid var(--primary-dim); box-shadow: var(--glow-violet); padding: 1.5rem; border-radius: 8px; max-width: 900px; margin: 0 auto; color: var(--text-primary); }
+
+/* ----- components: nav.css ----- */
+.console-nav { display: flex; align-items: center; background: #111; border-bottom: 2px solid var(--primary-dim); font-family: var(--font-mono); height: 50px; padding: 0; overflow: hidden; width: 100%; }
+
+/* ----- components: dashboard.css ----- */
+.dashboard-grid { display: grid; grid-template-columns: 2fr 1fr; grid-template-areas: "main-profile stack"; gap: 1.5rem; padding: 1rem; }
+.avatar-frame { width: 140px; height: 140px; min-width: 140px; border-radius: 50%; border: 2px solid var(--accent-primary); padding: 4px; box-shadow: 0 0 15px var(--accent-primary-glow); cursor: pointer; transition: transform 0.3s ease, box-shadow 0.3s ease; }
+.avatar-img { width: 100%; height: 100%; border-radius: 50%; object-fit: cover; }
+
+/* ----- components: tech-stack.css ----- */
+.tech-stack-panel { background: var(--bg-primary-translucent); border: 1px solid var(--border-primary); border-radius: var(--radius-md); padding: 1rem; font-family: var(--font-mono); position: relative; overflow: hidden; backdrop-filter: blur(10px); height: 100%; display: flex; flex-direction: column; }
+
+/* ----- components: console-nav.css ----- */
+.console-nav { display: flex; align-items: center; gap: 0.5rem; padding: 0.6rem 1rem; background: #0b0b0f; color: var(--text-primary); font-family: var(--font-mono); border-bottom: 1px solid var(--primary-dim); box-shadow: 0 4px 12px rgba(0, 0, 0, 0.35); position: relative; min-height: 50px; }
+
+/* ----- components: about.css ----- */
+.about-container { max-width: 800px; margin: 0 auto; display: flex; flex-direction: column; height: 100%; }
+
+/* ----- remaining components: compact-sidebar, github, toast ----- */
+.compact-sidebar { height: 100%; overflow: hidden; display: flex; flex-direction: column; gap: 1rem; padding: 1rem; }
+.gh-container { background: rgba(2, 2, 10, 0.6); border: 1px solid var(--primary-dim); padding: 1rem; font-family: var(--font-mono); display: flex; flex-direction: column; gap: 1rem; height: 100%; min-width: 250px; }
+.cyber-toast { background: rgba(0, 0, 0, 0.9); border: 1px solid var(--primary-neon); border-left: 5px solid var(--primary-neon); color: #fff; padding: 1rem; width: 300px; display: flex; align-items: center; gap: 1rem; font-family: var(--font-mono); box-shadow: 0 0 15px rgba(188, 19, 254, 0.3); opacity: 0; transform: translateX(100%); transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275); }
+
+/* End of bundle */
