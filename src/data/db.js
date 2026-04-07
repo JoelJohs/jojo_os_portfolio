@@ -1,5 +1,44 @@
 export const PROJECTS_DB = [
   {
+    id: "devjobscanner",
+    title: "DevJobScanner",
+    description:
+      "Open source job matcher that analyzes your CV and ranks roles with explainable fit using AI validation.",
+    status: "active",
+    order: 0,
+    media: {
+      thumbnail: "assets/projects/devjobscanner.png",
+      video_demo: null,
+    },
+    tech_stack: [
+      "Python",
+      "PySide6",
+      "AI Matching",
+      "PDF Parsing",
+      "Job APIs",
+    ],
+    urls: {
+      demo: null,
+      repository_main: {
+        url: "https://github.com/JoelJohs/devjobscanner",
+        type: "opensource",
+      },
+      repository_sec: null,
+    },
+    i18n: {
+      en: {
+        title: "DevJobScanner",
+        description:
+          "Open source job matcher that analyzes your CV, validates fit with AI, and ranks roles with clear rationale.",
+      },
+      es: {
+        title: "DevJobScanner",
+        description:
+          "Matcher open source que analiza tu CV, valida el fit con IA y rankea roles con razon clara.",
+      },
+    },
+  },
+  {
     id: "finguardian",
     title: "FinGuardian",
     description:

@@ -151,10 +151,10 @@ export default {
 	<div class="doc-header">
 		<div class="doc-info">
 			<h2>Joel Josafat Hernández Saucedo</h2>
-			<h3 class="role">Desarrollador Fullstack | Enfoque Backend</h3>
-			<p class="meta">📍 Morelia, Michoacán | 📧 jojohersa21@gmail.com</p>
+			<h3 class="role">Desarrollador Fullstack (Enfoque Backend) | Node.js • TypeScript • React • Next.js • PostgreSQL</h3>
+			<p class="meta">📍 Morelia, Michoacán, México | 📧 jojohersa21@gmail.com</p>
 			<p class="summary">
-				Desarrollador enfocado en backend con 3+ años construyendo aplicaciones web y APIs escalables. Priorizo código limpio, arquitectura sólida y comunicación clara entre equipos para entregar sistemas confiables.
+				Desarrollador fullstack enfocado en ingeniería backend con Node.js y TypeScript. Experiencia construyendo APIs REST, sistemas SaaS y aplicaciones web escalables. Background en React, Next.js y diseño de bases de datos relacionales.
 			</p>
 		</div>
 	</div>
@@ -166,56 +166,72 @@ export default {
 
 		<div class="job-item">
 			<div class="job-head">
-				<span class="job-title">Asistente de TI / Desarrollador</span>
-				<span class="job-date">Feb 2025 - Presente</span>
+				<span class="job-title">Desarrollador Fullstack</span>
+				<span class="job-date">Nov 2025 - Presente</span>
+			</div>
+			<div class="job-company">Voccalo</div>
+			<ul class="job-bullets">
+				<li>Migración de arquitectura React legacy a Next.js, mejorando escalabilidad y mantenibilidad.</li>
+				<li>Diseño de arquitectura SaaS multi-tenant para múltiples entornos de clientes.</li>
+				<li>Estandarización de estructura de repositorio y workflows de desarrollo.</li>
+				<li>Integración de capas frontend y backend para desarrollo escalable.</li>
+			</ul>
+		</div>
+
+		<div class="job-item">
+			<div class="job-head">
+				<span class="job-title">Desarrollador Backend / Fullstack</span>
+				<span class="job-date">Feb 2025 - Nov 2025</span>
 			</div>
 			<div class="job-company">ABV Electric Supply</div>
 			<ul class="job-bullets">
-				<li>Desarrollo y optimización de APIs REST con Django + PostgreSQL.</li>
-				<li>Integración de servicios backend con clientes frontend para mejorar flujos de datos.</li>
-				<li>Colaboración con operaciones para robustecer despliegues y documentación.</li>
+				<li>Construcción de APIs REST usando Django y PostgreSQL.</li>
+				<li>Implementación de lógica de negocio backend para sistemas internos.</li>
+				<li>Estructuración de arquitectura modular para mejorar mantenibilidad.</li>
+				<li>Integración de servicios backend con interfaces frontend.</li>
 			</ul>
 		</div>
 
 		<div class="job-item">
 			<div class="job-head">
-				<span class="job-title">Desarrollador Fullstack (Freelance)</span>
-				<span class="job-date">Ene 2023 - Ene 2025</span>
+				<span class="job-title">Desarrollador Fullstack (Proyectos Seleccionados)</span>
+				<span class="job-date">Ene 2024 - Presente</span>
 			</div>
+			<div class="job-company">Freelance</div>
 			<ul class="job-bullets">
-				<li>Construcción de sistemas de gestión y puntos de venta con React y Express.</li>
-				<li>Diseño de esquemas relacionales e implementación de APIs con JWT.</li>
-				<li>Entrega de tableros listos para cliente con reportes claros.</li>
+				<li>Desarrollo de POS y sistemas de gestion personalizados.</li>
+				<li>Diseño de arquitecturas relacionales usando PostgreSQL y MySQL.</li>
+				<li>Construcción de apps fullstack integrando APIs backend y sistemas frontend.</li>
 			</ul>
 		</div>
 
 		<div class="job-item">
 			<div class="job-head">
-				<span class="job-title">Soporte IT y Desarrollo Interno</span>
-				<span class="job-date">Feb 2020 - Ene 2025</span>
+				<span class="job-title">Sistemas Internos & Soporte TI</span>
+				<span class="job-date">Ene 2023 - Feb 2025</span>
 			</div>
 			<div class="job-company">Power Energy</div>
 			<ul class="job-bullets">
-				<li>Automatización de flujos administrativos y mantenimiento de herramientas internas.</li>
-				<li>Soporte a infraestructura y continuidad de datos.</li>
+				<li>Desarrollo de sistema interno de gestion reemplazando flujos en hojas de calculo.</li>
+				<li>Creacion de herramientas de automatizacion para reportes y operaciones internas.</li>
+				<li>Mantenimiento de infraestructura TI y continuidad de sistemas.</li>
 			</ul>
 		</div>
 	</section>
 
 	<section class="doc-section">
 		<h4>>> FORMACIÓN</h4>
-		<div class="edu-item"><strong>Ingeniería en Sistemas Computacionales</strong> — Instituto Tecnológico de Morelia (2020 - 2025)</div>
-		<div class="edu-item"><strong>Técnico en Informática</strong> — CECyTEM (2015 - 2018)</div>
+		<div class="edu-item"><strong>Ingeniería en Sistemas Computacionales</strong> — Instituto Tecnológico de Morelia (Ago 2021 - Jun 2026)</div>
 	</section>
 
 	<section class="doc-section">
 		<h4>>> ARSENAL TÉCNICO</h4>
 		<div class="stack-grid">
-			<span class="stack-chip">Python · Django · FastAPI</span>
-			<span class="stack-chip">JavaScript / TypeScript</span>
-			<span class="stack-chip">React · NestJS · Express</span>
+			<span class="stack-chip">Node.js · Express · NestJS</span>
+			<span class="stack-chip">React · Next.js</span>
+			<span class="stack-chip">JavaScript · TypeScript · Python</span>
 			<span class="stack-chip">PostgreSQL · MySQL</span>
-			<span class="stack-chip">Docker · Git</span>
+			<span class="stack-chip">REST APIs · SaaS · Arquitectura de Software</span>
 		</div>
 	</section>
 
@@ -223,7 +239,7 @@ export default {
 		<h4>>> IDIOMAS</h4>
 		<ul class="lang-list">
 			<li>Español — Nativo</li>
-			<li>Inglés — B2 (profesional)</li>
+			<li>Inglés — B1–B2 Professional Working Proficiency</li>
 		</ul>
 	</section>
 

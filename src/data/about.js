@@ -3,55 +3,57 @@ import { getPlayerStats } from "../core/utils/profile.js";
 export const PROFESSIONAL_DATA = {
   header: {
     name: "Joel Josafat Hernández Saucedo",
-    title: "Fullstack Developer",
-    location: "Morelia, Michoacán, México",
+    title:
+      "Fullstack Developer (Backend-Focused) | Node.js • TypeScript • React • Next.js • PostgreSQL",
+    location: "Morelia, Michoacán, Mexico",
     email: "jojohersa21@gmail.com",
-    phone: "438 100 4177",
+    phone: "+52 438 100 4177",
     summary:
-      "Desarrollador Fullstack mayormente enfocado en el backend, con más de 3 años de experiencia en aplicaciones web y APIs escalables. Priorizo el código limpio, la mejora continua y la comprensión profunda de los sistemas.",
+      "Fullstack developer focused on backend engineering using Node.js and TypeScript. Experience building REST APIs, SaaS systems, and scalable web applications. Background in React, Next.js, and relational database design.",
     cv_paths: {
-      es: "assets/docs/Joel_Josafat_Hernández_Saucedo_CV_es.pdf",
-      en: "assets/docs/Joel_Josafat_Hernández_Saucedo_CV_en.pdf",
+      es: "assets/docs/Joel_Josafat_Hernández_Saucedo_CV.pdf",
+      en: "assets/docs/Joel_Josafat_Hernández_Saucedo_CV.pdf",
     },
   },
   experience: [
     {
-      role: "Asistente de TI / Desarrollador",
+      role: "Fullstack Developer",
+      company: "Voccalo",
+      period: "Nov 2025 - Present",
+      desc: "Migrated legacy React architecture to Next.js, designed multi-tenant SaaS architecture, standardized repo structure, and integrated frontend/back layers for scalable delivery.",
+    },
+    {
+      role: "Backend / Fullstack Developer",
       company: "ABV Electric Supply",
-      period: "Feb 2025 - Presente",
-      desc: "Desarrollo y optimización de APIs con Django y PostgreSQL. Integración backend-frontend y colaboración técnica.",
+      period: "Feb 2025 - Nov 2025",
+      desc: "Built REST APIs with Django and PostgreSQL, implemented backend business logic, structured modular architecture, and integrated backend services with frontend interfaces.",
     },
     {
-      role: "Desarrollador Fullstack",
+      role: "Fullstack Developer (Selected Projects)",
       company: "Freelance",
-      period: "Ene 2023 - Ene 2025",
-      desc: "Sistemas de gestión personalizados y puntos de venta usando React y Express. Bases de datos SQL.",
+      period: "Jan 2024 - Present",
+      desc: "Developed custom POS and business management systems, designed relational database architectures with PostgreSQL/MySQL, and built fullstack apps integrating backend APIs and frontend systems.",
     },
     {
-      role: "Soporte IT y Desarrollo Interno",
+      role: "Internal Systems & IT Support",
       company: "Power Energy",
-      period: "Feb 2020 - Ene 2025",
-      desc: "Automatización de procesos administrativos y mantenimiento de infraestructura TI.",
+      period: "Jan 2023 - Feb 2025",
+      desc: "Developed internal management system replacing spreadsheet workflows, built automation tools for reporting and operations, and maintained IT infrastructure and continuity.",
     },
   ],
   education: [
     {
       degree: "Ingeniería en Sistemas Computacionales",
       school: "Instituto Tecnológico de Morelia",
-      period: "2020 - 2025",
-    },
-    {
-      degree: "Técnico en Soporte y Mantenimiento",
-      school: "CECyTEM Puruándiro",
-      period: "2013 - 2016",
+      period: "Aug 2021 - Jun 2026",
     },
   ],
   skills: [
-    "Python (Django/FastAPI)",
-    "JS/TS (React/NestJS)",
-    "SQL (Postgres/MySQL)",
-    "Docker",
-    "Git",
+    "Backend: Node.js, Express, NestJS",
+    "Frontend: React, Next.js",
+    "Languages: JavaScript, TypeScript, Python",
+    "Databases: PostgreSQL, MySQL",
+    "Concepts: REST APIs, SaaS, Software Architecture, SDLC",
   ],
 };
 

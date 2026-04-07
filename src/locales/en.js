@@ -150,10 +150,10 @@ export default {
   <div class="doc-header">
     <div class="doc-info">
       <h2>Joel Josafat Hernández Saucedo</h2>
-      <h3 class="role">Fullstack Developer | Backend Focus</h3>
-      <p class="meta">📍 Morelia, Michoacán | 📧 jojohersa21@gmail.com</p>
+      <h3 class="role">Fullstack Developer (Backend-Focused) | Node.js • TypeScript • React • Next.js • PostgreSQL</h3>
+      <p class="meta">📍 Morelia, Michoacán, Mexico | 📧 jojohersa21@gmail.com</p>
       <p class="summary">
-        Backend-focused developer with 3+ years building web apps and scalable APIs. I prioritize clean code, solid architecture, and clear communication between teams to ship reliable systems.
+        Fullstack developer focused on backend engineering using Node.js and TypeScript. Experience building REST APIs, SaaS systems, and scalable web applications. Background in React, Next.js, and relational database design.
       </p>
     </div>
   </div>
@@ -165,56 +165,72 @@ export default {
 
     <div class="job-item">
       <div class="job-head">
-        <span class="job-title">IT Assistant / Developer</span>
-        <span class="job-date">Feb 2025 - Present</span>
+        <span class="job-title">Fullstack Developer</span>
+        <span class="job-date">Nov 2025 - Present</span>
+      </div>
+      <div class="job-company">Voccalo</div>
+      <ul class="job-bullets">
+        <li>Migrated legacy React architecture to Next.js, improving scalability and maintainability.</li>
+        <li>Designed multi-tenant SaaS architecture supporting multiple client environments.</li>
+        <li>Standardized repository structure and development workflows.</li>
+        <li>Integrated frontend and backend layers for scalable platform development.</li>
+      </ul>
+    </div>
+
+    <div class="job-item">
+      <div class="job-head">
+        <span class="job-title">Backend / Fullstack Developer</span>
+        <span class="job-date">Feb 2025 - Nov 2025</span>
       </div>
       <div class="job-company">ABV Electric Supply</div>
       <ul class="job-bullets">
-        <li>Develop and optimize REST APIs with Django + PostgreSQL.</li>
-        <li>Integrate backend services with frontend clients to improve data flow.</li>
-        <li>Collaborate with ops to harden deployments and documentation.</li>
+        <li>Built REST APIs using Django and PostgreSQL.</li>
+        <li>Implemented backend business logic for internal systems.</li>
+        <li>Structured modular architecture improving maintainability.</li>
+        <li>Integrated backend services with frontend interfaces.</li>
       </ul>
     </div>
 
     <div class="job-item">
       <div class="job-head">
-        <span class="job-title">Fullstack Developer (Freelance)</span>
-        <span class="job-date">Jan 2023 - Jan 2025</span>
+        <span class="job-title">Fullstack Developer (Selected Projects)</span>
+        <span class="job-date">Jan 2024 - Present</span>
       </div>
+      <div class="job-company">Freelance</div>
       <ul class="job-bullets">
-        <li>Built management systems and POS solutions with React and Express.</li>
-        <li>Designed relational schemas and implemented JWT-secured APIs.</li>
-        <li>Delivered client-ready dashboards with clear reporting.</li>
+        <li>Developed custom POS and business management systems.</li>
+        <li>Designed relational database architectures using PostgreSQL and MySQL.</li>
+        <li>Built fullstack applications integrating backend APIs and frontend systems.</li>
       </ul>
     </div>
 
     <div class="job-item">
       <div class="job-head">
-        <span class="job-title">IT Support & Internal Dev</span>
-        <span class="job-date">Feb 2020 - Jan 2025</span>
+        <span class="job-title">Internal Systems & IT Support</span>
+        <span class="job-date">Jan 2023 - Feb 2025</span>
       </div>
       <div class="job-company">Power Energy</div>
       <ul class="job-bullets">
-        <li>Automated admin workflows and maintained internal tools.</li>
-        <li>Supported infrastructure and ensured data continuity.</li>
+        <li>Developed internal management system replacing spreadsheet-based workflows.</li>
+        <li>Built automation tools for internal reporting and operations.</li>
+        <li>Maintained IT infrastructure and system continuity.</li>
       </ul>
     </div>
   </section>
 
   <section class="doc-section">
     <h4>>> EDUCATION</h4>
-    <div class="edu-item"><strong>Computer Systems Engineering</strong> — Instituto Tecnológico de Morelia (2020 - 2025)</div>
-    <div class="edu-item"><strong>Técnico en Informática</strong> — CECyTEM (2015 - 2018)</div>
+    <div class="edu-item"><strong>Computer Systems Engineering</strong> — Instituto Tecnológico de Morelia (Aug 2021 - Jun 2026)</div>
   </section>
 
   <section class="doc-section">
     <h4>>> TECH STACK</h4>
     <div class="stack-grid">
-      <span class="stack-chip">Python · Django · FastAPI</span>
-      <span class="stack-chip">JavaScript / TypeScript</span>
-      <span class="stack-chip">React · NestJS · Express</span>
+      <span class="stack-chip">Node.js · Express · NestJS</span>
+      <span class="stack-chip">React · Next.js</span>
+      <span class="stack-chip">JavaScript · TypeScript · Python</span>
       <span class="stack-chip">PostgreSQL · MySQL</span>
-      <span class="stack-chip">Docker · Git</span>
+      <span class="stack-chip">REST APIs · SaaS · Software Architecture</span>
     </div>
   </section>
 
@@ -222,7 +238,7 @@ export default {
     <h4>>> LANGUAGES</h4>
     <ul class="lang-list">
       <li>Spanish — Native</li>
-      <li>English — B2 (professional)</li>
+      <li>English — B1–B2 Professional Working Proficiency</li>
     </ul>
   </section>
 
